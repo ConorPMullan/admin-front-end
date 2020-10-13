@@ -11,6 +11,12 @@ This project uses the following technologies and tooling:
 - ESLint
 - Prettier
 
+## Installation
+
+Clone the repository and run `npm install` to install the projects dependencies. 
+
+After this is complete, run `npm start` and the project should be available on [http://localhost:3000](http://localhost:3000) in the browser.
+
 ## Testing
 
 Please ensure that any additions to the codebase have any relevant tests added with them.
@@ -39,9 +45,6 @@ Launches the test runner in the interactive watch mode.<br />
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
@@ -64,9 +67,9 @@ Runs Prettier on each file within the codebase and formats it based on the rules
 
 These settings are for configuring VS Code to work with our ESLint and Prettier configurations. 
 
-First, please ensure that you have the VSCode ESLint(https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and Prettier(https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions installed.
+First, please ensure that you have the VSCode [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions installed.
 
-Within VS Code, click the cog :gear: icon in the bottom left corner of the application and then select Settings. 
+Within VS Code, click the cog icon :gear: in the bottom left corner of the application and then select Settings. 
 
 - First search for "Code Actions On Save" 
 - Select "Edit in settings.json"
