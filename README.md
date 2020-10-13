@@ -1,21 +1,40 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Pet Foods Experts Admin Application
 
-In the project directory, you can run:
+:wave: Welcome to the repository for the PFE admin application!
+
+This project uses the following technologies and tooling:
+
+- React
+- TypeScript
+- Jest
+- React Testing Library
+- ESLint
+- Prettier
+
+## Testing
+
+Please ensure that any additions to the codebase have any relevant tests added with them.
+
+Our testing strategy is mainly integration and unit testing using Jest and React Testing Library.
+
+See this [blog post by Kent C. Dodds](https://kentcdodds.com/blog/write-tests) for the reasoning behind this decision.
+
+## Scripts
+
+In the project directory, you can run the following scripts:
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -29,16 +48,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: DONT DO THIS! - this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We're using create-react-app on this project to manage the dependencies related to React. We have a small front-end team and on the last project we spent a lot more time than we should have trying to update libraries and keep them in sync.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you want to extend the configuration for this application, please take a look at libraries such as [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) or [craco](https://www.npmjs.com/package/@craco/craco)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `npm run lint`
 
-## Learn More
+Runs ESLint on each file within the codebase for any errors. These rules are specified within the `.eslintrc.js` file.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `npm run format`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Runs Prettier on each file within the codebase and formats it based on the rules supplied within the `.prettierrc.js` file.
