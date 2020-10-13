@@ -1,12 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Pet Foods Experts Admin Application :dog: :cat:
 
-## Pet Foods Experts Admin Application
-
-:wave: Welcome to the repository for the PFE admin application!
+Welcome to the repository for the PFE admin application! :wave:
 
 This project uses the following technologies and tooling:
 
-- React
+- React 
 - TypeScript
 - Jest
 - React Testing Library
