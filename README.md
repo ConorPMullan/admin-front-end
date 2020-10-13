@@ -1,4 +1,4 @@
-## Pet Foods Experts Admin Application :dog: :cat:
+## Pet Foods Experts Admin Application :dog: :cat: :rabbit: :hamster:
 
 Welcome to the repository for the PFE admin application! :wave:
 
