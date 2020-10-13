@@ -82,6 +82,6 @@ Within VS Code, click the cog icon :gear: in the bottom left corner of the appli
     "eslint.validate": ["javascript"]
 ```
 
-- Navigate bcak to Settings and search for "Format On Save"
+- Navigate back to Settings and search for "Format On Save"
 - Tick the checkbox for the option "Editor: Format On Save" 
 - Your editor should be setup to work with Prettier and VSCode :smile: 
