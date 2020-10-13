@@ -59,3 +59,26 @@ Runs ESLint on each file within the codebase for any errors. These rules are spe
 ### `npm run format`
 
 Runs Prettier on each file within the codebase and formats it based on the rules supplied within the `.prettierrc.js` file.
+
+## VS Code Settings
+
+These settings are for configuring VS Code to work with our ESLint and Prettier configurations. 
+
+First, please ensure that you have the VSCode ESLint(https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and Prettier(https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions installed.
+
+Within VS Code, click the cog :gear: icon in the bottom left corner of the application and then select Settings. 
+
+- First search for "Code Actions On Save" 
+- Select "Edit in settings.json"
+- Insert the following rules into the configuration
+
+```
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+    "eslint.validate": ["javascript"]
+```
+
+- Navigate bcak to Settings and search for "Format On Save"
+- Tick the checkbox for the option "Editor: Format On Save" 
+- Your editor should be setup to work with Prettier and VSCode :smile: 
