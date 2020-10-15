@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-const Login: React.FunctionComponent = (): ReactElement => (
+const Login: React.FC = (): ReactElement => (
   <div>Hello, I am the login page!</div>
 );
 

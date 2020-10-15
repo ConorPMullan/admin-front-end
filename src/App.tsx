@@ -28,7 +28,7 @@ const routes = (
   </Switch>
 );
 
-const App: React.FunctionComponent = () => {
+const App: React.FC = () => {
   // Authentication hook goes here
   const isAuthenticated = false;
 
