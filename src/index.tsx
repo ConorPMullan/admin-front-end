@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
-ReactDOM.render(
+const Application: React.FC = (): ReactElement => (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+
+ReactDOM.render(
+  <Application />,
   document.getElementById('root')
 );
