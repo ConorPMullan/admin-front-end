@@ -20,7 +20,6 @@ const NAVIGATION_ROUTES: NavigationTypes = {
   MANAGE_FOOTER: 'manage/footer',
 };
 
-// Ensure key matches navigation route so that application sets title correctly.
 const PAGE_TITLES: NavigationTypes = {
   LOGIN: 'Login',
   HOME: 'Home',
