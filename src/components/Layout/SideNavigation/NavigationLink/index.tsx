@@ -17,7 +17,7 @@ const NavigationLink: React.FC<Props> = ({
 
   const isActive = pathname.toUpperCase() === to.toUpperCase();
 
-  // Mock function to simulate returning pending total of things needing approved (addresses, ratings, reviews)
+  // Mock function to return a value which represents the pending total of things that need approved (addresses, ratings, reviews)
   function returnPending() {
     return Math.floor(to.length / 3);
   }
