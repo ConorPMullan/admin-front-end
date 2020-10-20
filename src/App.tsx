@@ -1,17 +1,35 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Home } from './pages';
+import { Login, Home, Address, RatingsAndReview, WebAccess } from './pages';
 import { Layout } from './components';
-import { NavigationRoutes } from './constants';
+import { Navigation } from './constants';
+import { PageTitle } from './utils/document';
 
 const authenticatedRoutes = (
   <Layout>
     <Switch>
-      <Route path={`${NavigationRoutes.HOME}`}>
-        <Home />
+      <Route path={`${Navigation.NAVIGATION_ROUTES.HOME}`}>
+        <PageTitle title={Navigation.PAGE_TITLES.HOME}>
+          <Home />
+        </PageTitle>
+      </Route>
+      <Route path={`${Navigation.NAVIGATION_ROUTES.ADDRESS}`}>
+        <PageTitle title={Navigation.PAGE_TITLES.ADDRESS}>
+          <Address />
+        </PageTitle>
+      </Route>
+      <Route path={`${Navigation.NAVIGATION_ROUTES.WEB_ACCESS}`}>
+        <PageTitle title={Navigation.PAGE_TITLES.WEB_ACCESS}>
+          <WebAccess />
+        </PageTitle>
+      </Route>
+      <Route path={`${Navigation.NAVIGATION_ROUTES.RATINGS_AND_REVIEWS}`}>
+        <PageTitle title={Navigation.PAGE_TITLES.RATINGS_AND_REVIEWS}>
+          <RatingsAndReview />
+        </PageTitle>
       </Route>
       <Route>
-        <Redirect to={`${NavigationRoutes.HOME}`} />
+        <Redirect to={`${Navigation.NAVIGATION_ROUTES.HOME}`} />
       </Route>
     </Switch>
   </Layout>
@@ -19,18 +37,18 @@ const authenticatedRoutes = (
 
 const routes = (
   <Switch>
-    <Route path={`${NavigationRoutes.LOGIN}`}>
+    <Route path={`${Navigation.NAVIGATION_ROUTES.LOGIN}`}>
       <Login />
     </Route>
     <Route>
-      <Redirect to={`${NavigationRoutes.LOGIN}`} />
+      <Redirect to={`${Navigation.NAVIGATION_ROUTES.LOGIN}`} />
     </Route>
   </Switch>
 );
 
 const App: React.FC = () => {
   // Authentication hook goes here
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   if (isAuthenticated) {
     return authenticatedRoutes;
