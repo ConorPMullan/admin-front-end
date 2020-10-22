@@ -1,4 +1,3 @@
-
 #!groovy
 
 import com.petfoodexperts.leader.pack.operation.Constants
