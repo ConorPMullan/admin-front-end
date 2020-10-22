@@ -23,7 +23,7 @@ def performDeployment(String instance, pipelineTools) {
 
 pipeline {
   agent {
-    dockerfile {
+    docker {
       label 'linux-agent'
       image 'operation-pack-leader/jenkins-nodejs10-agent:latest'
       args '-u root:root'
