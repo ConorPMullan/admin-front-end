@@ -7,7 +7,7 @@ afterEach(cleanup);
 
 describe('Testing PageContainer Component', () => {
   test('renders the page container', () => {
-    const { getByTestId } = render(<PageContainer />);
-    expect(getByTestId('page-content-container')).toBeInTheDocument();
+    const { getByRole } = render(<PageContainer />);
+    expect(getByRole('main')).toBeInTheDocument();
   });
 });
