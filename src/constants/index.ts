@@ -1,1 +1,1 @@
-export { default as NavigationRoutes } from './navigationRoutes';
+export { default as Navigation } from './navigation';
