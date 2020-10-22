@@ -29,7 +29,11 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'no-use-before-define': 'off',
     '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    "import/prefer-default-export": "off",
+    'react/prop-types': 'off',
     'linebreak-style': 'off',
     'prettier/prettier': [
       'error',

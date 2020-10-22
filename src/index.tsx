@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
+
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { theme, GlobalStyle } from './styled/theme';
+
 import App from './App';
 
-ReactDOM.render(
+const Application: React.FC = (): ReactElement => (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
+  </React.StrictMode>
 );
+
+ReactDOM.render(<Application />, document.getElementById('root'));
