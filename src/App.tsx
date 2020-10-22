@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Home, Address, RatingsAndReview, WebAccess } from './pages';
-import { Layout } from './components';
-import { Navigation } from './constants';
-import { PageTitle } from './utils/document';
+import { Layout } from '@components';
+import { Navigation } from '@constants';
+import { Login, Home, Address, RatingsAndReview, WebAccess } from '@pages';
+import { PageTitle } from '@utils';
 
 const authenticatedRoutes = (
   <Layout>

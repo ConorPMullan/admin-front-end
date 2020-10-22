@@ -1,6 +1,6 @@
-interface NavigationTypes {
+type NavigationTypes = {
   [key: string]: string;
-}
+};
 
 const NAVIGATION_ROUTES: NavigationTypes = {
   LOGIN: '/login',
@@ -38,4 +38,4 @@ const PAGE_TITLES: NavigationTypes = {
   MANAGE_FOOTER: 'Manage Footer',
 };
 
-export default { NAVIGATION_ROUTES, PAGE_TITLES };
+export default { PAGE_TITLES, NAVIGATION_ROUTES };

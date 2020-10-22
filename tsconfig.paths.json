@@ -1,0 +1,26 @@
+/*
+  For any folder using an index barrel, setup a path like this:
+  @components": ["./src/components"]
+
+  If you want to import directly from a folder, setup a path like this:
+  @utils/*": ["./src/utils/*"]
+
+  For testing, any aliases will need to also be setup in the package.json for Jest.
+*/
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["./src/components"],
+      "@pages": ["./src/pages"],
+      "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils"],
+      "@assets/*": ["./src/assets/*"],
+      "@constants": ["./src/constants"],
+      "@styled/*": ["./src/styled/*"],
+    }
+  }
+}
+
+  
