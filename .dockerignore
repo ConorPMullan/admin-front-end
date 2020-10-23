@@ -1,0 +1,12 @@
+.DS_Store
+.dockerignore
+.git
+.gitignore
+.vscode
+Dockerfile
+Jenkinsfile
+README.md
+build
+cloudbuild
+node_modules
+sandbox-deploy.json
