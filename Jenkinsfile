@@ -67,16 +67,22 @@ pipeline {
         sh 'npm i'
       }
     }
-    stage('Run tests') {
-      when { expression { return !pipelineTools.isSandboxDeploy() } }
-      steps {
-        sh 'npm test'
-      }
-    }
-    // stage('Run lint check') {
+    // stage('Run tests') {
     //   when { expression { return !pipelineTools.isSandboxDeploy() } }
     //   steps {
-    //     sh 'npm run lint'
+    //     sh 'npm test'
+    //   }
+    // }
+    stage('Run lint check') {
+      when { expression { return !pipelineTools.isSandboxDeploy() } }
+      steps {
+        sh 'npm run lint'
+      }
+    }
+    // stage('Run formatter') {
+    //   when { expression { return !pipelineTools.isSandboxDeploy() } }
+    //   steps {
+    //     sh 'npm run format'
     //   }
     // }
     stage('GCP authentication') {
