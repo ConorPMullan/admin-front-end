@@ -1,9 +1,10 @@
 import React from 'react';
-import { RouteProps } from 'react-router';
-import { PageContainer, SiteContainer } from './styled';
+import { RouteProps } from 'react-router-dom';
+import { SiteContainer } from './styled';
 
 import Header from './Header';
 import SideNavigation from './SideNavigation';
+import PageContainer from './PageContainer';
 
 interface Props {
   children: RouteProps['children'];

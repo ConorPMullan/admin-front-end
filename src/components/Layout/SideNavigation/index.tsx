@@ -1,10 +1,10 @@
 import React from 'react';
-import NavigationLink from './NavigationLink';
+import { Navigation } from '@constants';
 import { NavigationContainer, NavigationList } from './styled';
-import { Navigation } from '../../../constants';
+import NavigationLink from './NavigationLink';
 
 const SideNavigation: React.FC = () => (
-  <NavigationContainer>
+  <NavigationContainer role="navigation" aria-label="main">
     <NavigationList>
       <NavigationLink
         pendingItems={false}

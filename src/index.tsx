@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { theme, GlobalStyle } from './styled/theme';
+import { theme, GlobalStyle } from '@styled/theme';
 
 import App from './App';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { StyledLink, LinkContainer, TotalPendingItems } from './styled';
 
 interface Props {
@@ -23,11 +23,11 @@ const NavigationLink: React.FC<Props> = ({
   }
 
   return (
-    <LinkContainer isActive={isActive}>
-      <StyledLink isActive={isActive} to={to}>
+    <LinkContainer data-testid="nav-link-container" $isActive={isActive}>
+      <StyledLink $isActive to={to}>
         {children}{' '}
         {pendingItems && (
-          <TotalPendingItems isActive={isActive}>
+          <TotalPendingItems $isActive={isActive}>
             ({returnPending()})
           </TotalPendingItems>
         )}

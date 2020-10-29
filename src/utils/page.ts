@@ -9,3 +9,5 @@ export const PageTitle = ({
 
   return children;
 };
+
+export default PageTitle;

@@ -1,10 +1,10 @@
 import React from 'react';
+import PFELogo from '@assets/pet-food-logo.png';
 import { HeaderContainer, Logo } from './styled';
-import PFELogo from '../../../assets/pet-food-logo.png';
 
 const Header: React.FC = () => (
   <HeaderContainer>
-    <Logo src={PFELogo} alt="Pet Food Experts Logo" />
+    <Logo data-testid="Logo" src={PFELogo} alt="Pet Food Experts Logo" />
   </HeaderContainer>
 );
 
