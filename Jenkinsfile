@@ -64,15 +64,15 @@ pipeline {
     stage('Install packages') {
       when { expression { return !pipelineTools.isSandboxDeploy() } }
       steps {
-        sh 'npm i'
+        sh 'npm install'
       }
     }
-    // stage('Run tests') {
-    //   when { expression { return !pipelineTools.isSandboxDeploy() } }
-    //   steps {
-    //     sh 'npm test'
-    //   }
-    // }
+    stage('Run tests') {
+      when { expression { return !pipelineTools.isSandboxDeploy() } }
+      steps {
+        sh 'npm run testAll -- --watchAll=false'
+      }
+    }
     stage('Run lint check') {
       when { expression { return !pipelineTools.isSandboxDeploy() } }
       steps {
