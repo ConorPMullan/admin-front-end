@@ -1,26 +1,40 @@
-type NavigationTypes = {
-  [key: string]: string;
-};
+interface NavigationRoutes {
+  LOGIN: string;
+  HOME: string;
+  WEB_ACCESS: string;
+  RATINGS_AND_REVIEWS: string;
+  ADDRESS: string;
+  MANAGE_HOME: string;
+  MANAGE_SHOP_PRODUCTS: string;
+  MANAGE_PRODUCT_DETAILS: string;
+  MANAGE_ACCOUNTS: string;
+  MANAGE_ORDERS: string;
+  MANAGE_FAVORITES: string;
+  MANAGE_NOTIFICATIONS: string;
+  MANAGE_USER_PROFILE: string;
+  MANAGE_GLOBAL_NAV: string;
+  MANAGE_FOOTER: string;
+}
 
-const NAVIGATION_ROUTES: NavigationTypes = {
+const NAVIGATION_ROUTES: NavigationRoutes = {
   LOGIN: '/login',
   HOME: '/home',
   WEB_ACCESS: '/web_access',
   RATINGS_AND_REVIEWS: '/ratings_and_reviews',
   ADDRESS: '/address',
-  MANAGE_HOME: 'manage/home',
-  MANAGE_SHOP_PRODUCTS: 'manage/shop_products',
-  MANAGE_PRODUCT_DETAILS: 'manage/product_details',
-  MANAGE_ACCOUNTS: 'manage/accounts',
-  MANAGE_ORDERS: 'manage/orders',
-  MANAGE_FAVORITES: 'manage/favorites',
-  MANAGE_NOTIFICATIONS: 'manage/notifications',
-  MANAGE_USER_PROFILE: 'manage/user_profile',
-  MANAGE_GLOBAL_NAV: 'manage/global_nav',
-  MANAGE_FOOTER: 'manage/footer',
+  MANAGE_HOME: '/manage/home',
+  MANAGE_SHOP_PRODUCTS: '/manage/shop_products',
+  MANAGE_PRODUCT_DETAILS: '/manage/product_details',
+  MANAGE_ACCOUNTS: '/manage/accounts',
+  MANAGE_ORDERS: '/manage/orders',
+  MANAGE_FAVORITES: '/manage/favorites',
+  MANAGE_NOTIFICATIONS: '/manage/notifications',
+  MANAGE_USER_PROFILE: '/manage/user_profile',
+  MANAGE_GLOBAL_NAV: '/manage/global_nav',
+  MANAGE_FOOTER: '/manage/footer',
 };
 
-const PAGE_TITLES: NavigationTypes = {
+const PAGE_TITLES: NavigationRoutes = {
   LOGIN: 'Login',
   HOME: 'Home',
   WEB_ACCESS: 'Web Access',

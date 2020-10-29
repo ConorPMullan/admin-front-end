@@ -2,8 +2,18 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from '@components';
 import { Navigation } from '@constants';
-import { Login, Home, Address, RatingsAndReview, WebAccess } from '@pages';
-import { PageTitle } from '@utils';
+import {
+  Login,
+  Home,
+  Address,
+  RatingsAndReview,
+  WebAccess,
+  ManageHome,
+  ManageShopProducts,
+  ManageProductDetails,
+} from '@pages';
+
+import { PageTitle } from '@utils/page';
 
 const authenticatedRoutes = (
   <Layout>
@@ -26,6 +36,21 @@ const authenticatedRoutes = (
       <Route path={Navigation.NAVIGATION_ROUTES.RATINGS_AND_REVIEWS}>
         <PageTitle title={Navigation.PAGE_TITLES.RATINGS_AND_REVIEWS}>
           <RatingsAndReview />
+        </PageTitle>
+      </Route>
+      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_SHOP_PRODUCTS}>
+        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_SHOP_PRODUCTS}>
+          <ManageShopProducts />
+        </PageTitle>
+      </Route>
+      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCT_DETAILS}>
+        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_PRODUCT_DETAILS}>
+          <ManageProductDetails />
+        </PageTitle>
+      </Route>
+      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_HOME}>
+        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_HOME}>
+          <ManageHome />
         </PageTitle>
       </Route>
       <Route>

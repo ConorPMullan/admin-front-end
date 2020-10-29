@@ -68,7 +68,8 @@
       "^@assets(.*)$": "<rootDir>/src/assets$1",
       "^@utils(.*)$": "<rootDir>/src/utils$1",
       "^@styled(.*)$": "<rootDir>/src/styled$1",
-      "^@constants(.*)$": "<rootDir>/src/constants$1"
+      "^@constants(.*)$": "<rootDir>/src/constants$1",
+      "^@hooks(.*)$": "<rootDir>/src/hooks$1"
     }
   }
 }
