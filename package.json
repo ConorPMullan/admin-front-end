@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/react": "^11.1.0",
     "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^11.1.0",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.67",
     "@types/react": "^16.9.52",
@@ -16,6 +16,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-test-renderer": "^16.13.1",
     "styled-components": "5.1.1",
     "typescript": "^3.8.0"
   },
@@ -23,7 +24,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
-    "testAll" : "react-app-rewired test --watchAll --env=jest-environment-jsdom-sixteen",
+    "testAll": "react-app-rewired test --watchAll --env=jest-environment-jsdom-sixteen",
     "eject": "react-app-rewired eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.2",
     "@testing-library/user-event": "^12.1.10",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
