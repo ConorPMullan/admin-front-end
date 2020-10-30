@@ -15,10 +15,11 @@
       "@components": ["./src/components"],
       "@pages": ["./src/pages"],
       "@utils/*": ["./src/utils/*"],
-      "@utils": ["./src/utils"],
       "@assets/*": ["./src/assets/*"],
+      "@utils": ["./src/utils"],
       "@constants": ["./src/constants"],
       "@styled/*": ["./src/styled/*"],
+      "@hooks": ["./src/hooks"],
     }
   }
 }

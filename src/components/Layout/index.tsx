@@ -10,12 +10,14 @@ interface Props {
   children: RouteProps['children'];
 }
 
-const Layout: React.FC<Props> = ({ children }) => (
-  <SiteContainer>
-    <Header />
-    <SideNavigation />
-    <PageContainer>{children}</PageContainer>
-  </SiteContainer>
-);
+const Layout: React.FC<Props> = ({ children }) => {
+  return (
+    <SiteContainer>
+      <Header />
+      <SideNavigation />
+      <PageContainer>{children}</PageContainer>
+    </SiteContainer>
+  );
+};
 
 export default Layout;

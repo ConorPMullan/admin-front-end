@@ -8,4 +8,5 @@ export const NavigationContainer = styled.nav`
 
 export const NavigationList = styled.ul`
   padding-inline-start: 0px;
+  margin-bottom: 0px;
 `;

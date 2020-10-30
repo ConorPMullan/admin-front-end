@@ -2,15 +2,17 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { StyledLink, LinkContainer, TotalPendingItems } from './styled';
 
-interface Props {
+export interface NavigationLinkProps {
   children: string;
   to: string;
+  isSubNavLink?: boolean;
   pendingItems?: boolean;
 }
 
-const NavigationLink: React.FC<Props> = ({
+const NavigationLink: React.FC<NavigationLinkProps> = ({
   children,
   to,
+  isSubNavLink = false,
   pendingItems = true,
 }) => {
   const { pathname } = useLocation();
@@ -23,8 +25,12 @@ const NavigationLink: React.FC<Props> = ({
   }
 
   return (
-    <LinkContainer data-testid="nav-link-container" $isActive={isActive}>
-      <StyledLink $isActive to={to}>
+    <LinkContainer
+      data-testid="nav-link-container"
+      $isActive={isActive}
+      $isSubNavLink={isSubNavLink}
+    >
+      <StyledLink $isActive={isActive} to={to} $isSubNavLink={isSubNavLink}>
         {children}{' '}
         {pendingItems && (
           <TotalPendingItems $isActive={isActive}>

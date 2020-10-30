@@ -1,17 +1,12 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledLink = styled(Link)<{ $isActive: boolean }>`
+export const SharedLinkStyle = css`
   text-decoration: none;
   text-transform: uppercase;
   font-size: 0.78em;
   padding-left: 2em;
-  font-family: ${({ theme }) => theme.fonts.main};
-  color: ${({ theme }) => theme.colors.deepBlue};
-  font-weight: ${({ theme, $isActive }) =>
-    $isActive ? theme.fontWeights.bold : theme.fontWeights.normal};
   letter-spacing: 0.025em;
-
   :visited {
     color: ${({ theme }) => theme.colors.deepBlue};
   }
@@ -21,11 +16,54 @@ export const StyledLink = styled(Link)<{ $isActive: boolean }>`
   }
 `;
 
-export const LinkContainer = styled.li<{ $isActive: boolean }>`
+export const StyledLink = styled(Link)<{
+  $isActive: boolean;
+  $isSubNavLink?: boolean;
+}>`
+  ${SharedLinkStyle}
+
+  ${({ theme, $isActive, $isSubNavLink }) => {
+    let styles = '';
+
+    if ($isActive) {
+      styles += `font-weight: ${theme.fontWeights.bold};`;
+    }
+
+    if ($isSubNavLink) {
+      styles += `
+        color: ${theme.colors.black};
+        font-size: 1em;  
+        padding-left: 1.5em;
+        text-transform: capitalize; 
+        font-weight: ${theme.fontWeights.semibold};
+        margin-top: 5px;
+
+        :visited {
+          color: ${theme.colors.black};
+        }
+      `;
+
+      if ($isActive) {
+        styles += `
+        color: ${theme.colors.orange};
+        :visited {
+          color: ${theme.colors.orange};
+        }
+        `;
+      }
+    }
+
+    return styles;
+  }};
+`;
+
+export const LinkContainer = styled.li<{
+  $isActive: boolean;
+  $isSubNavLink?: boolean;
+}>`
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: ${({ theme, $isActive }) =>
-    $isActive ? theme.colors.grey : theme.colors.lightGrey};
+  background-color: ${({ theme }) => theme.colors.lightGrey};
   width: 100%;
   height: 40px;
   display: flex;
@@ -34,6 +72,26 @@ export const LinkContainer = styled.li<{ $isActive: boolean }>`
   :first-child {
     margin-top: 20px;
   }
+
+  ${({ theme, $isActive, $isSubNavLink }) => {
+    let styles = '';
+
+    if ($isActive) {
+      styles += `background-color: ${theme.colors.grey};`;
+    }
+
+    if ($isSubNavLink) {
+      styles += `
+        height: 30px;
+        background-color: ${theme.colors.lightGrey};
+        :first-child {
+          margin-top: 0px;
+        }
+      `;
+    }
+
+    return styles;
+  }};
 `;
 
 export const TotalPendingItems = styled.span<{ $isActive: boolean }>`

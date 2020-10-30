@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigation } from '@constants';
 import { NavigationContainer, NavigationList } from './styled';
 import NavigationLink from './NavigationLink';
+import NavigationDropdown from './NavigationDropdown';
 
 const SideNavigation: React.FC = () => (
   <NavigationContainer role="navigation" aria-label="main">
@@ -24,6 +25,29 @@ const SideNavigation: React.FC = () => (
         Web Access
       </NavigationLink>
     </NavigationList>
+    <NavigationDropdown title="Manage Content" rootUrl="manage">
+      <NavigationLink
+        isSubNavLink
+        pendingItems={false}
+        to={`${Navigation.NAVIGATION_ROUTES.MANAGE_HOME}`}
+      >
+        Home
+      </NavigationLink>
+      <NavigationLink
+        isSubNavLink
+        pendingItems={false}
+        to={`${Navigation.NAVIGATION_ROUTES.MANAGE_SHOP_PRODUCTS}`}
+      >
+        Shop Products
+      </NavigationLink>
+      <NavigationLink
+        isSubNavLink
+        pendingItems={false}
+        to={`${Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCT_DETAILS}`}
+      >
+        Product Details
+      </NavigationLink>
+    </NavigationDropdown>
   </NavigationContainer>
 );
 
