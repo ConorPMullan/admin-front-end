@@ -6,7 +6,7 @@ import CallToActionButton from './index';
 
 afterEach(cleanup);
 
-describe('Testing CallToActionButton Component', () => {
+describe('Testing CallToActionButton component', () => {
   test('Renders a CallToActionButton component', () => {
     const { getByTestId } = render(
       <CallToActionButton dataTestId={'call-to-action-button'} label={'test'} />
