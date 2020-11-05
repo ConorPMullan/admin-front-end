@@ -4,12 +4,12 @@ import { PrimaryStyle, PrimaryLinkStyle } from './styled';
 interface Props {
   dataTestId: string;
   to?: string;
-  disabled: boolean;
-  icon: string;
+  disabled?: boolean;
+  icon?: string;
   label: string;
   width?: string;
   height?: string;
-  inverted: boolean;
+  inverted?: boolean;
   // TODO: find the most appropriate type for the onClick
   onClick?: any;
 }
@@ -19,10 +19,10 @@ const CallToActionButton: React.FC<Props> = ({
   to,
   disabled = false,
   icon = null,
-  label = 'Label',
+  label,
   width,
   height,
-  inverted,
+  inverted = false,
   onClick,
 }) => {
   if (to && !disabled) {
