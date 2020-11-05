@@ -12,6 +12,9 @@ declare module 'styled-components' {
       deepBlue: string;
       orange: string;
       green: string;
+      darkOrange: string;
+      mediumGrey: string;
+      disabled: string;
     };
     fonts: {
       main: string;
