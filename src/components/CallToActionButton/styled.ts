@@ -32,8 +32,6 @@ const sharedStyling = css<{
   }};
   outline: none;
   cursor: pointer;
-  width: ${({ $inverted, theme }) =>
-    $inverted ? `1px solid ${theme.colors.orange}` : 'none'};
   :hover {
     background-color: ${({ $inverted, theme }) => {
       if ($inverted) {
@@ -48,10 +46,8 @@ const sharedStyling = css<{
   }
   :disabled {
     color: ${({ theme }) => theme.colors.mediumGrey};
-    border: ${({ $inverted, theme }) =>
-      $inverted ? `2px solid ${theme.colors.disabled}` : 'none'};
     background-color: ${({ theme }) => theme.colors.disabled};
-    border: ${({ theme }) => theme.colors.disabled};
+    border-color: ${({ theme }) => theme.colors.disabled};
     cursor: not-allowed;
   }
   & > svg {
