@@ -16,6 +16,9 @@ export const theme: DefaultTheme = {
     deepBlue: '#004059',
     orange: '#f98e1c',
     green: '#30c825',
+    darkOrange: '#f39301',
+    mediumGrey: '#999999',
+    disabled: '#cecece',
   },
   fonts: {
     main: 'Open Sans, sans-serif',
