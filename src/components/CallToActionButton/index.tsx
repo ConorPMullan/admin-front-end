@@ -34,7 +34,7 @@ const CallToActionButton: React.FC<Props> = ({
         width={width}
         height={height}
         $inverted={inverted}
-        onClick={onClick}
+        onClick={onClick} // eslint-disable-line
       >
         {icon}
         {label}
@@ -49,7 +49,7 @@ const CallToActionButton: React.FC<Props> = ({
       width={width}
       height={height}
       $inverted={inverted}
-      onClick={onClick}
+      onClick={onClick} // eslint-disable-line
     >
       {icon}
       {label}
