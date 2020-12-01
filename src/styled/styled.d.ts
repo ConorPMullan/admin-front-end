@@ -5,11 +5,13 @@ declare module 'styled-components' {
     colors: {
       white: string;
       black: string;
+      fadedBlack: string;
       lightGrey: string;
       fontMain: string;
       grey: string;
       borderMain: string;
       deepBlue: string;
+      fadedPaleBlue: string;
       orange: string;
       green: string;
       darkOrange: string;
