@@ -5,7 +5,7 @@ import Modal from './index';
 import { useToggle } from '@hooks';
 
 let mockShowModal = false;
-let mockSetShowModal = jest.fn((showModal) => !showModal);
+let mockSetShowModal: () => void = jest.fn();
 
 jest.mock('@hooks/useToggle', () => {
   return jest.fn(() => {
@@ -28,7 +28,7 @@ describe('Testing Modal Component', () => {
       />
     );
 
-    expect(getByRole('modal')).toBeInTheDocument();
+    expect(getByRole('dialog')).toBeInTheDocument();
   });
 
   test('setShowModal is clickable', () => {
@@ -44,7 +44,7 @@ describe('Testing Modal Component', () => {
       </div>
     );
 
-    fireEvent.click(getByRole('modal'));
+    fireEvent.click(getByRole('dialog'));
 
     expect(mockSetShowModal).toBeCalled();
   });

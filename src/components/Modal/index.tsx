@@ -1,11 +1,11 @@
 import React from 'react';
-import { ModalContainer, Background, Content, CloseButton } from './styled';
 import { ReactComponent as Close } from '@assets/close.svg';
+import { ModalContainer, Background, Content, CloseButton } from './styled';
 
 interface Props {
   showModal: boolean;
-  setShowModal: any;
-  content: any;
+  setShowModal: () => void;
+  content: React.FC | JSX.Element;
   showCloseButton?: boolean;
 }
 
@@ -15,24 +15,23 @@ const Modal: React.FC<Props> = ({
   content,
   showCloseButton,
 }) => {
-  const _stopPropagation = (e: any) => e.stopPropagation();
+  const stopPropagation = (e: React.MouseEvent<HTMLInputElement>) =>
+    e.stopPropagation();
 
-  return (
-    <>
-      {showModal ? (
-        <Background onClick={setShowModal} role="modal">
-          <ModalContainer onClick={_stopPropagation}>
-            {showCloseButton && (
-              <CloseButton onClick={setShowModal}>
-                <Close />
-              </CloseButton>
-            )}
-            <Content>{content}</Content>
-          </ModalContainer>
-        </Background>
-      ) : null}
-    </>
-  );
+  const modalComponent = showModal ? (
+    <Background onClick={setShowModal} role="dialog" aria-modal="true">
+      <ModalContainer onClick={stopPropagation}>
+        {showCloseButton && (
+          <CloseButton onClick={setShowModal}>
+            <Close />
+          </CloseButton>
+        )}
+        <Content>{content}</Content>
+      </ModalContainer>
+    </Background>
+  ) : null;
+
+  return modalComponent;
 };
 
 export default Modal;
