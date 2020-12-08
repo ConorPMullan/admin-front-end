@@ -9,11 +9,13 @@ export const theme: DefaultTheme = {
   colors: {
     white: '#ffffff',
     black: '#000000',
+    fadedBlack: 'rgba(0, 0, 0, 0.1)',
     lightGrey: '#f8fafb',
     fontMain: '#454545',
     grey: '#f5f5f5',
     borderMain: '#eaeaea',
     deepBlue: '#004059',
+    fadedPaleBlue: 'rgba(169, 194, 209, 0.25)',
     orange: '#f98e1c',
     green: '#30c825',
     darkOrange: '#f39301',
