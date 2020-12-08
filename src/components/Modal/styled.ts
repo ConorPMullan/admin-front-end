@@ -35,12 +35,11 @@ export const ModalContainer = styled.div`
   box-shadow: ${({ theme }) => `0 8px 16px 0 ${theme.colors.fadedPaleBlue}`};
 
   z-index: 10;
-  border-rardius: 10px;
+  border-radius: 10px;
 
   display: flex;
   flex-direction: column;
 
-  border-radius: 10px;
 `;
 
 export const CloseButton = styled.button`
@@ -48,7 +47,6 @@ export const CloseButton = styled.button`
 
   height: 45px;
   width: 45px;
-  align-self: flex-end;
   background-color: transparent;
   border: none;
   outline: none;
