@@ -24,30 +24,12 @@ describe('Testing SideNavigation Component', () => {
     );
   });
 
-  test('navigates to ratings and reviews page on click', () => {
+  test('navigates to manage products page on click', () => {
     const { getByRole, history } = renderWithRouter(<SideNavigation />);
     history.push = jest.fn();
-    fireEvent.click(getByRole('link', { name: /ratings and reviews/i }));
+    fireEvent.click(getByRole('link', { name: /manage products/i }));
     expect(history.push).toHaveBeenCalledWith(
-      Navigation.NAVIGATION_ROUTES.RATINGS_AND_REVIEWS
-    );
-  });
-
-  test('navigates to address page on click', () => {
-    const { getByRole, history } = renderWithRouter(<SideNavigation />);
-    history.push = jest.fn();
-    fireEvent.click(getByRole('link', { name: /address/i }));
-    expect(history.push).toHaveBeenCalledWith(
-      Navigation.NAVIGATION_ROUTES.ADDRESS
-    );
-  });
-
-  test('navigates to web access page on click', () => {
-    const { getByRole, history } = renderWithRouter(<SideNavigation />);
-    history.push = jest.fn();
-    fireEvent.click(getByRole('link', { name: /web access/i }));
-    expect(history.push).toHaveBeenCalledWith(
-      Navigation.NAVIGATION_ROUTES.WEB_ACCESS
+      Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCTS
     );
   });
 });

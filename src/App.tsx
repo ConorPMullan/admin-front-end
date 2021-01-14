@@ -2,16 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from '@components';
 import { Navigation } from '@constants';
-import {
-  Login,
-  Home,
-  Address,
-  RatingsAndReview,
-  WebAccess,
-  ManageHome,
-  ManageShopProducts,
-  ManageProductDetails,
-} from '@pages';
+import { Login, Home, ManageProductDetails } from '@pages';
 
 import { PageTitle } from '@utils/page';
 
@@ -23,34 +14,9 @@ const authenticatedRoutes = (
           <Home />
         </PageTitle>
       </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.ADDRESS}>
-        <PageTitle title={Navigation.PAGE_TITLES.ADDRESS}>
-          <Address />
-        </PageTitle>
-      </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.WEB_ACCESS}>
-        <PageTitle title={Navigation.PAGE_TITLES.WEB_ACCESS}>
-          <WebAccess />
-        </PageTitle>
-      </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.RATINGS_AND_REVIEWS}>
-        <PageTitle title={Navigation.PAGE_TITLES.RATINGS_AND_REVIEWS}>
-          <RatingsAndReview />
-        </PageTitle>
-      </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_SHOP_PRODUCTS}>
-        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_SHOP_PRODUCTS}>
-          <ManageShopProducts />
-        </PageTitle>
-      </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCT_DETAILS}>
-        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_PRODUCT_DETAILS}>
+      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCTS}>
+        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_PRODUCTS}>
           <ManageProductDetails />
-        </PageTitle>
-      </Route>
-      <Route path={Navigation.NAVIGATION_ROUTES.MANAGE_HOME}>
-        <PageTitle title={Navigation.PAGE_TITLES.MANAGE_HOME}>
-          <ManageHome />
         </PageTitle>
       </Route>
       <Route>
@@ -74,12 +40,7 @@ const routes = (
 const App: React.FC = () => {
   // Authentication hook goes here
   const isAuthenticated = true;
-
-  if (isAuthenticated) {
-    return authenticatedRoutes;
-  }
-
-  return routes;
+  return isAuthenticated ? authenticatedRoutes : routes;
 };
 
 export default App;
