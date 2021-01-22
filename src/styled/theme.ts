@@ -1,76 +1,21 @@
-import {
-  createGlobalStyle,
-  DefaultTheme,
-  DeviceSizes,
-} from 'styled-components';
+import indigo from '@material-ui/core/colors/indigo';
+import orange from '@material-ui/core/colors/orange';
+import yellow from '@material-ui/core/colors/yellow';
+import lightGreen from '@material-ui/core/colors/lightGreen';
 
-// Make sure to add any new colors to the relevant typings file to provide intellisense.
-export const theme: DefaultTheme = {
-  colors: {
-    white: '#ffffff',
-    black: '#000000',
-    fadedBlack: 'rgba(0, 0, 0, 0.1)',
-    lightGrey: '#f8fafb',
-    fontMain: '#454545',
-    grey: '#f5f5f5',
-    borderMain: '#eaeaea',
-    deepBlue: '#004059',
-    fadedPaleBlue: 'rgba(169, 194, 209, 0.25)',
-    orange: '#f98e1c',
-    green: '#30c825',
-    darkOrange: '#f39301',
-    mediumGrey: '#999999',
-    disabled: '#cecece',
+const palette = {
+  primary: {
+    main: indigo[500],
   },
-  fonts: {
-    main: 'Open Sans, sans-serif',
-    arial: 'Arial, sans-serif',
-    montserrat: 'Montserrat, sans-serif',
+  secondary: {
+    main: orange[500],
   },
-  opacity: {
-    link: 0.8,
+  warning: {
+    main: yellow[500],
   },
-  fontWeights: {
-    normal: 400,
-    semibold: 600,
-    bold: 700,
+  success: {
+    main: lightGreen[500],
   },
 };
 
-export const device: DeviceSizes = {
-  phone: {
-    small: `@media (max-width: 375px)`,
-    large: `@media (max-width: 480px)`,
-  },
-  tablet: `@media (max-width: 768px)`,
-  laptop: `@media (max-width: 1024px)`,
-  desktop: `@media (min-width: 1280px)`,
-};
-
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${theme.colors.white};
-        font-family: ${theme.fonts.main};
-        font-weight: 600;
-        font-size: 15px;
-        position: relative;
-        height: 100%;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0
-        ;
-
-        ${device.tablet} {
-          font-size: 16px;
-        }
-
-        ${device.phone.large} {
-          font-size: 18px;
-        }
-
-        textarea:focus, input:focus{
-        outline: none;
-        }
-
-    }
-`;
+export default { palette };

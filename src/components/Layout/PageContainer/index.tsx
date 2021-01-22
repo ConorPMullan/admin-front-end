@@ -1,8 +1,11 @@
 import React from 'react';
-import { PageContentContainer } from './styled';
+import { PageMain, PageContentContainer, PageToolbar } from './styled';
 
 const PageContainer: React.FC = ({ children }) => (
-  <PageContentContainer> {children} </PageContentContainer>
+  <PageMain>
+    <PageToolbar />
+    <PageContentContainer> {children} </PageContentContainer>
+  </PageMain>
 );
 
 export default PageContainer;

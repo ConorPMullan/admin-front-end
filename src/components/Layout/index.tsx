@@ -1,10 +1,9 @@
 import React from 'react';
 import { RouteProps } from 'react-router-dom';
-import { SiteContainer } from './styled';
-
-import Header from './Header';
-import SideNavigation from './SideNavigation';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Navigation from './Navigation';
 import PageContainer from './PageContainer';
+import { LayoutContainer } from './styled';
 
 interface Props {
   children: RouteProps['children'];
@@ -12,11 +11,11 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <SiteContainer>
-      <Header />
-      <SideNavigation />
+    <LayoutContainer>
+      <CssBaseline />
+      <Navigation />
       <PageContainer>{children}</PageContainer>
-    </SiteContainer>
+    </LayoutContainer>
   );
 };
 

@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from '@components';
 import { Navigation } from '@constants';
 import { Login, Home, ManageProductDetails } from '@pages';
-
 import { PageTitle } from '@utils/page';
 
 const authenticatedRoutes = (
@@ -31,9 +30,7 @@ const routes = (
     <Route path={Navigation.NAVIGATION_ROUTES.LOGIN}>
       <Login />
     </Route>
-    <Route>
-      <Redirect to={Navigation.NAVIGATION_ROUTES.LOGIN} />
-    </Route>
+    <Redirect to={Navigation.NAVIGATION_ROUTES.LOGIN} />
   </Switch>
 );
 

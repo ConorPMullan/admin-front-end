@@ -1,45 +1,15 @@
-import 'styled-components';
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      white: string;
-      black: string;
-      fadedBlack: string;
-      lightGrey: string;
-      fontMain: string;
-      grey: string;
-      borderMain: string;
-      deepBlue: string;
-      fadedPaleBlue: string;
-      orange: string;
-      green: string;
-      darkOrange: string;
-      mediumGrey: string;
-      disabled: string;
-    };
-    fonts: {
-      main: string;
-      arial: string;
-      montserrat: string;
-    };
-    opacity: {
-      link: number;
-    };
-    fontWeights: {
-      normal: number;
-      semibold: number;
-      bold: number;
-    };
+declare module '@material-ui/core/styles/createPalette' {
+  interface PaletteOptions {
+    primary?: PaletteColorOptions;
+    secondary?: PaletteColorOptions;
+    success?: PaletteColorOptions;
+    warning?: PaletteColorOptions;
   }
+}
 
-  export interface DeviceSizes {
-    phone: {
-      small: string;
-      large: string;
-    };
-    tablet: string;
-    laptop: string;
-    desktop: string;
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface ThemeOptions {
+    themeName?: string;
+    palette?: PaletteOptions;
   }
 }
