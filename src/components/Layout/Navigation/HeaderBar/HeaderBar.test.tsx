@@ -1,29 +1,20 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import { render } from '@utils/test';
 import HeaderBar from './index';
-import {
-  HeaderAppBar,
-  HeaderIconButton,
-  HeaderMenuIcon,
-  HeaderToolbar,
-} from './styled';
 
 afterEach(cleanup);
 
-describe('Testing HeaderBar Component', () => {
-  test('renders the header app container and default layout', () => {
+describe('HeaderBar Tests', () => {
+  test('Clicking on the Open Drawer button triggers callback', () => {
     const isDrawerOpen = false;
-    const handleDrawerOpen = jest.fn();
-    const { getByRole } = render(
-      <HeaderBar
-        isDrawerOpen={isDrawerOpen}
-        handleDrawerOpen={handleDrawerOpen}
-      />
+    const mockCallback = jest.fn();
+    const { getByTestId } = render(
+      <HeaderBar isDrawerOpen={isDrawerOpen} handleDrawerOpen={mockCallback} />
     );
-    expect(getByRole(HeaderAppBar)).toBeInTheDocument();
-    expect(getByRole(HeaderIconButton)).toBeInTheDocument();
-    expect(getByRole(HeaderMenuIcon)).toBeInTheDocument();
-    expect(getByRole(HeaderToolbar)).toBeInTheDocument();
+    const openDrawerButton = getByTestId('open-drawer-button');
+    expect(openDrawerButton).toBeInTheDocument();
+    fireEvent.click(openDrawerButton);
+    expect(mockCallback.mock.calls.length).toBe(1);
   });
 });

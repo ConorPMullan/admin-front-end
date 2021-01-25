@@ -14,8 +14,13 @@ const Navigation: React.FC = () => {
 
   return (
     <NavigationContainer>
-      <HeaderBar isDrawerOpen={isDrawerOpen} handleDrawerOpen={toggleDrawer} />
+      <HeaderBar
+        data-testid="header-bar"
+        isDrawerOpen={isDrawerOpen}
+        handleDrawerOpen={toggleDrawer}
+      />
       <NavigationDrawer
+        data-testid="navigation-drawer"
         isDrawerOpen={isDrawerOpen}
         handleDrawerClose={toggleDrawer}
       />

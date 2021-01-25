@@ -24,6 +24,7 @@ const HeaderBar: React.FC<HeaderProps> = ({
       <HeaderAppBar position="fixed" $isOpen={isDrawerOpen}>
         <HeaderToolbar>
           <HeaderIconButton
+            data-testid="open-drawer-button"
             $isOpen={isDrawerOpen}
             color="inherit"
             aria-label="open drawer"

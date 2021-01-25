@@ -5,14 +5,14 @@ import Layout from './index';
 
 afterEach(cleanup);
 
-describe('Testing Layout Component', () => {
+describe('Layout Tests', () => {
   test('renders the layout container', () => {
-    const { getByRole } = renderWithRouter(
+    const mockDivId = 'mock-div';
+    const { getByTestId } = renderWithRouter(
       <Layout>
-        <div>Test</div>
+        <div data-testid={mockDivId}>Test</div>
       </Layout>
     );
-
-    expect(getByRole('main')).toBeInTheDocument();
+    expect(getByTestId(mockDivId)).toBeInTheDocument();
   });
 });

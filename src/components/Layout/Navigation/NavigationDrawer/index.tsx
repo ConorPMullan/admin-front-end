@@ -34,7 +34,7 @@ const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
     <>
       <NavDrawer variant="permanent" $isOpen={isDrawerOpen}>
         <DrawerToolbar>
-          <Button onClick={onCloseDrawer}>
+          <Button data-testid="close-drawer-button" onClick={onCloseDrawer}>
             {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
           </Button>
         </DrawerToolbar>
@@ -44,7 +44,10 @@ const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText
+                data-testid="navigation-list-item-text"
+                primary={text}
+              />
             </ListItem>
           ))}
         </List>
