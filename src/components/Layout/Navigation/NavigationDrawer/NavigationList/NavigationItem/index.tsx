@@ -25,7 +25,7 @@ const NavigationItem = (props: ListItemLinkProps): ReactElement => {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => {
+      React.forwardRef<never, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         return <RouterLink to={to} ref={ref} {...itemProps} />;
       }),
