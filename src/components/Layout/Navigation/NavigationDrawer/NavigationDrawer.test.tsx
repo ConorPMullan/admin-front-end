@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import { render } from '@utils/test';
+import { renderWithRouter } from '@utils/test';
 import NavigationDrawer from './index';
 
 afterEach(cleanup);
@@ -9,7 +9,7 @@ describe('NavigationDrawer Tests', () => {
   test('renders the header app container and default layout', () => {
     const isDrawerOpen = false;
     const mockCallback = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRouter(
       <NavigationDrawer
         isDrawerOpen={isDrawerOpen}
         handleDrawerClose={mockCallback}
