@@ -26,7 +26,6 @@ const HeaderBar: React.FC<HeaderProps> = ({
           <HeaderIconButton
             data-testid="open-drawer-button"
             $isOpen={isDrawerOpen}
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={onOpenDrawer}

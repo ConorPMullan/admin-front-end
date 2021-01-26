@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import HeaderBar from './HeaderBar';
-// import SideNavigation from './SideNavigation';
 import NavigationDrawer from './NavigationDrawer';
 import { NavigationContainer } from './styled';
 
@@ -13,7 +11,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer data-testid="navigation-container">
       <HeaderBar
         data-testid="header-bar"
         isDrawerOpen={isDrawerOpen}

@@ -8,7 +8,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   StylesProvider,
 } from '@material-ui/core/styles';
-import palette from '@styled/theme';
+import { palette } from '@styled/theme';
 
 import App from './App';
 

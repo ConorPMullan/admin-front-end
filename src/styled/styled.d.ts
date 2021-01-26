@@ -4,6 +4,8 @@ declare module '@material-ui/core/styles/createPalette' {
     secondary?: PaletteColorOptions;
     success?: PaletteColorOptions;
     warning?: PaletteColorOptions;
+    info?: PaletteColorOptions;
+    error?: PaletteColorOptions;
   }
 }
 
