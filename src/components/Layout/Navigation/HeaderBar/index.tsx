@@ -1,9 +1,11 @@
 import React from 'react';
+import PFXLogoWhite from '@assets/images/pfx-logo-white.png';
 import {
   HeaderAppBar,
   HeaderIconButton,
   HeaderMenuIcon,
   HeaderToolbar,
+  HeaderImage,
 } from './styled';
 
 interface HeaderProps {
@@ -32,6 +34,12 @@ const HeaderBar: React.FC<HeaderProps> = ({
           >
             <HeaderMenuIcon />
           </HeaderIconButton>
+          <HeaderImage
+            data-testid="Logo"
+            src={PFXLogoWhite}
+            alt="Pet Food Experts Logo"
+            $isOpen={isDrawerOpen}
+          />
         </HeaderToolbar>
       </HeaderAppBar>
     </>

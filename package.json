@@ -68,13 +68,14 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^@components(.*)$": "<rootDir>/src/components$1",
-      "^@pages(.*)$": "<rootDir>/src/pages$1",
       "^@assets(.*)$": "<rootDir>/src/assets$1",
-      "^@utils(.*)$": "<rootDir>/src/utils$1",
-      "^@styled(.*)$": "<rootDir>/src/styled$1",
+      "^@components(.*)$": "<rootDir>/src/components$1",
       "^@constants(.*)$": "<rootDir>/src/constants$1",
-      "^@hooks(.*)$": "<rootDir>/src/hooks$1"
+      "^@hooks(.*)$": "<rootDir>/src/hooks$1",
+      "^@interfaces(.*)$": "<rootDir>/src/interfaces$1",
+      "^@pages(.*)$": "<rootDir>/src/pages$1",
+      "^@styled(.*)$": "<rootDir>/src/styled$1",
+      "^@utils(.*)$": "<rootDir>/src/utils$1"
     }
   }
 }

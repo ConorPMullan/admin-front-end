@@ -4,6 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import styled from 'styled-components';
 import { Theme } from '@material-ui/core/styles';
+import { ImageProps } from 'src/interfaces/image';
 
 const drawerWidth = 240;
 
@@ -35,6 +36,10 @@ interface HeaderProps extends AppBarProps {
   $isOpen: boolean;
 }
 
+interface HeaderImageProps extends ImageProps {
+  $isOpen: boolean;
+}
+
 export const HeaderAppBar = styled(AppBar)<HeaderProps>`
   ${({ theme, $isOpen }) => {
     const classes = materialStyles(theme);
@@ -46,10 +51,20 @@ export const HeaderAppBar = styled(AppBar)<HeaderProps>`
 `;
 
 export const HeaderIconButton = styled(IconButton)<HeaderProps>`
-  margin-right: 36px;
-  display: ${({ $isOpen }) => ($isOpen ? 'none' : 'visible')};
+  visibility: ${({ $isOpen }) => ($isOpen ? 'hidden' : 'visible')};
+  opacity: ${({ $isOpen }) => ($isOpen ? '0' : '1')};
+  width: ${({ $isOpen }) => ($isOpen ? '0px' : '48px')};
+  transition: visibility 0s, opacity 0.2s, width 0.2s;
 `;
 
 export const HeaderMenuIcon = styled(MenuIcon)``;
 
-export const HeaderToolbar = styled(Toolbar)``;
+export const HeaderToolbar = styled(Toolbar)`
+  display: flex;
+`;
+
+export const HeaderImage = styled.img<HeaderImageProps>`
+  margin-left: ${({ $isOpen }) => ($isOpen ? '0px' : '36px')};
+  max-width: 150px;
+  transition: all 0.2s ease-in-out;
+`;
