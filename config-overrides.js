@@ -9,6 +9,7 @@ module.exports = function override(config) {
       '@components': path.resolve(__dirname, 'src/components'),
       '@constants': path.resolve(__dirname, 'src/constants'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@integration': path.resolve(__dirname, 'src/integration'),
       '@interfaces': path.resolve(__dirname, 'src/interfaces'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@styled': path.resolve(__dirname, 'src/styled'),

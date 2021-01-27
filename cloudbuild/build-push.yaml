@@ -1,6 +1,13 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '$TAG_NAME', '.']
+  args: ['build',
+       '--build-arg',
+       'AUTHENTICATION_API_URL=${_AUTHENTICATION_API_URL}',
+       '--build-arg',
+       'API_URL=${_API_URL}',
+       '-t',
+       '$TAG_NAME',
+       '.']
 images: ["$TAG_NAME"]
 logsBucket: 'gs://jenkins-cloud-build-docker-admin-front-end-logsbucket'
 timeout: 300s
