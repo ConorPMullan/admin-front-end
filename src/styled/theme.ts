@@ -22,36 +22,26 @@ export const colors: ColorProps = {
 
 const primary: PaletteColorOptions = {
   main: colors.ocean,
-  light: colors.ocean,
-  dark: colors.navy,
   contrastText: colors.greyCool,
 };
 
 const secondary: PaletteColorOptions = {
   main: colors.tangerine,
-  light: colors.tangerine,
-  dark: colors.tangerineDark,
   contrastText: colors.greyCharcoal,
 };
 
 const warning: PaletteColorOptions = {
   main: colors.tangerineLight,
-  light: colors.tangerineLight,
-  dark: colors.tangerine,
   contrastText: colors.greyCloudy,
 };
 
 const success: PaletteColorOptions = {
   main: colors.grassGreen,
-  light: colors.grassGreen,
-  dark: colors.grassGreenDark,
   contrastText: colors.greyCharcoal,
 };
 
 const info: PaletteColorOptions = {
-  main: colors.ocean,
-  light: colors.oceanLight,
-  dark: colors.oceanDark,
+  main: colors.navy,
   contrastText: colors.greyCool,
 };
 

@@ -5,7 +5,7 @@ interface NavigationRoutes {
 }
 
 const NAVIGATION_ROUTES: NavigationRoutes = {
-  LOGIN: '/login',
+  LOGIN: '/',
   HOME: '/',
   MANAGE_PRODUCTS: '/manage/products',
 };

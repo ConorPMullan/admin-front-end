@@ -36,7 +36,7 @@ const routes = (
 
 const App: React.FC = () => {
   // Authentication hook goes here
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return isAuthenticated ? authenticatedRoutes : routes;
 };
 
