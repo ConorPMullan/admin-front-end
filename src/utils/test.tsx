@@ -4,12 +4,25 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '@styled/theme';
+import {
+  createMuiTheme,
+  ThemeProvider as MuiThemeProvider,
+  StylesProvider,
+} from '@material-ui/core/styles';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
 const Providers: React.FC = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  const theme = createMuiTheme();
+  return (
+    <>
+      <StylesProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </MuiThemeProvider>
+      </StylesProvider>
+    </>
+  );
 };
 
 const customRender = (

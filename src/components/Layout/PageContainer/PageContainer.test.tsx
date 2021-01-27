@@ -5,9 +5,15 @@ import PageContainer from './index';
 
 afterEach(cleanup);
 
-describe('Testing PageContainer Component', () => {
-  test('renders the page container', () => {
-    const { getByRole } = render(<PageContainer />);
+describe('PageContainer Tests', () => {
+  test('renders the layout container', () => {
+    const testText = 'testing';
+    const { getByRole, getByText } = render(
+      <PageContainer>
+        <div>{testText}</div>
+      </PageContainer>
+    );
     expect(getByRole('main')).toBeInTheDocument();
+    expect(getByText(testText)).toBeInTheDocument();
   });
 });

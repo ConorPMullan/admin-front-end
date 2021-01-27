@@ -1,76 +1,64 @@
-import {
-  createGlobalStyle,
-  DefaultTheme,
-  DeviceSizes,
-} from 'styled-components';
+import { PaletteColorOptions } from '@material-ui/core';
+import { PaletteOptions } from '@material-ui/core/styles/createPalette';
+import { ColorProps } from 'src/interfaces/color';
 
-// Make sure to add any new colors to the relevant typings file to provide intellisense.
-export const theme: DefaultTheme = {
-  colors: {
-    white: '#ffffff',
-    black: '#000000',
-    fadedBlack: 'rgba(0, 0, 0, 0.1)',
-    lightGrey: '#f8fafb',
-    fontMain: '#454545',
-    grey: '#f5f5f5',
-    borderMain: '#eaeaea',
-    deepBlue: '#004059',
-    fadedPaleBlue: 'rgba(169, 194, 209, 0.25)',
-    orange: '#f98e1c',
-    green: '#30c825',
-    darkOrange: '#f39301',
-    mediumGrey: '#999999',
-    disabled: '#cecece',
-  },
-  fonts: {
-    main: 'Open Sans, sans-serif',
-    arial: 'Arial, sans-serif',
-    montserrat: 'Montserrat, sans-serif',
-  },
-  opacity: {
-    link: 0.8,
-  },
-  fontWeights: {
-    normal: 400,
-    semibold: 600,
-    bold: 700,
-  },
+export const colors: ColorProps = {
+  navy: '#013d54',
+  navyLight: '#3a6781',
+  navyDark: '#00172b',
+  ocean: '#3c8fc5',
+  oceanLight: '#75bff8',
+  oceanDark: '#006294',
+  grassGreen: '#81AF41',
+  grassGreenLight: '#b3e170',
+  grassGreenDark: '#517f0c',
+  tangerine: '#f57e20',
+  tangerineLight: '#ffaf52',
+  tangerineDark: '#bc4f00',
+  greyCool: '#E5E6E5',
+  greyCloudy: '#c9c9c8',
+  greyCharcoal: '#363936',
 };
 
-export const device: DeviceSizes = {
-  phone: {
-    small: `@media (max-width: 375px)`,
-    large: `@media (max-width: 480px)`,
-  },
-  tablet: `@media (max-width: 768px)`,
-  laptop: `@media (max-width: 1024px)`,
-  desktop: `@media (min-width: 1280px)`,
+const primary: PaletteColorOptions = {
+  main: colors.ocean,
+  light: colors.ocean,
+  dark: colors.navy,
+  contrastText: colors.greyCool,
 };
 
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${theme.colors.white};
-        font-family: ${theme.fonts.main};
-        font-weight: 600;
-        font-size: 15px;
-        position: relative;
-        height: 100%;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0
-        ;
+const secondary: PaletteColorOptions = {
+  main: colors.tangerine,
+  light: colors.tangerine,
+  dark: colors.tangerineDark,
+  contrastText: colors.greyCharcoal,
+};
 
-        ${device.tablet} {
-          font-size: 16px;
-        }
+const warning: PaletteColorOptions = {
+  main: colors.tangerineLight,
+  light: colors.tangerineLight,
+  dark: colors.tangerine,
+  contrastText: colors.greyCloudy,
+};
 
-        ${device.phone.large} {
-          font-size: 18px;
-        }
+const success: PaletteColorOptions = {
+  main: colors.grassGreen,
+  light: colors.grassGreen,
+  dark: colors.grassGreenDark,
+  contrastText: colors.greyCharcoal,
+};
 
-        textarea:focus, input:focus{
-        outline: none;
-        }
+const info: PaletteColorOptions = {
+  main: colors.ocean,
+  light: colors.oceanLight,
+  dark: colors.oceanDark,
+  contrastText: colors.greyCool,
+};
 
-    }
-`;
+export const palette: PaletteOptions = {
+  primary,
+  secondary,
+  warning,
+  success,
+  info,
+};

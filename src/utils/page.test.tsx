@@ -5,8 +5,8 @@ import { PageTitle } from './index';
 
 afterEach(cleanup);
 
-describe('Testing Page Title Utility Component', () => {
-  test('sets the correct title based on the passed in prop', async () => {
+describe('Page Utility Tests', () => {
+  test('Sets the correct title based on the passed in prop', async () => {
     const title = 'My Document Title';
     render(
       <PageTitle title={title}>
