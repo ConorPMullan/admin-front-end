@@ -11,7 +11,13 @@ deploymentToQAApproved = false
 deployedTo = []
 
 def buildAndPushImage(String instance) {
-    sh "gcloud builds submit --config cloudbuild/build-push.yaml --substitutions=TAG_NAME=${env.buildImageName}"
+    def coreHost = (instance == 'prod') ? "https://${env.PFE_DOMAIN}" : "https://${instance}.${env.PFE_DOMAIN}"
+    def authenticationApiUrl = "${coreHost}/api/authentication/"
+
+    def adminHost = (instance == 'prod') ? "https://admin.${env.PFE_DOMAIN}" : "https://${instance}.admin.${env.PFE_DOMAIN}"
+    def apiUrl = "${adminHost}/api/"
+
+    sh "gcloud builds submit --config cloudbuild/build-push.yaml --substitutions=TAG_NAME=${env.buildImageName},_AUTHENTICATION_API_URL=${authenticationApiUrl},_API_URL=${apiUrl}"
 }
 
 def performDeployment(String instance, pipelineTools) {
