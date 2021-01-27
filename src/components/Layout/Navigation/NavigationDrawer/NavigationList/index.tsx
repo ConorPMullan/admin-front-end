@@ -10,7 +10,7 @@ const NavigationList: React.FC = (): ReactElement => {
         <NavigationItem
           dataTestId="nav-item-home"
           to={Navigation.NAVIGATION_ROUTES.HOME}
-          text="Home"
+          text={Navigation.PAGE_TITLES.HOME}
           icon={<IconHome data-testid="nav-item-home-icon" />}
         />
       </NavList>
