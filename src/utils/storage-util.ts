@@ -1,5 +1,5 @@
 import { User as UserConstants } from '@constants';
-import { UserSession } from '@interfaces';
+import { IUserSession } from '@interfaces';
 
 const clearUserTokens = (): void => {
   localStorage.removeItem(UserConstants.USER_SESSION_CONSTANTS.USER_AUTH_TOKEN);
@@ -22,7 +22,7 @@ const setLocalStorage = (key: string, value: string): void => {
   window.localStorage.setItem(key, value);
 };
 
-const setUserTokens = (userSession: UserSession): string | undefined => {
+const setUserTokens = (userSession: IUserSession): void => {
   const { accessToken, refreshToken } = userSession;
   if (accessToken) {
     localStorage.setItem(
@@ -36,7 +36,6 @@ const setUserTokens = (userSession: UserSession): string | undefined => {
       refreshToken
     );
   }
-  return accessToken;
 };
 
 const StorageUtils = {

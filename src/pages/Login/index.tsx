@@ -2,10 +2,15 @@ import React, { ChangeEvent, ReactElement, useState } from 'react';
 import LoginImageSource from '@assets/images/login-image-1.png';
 import Paper from '@material-ui/core/Paper';
 import { Login as LoginConstants } from '@constants';
+import { IUserCredentials } from '@interfaces';
+import { AuthService } from '@services';
+import { Auth } from '@contexts';
 import {
   LoginContainer,
   LoginImage,
   MuiGrid,
+  LoadingAnimation,
+  LoadingWrapper,
   LoginFormWrapper,
   AvatarContainer,
   AvatarIcon,
@@ -16,8 +21,11 @@ import {
 } from './styled';
 
 const Login: React.FC = (): ReactElement => {
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isLoading, setLoading] = useState<boolean>(false);
+
+  const context = React.useContext(Auth.AuthContext);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -25,6 +33,24 @@ const Login: React.FC = (): ReactElement => {
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // TODO: validation engine call here
+
+    const userCredentials: IUserCredentials = {
+      email,
+      password,
+    };
+    const userSession = await AuthService.login(userCredentials);
+    if (context && userSession) {
+      context.updateUserSession(userSession);
+    } else {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +72,7 @@ const Login: React.FC = (): ReactElement => {
           <MuiTypography component="h1" variant="h5">
             {LoginConstants.LOGIN_STRINGS.SIGN_IN}
           </MuiTypography>
-          <FormWrapper noValidate>
+          <FormWrapper onSubmit={handleSubmit} noValidate>
             <MuiTextField
               variant="outlined"
               margin="normal"
@@ -71,14 +97,20 @@ const Login: React.FC = (): ReactElement => {
               onChange={handlePasswordChange}
               autoComplete="current-password"
             />
-            <MuiButton
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              {LoginConstants.LOGIN_STRINGS.SIGN_IN}
-            </MuiButton>
+            {isLoading ? (
+              <LoadingWrapper>
+                <LoadingAnimation />
+              </LoadingWrapper>
+            ) : (
+              <MuiButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                {LoginConstants.LOGIN_STRINGS.SIGN_IN}
+              </MuiButton>
+            )}
           </FormWrapper>
         </LoginFormWrapper>
       </MuiGrid>

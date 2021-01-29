@@ -1,16 +1,15 @@
 import React from 'react';
-import { UserSession } from '@interfaces';
-import { AuthContextType } from './type';
+import { IUserSession, IAuthContext } from '@interfaces';
 
-const AuthContext = React.createContext<AuthContextType | null>(null);
+const AuthContext = React.createContext<IAuthContext | null>(null);
 
 const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const initialUser: UserSession = { accessToken: '', refreshToken: '' };
-  const [userSession, setUserSession] = React.useState<UserSession>(
+  const initialUser: IUserSession = { accessToken: '', refreshToken: '' };
+  const [userSession, setUserSession] = React.useState<IUserSession>(
     initialUser
   );
 
-  const updateUserSession = (userUpdate: UserSession) => {
+  const updateUserSession = (userUpdate: IUserSession) => {
     setUserSession(userUpdate);
   };
 

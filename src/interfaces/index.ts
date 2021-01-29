@@ -1,4 +1,5 @@
-export type { default as ColorProps } from './color-props';
-export type { default as ImageProps } from './image-props';
-export type { default as UserCredentials } from './user-credentials';
-export type { default as UserSession } from './user-session';
+export type { default as IAuthContext } from './context-auth';
+export type { default as IPropsColor } from './props-color';
+export type { default as IPropsImage } from './props-image';
+export type { default as IUserCredentials } from './user-credentials';
+export type { default as IUserSession } from './user-session';

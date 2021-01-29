@@ -10,6 +10,7 @@ import {
   StylesProvider,
 } from '@material-ui/core/styles';
 import { Theme } from '@styles';
+import { Auth } from './contexts';
 
 import App from './App';
 
@@ -35,7 +36,9 @@ const Application: React.FC = (): ReactElement => {
           <ThemeProvider theme={theme}>
             <BrowserRouter>
               <CssBaseline>
-                <App />
+                <Auth.AuthProvider>
+                  <App />
+                </Auth.AuthProvider>
               </CssBaseline>
             </BrowserRouter>
           </ThemeProvider>

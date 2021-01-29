@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import styled from 'styled-components';
 import { Theme } from '@material-ui/core/styles';
-import { ImageProps } from '@interfaces';
+import { IPropsImage } from '@interfaces';
 
 const drawerWidth = 240;
 
@@ -36,7 +36,7 @@ interface HeaderProps extends AppBarProps {
   $isOpen: boolean;
 }
 
-interface HeaderImageProps extends ImageProps {
+interface HeaderImageProps extends IPropsImage {
   $isOpen: boolean;
 }
 

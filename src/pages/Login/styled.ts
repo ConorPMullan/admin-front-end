@@ -7,22 +7,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const materialStyles = (theme: Theme) => ({
-  root: {
-    height: '100vh',
-  },
   paper: {
     margin: theme.spacing(8, 4),
   },
   image: {
-    backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -44,15 +39,14 @@ interface IProps {
 }
 
 export const LoginContainer = styled(Grid)<IProps>`
-  ${({ theme }) => {
-    const classes = materialStyles(theme);
-    return classes.root;
-  }};
+  height: 100vh;
 `;
 
 export const LoginImage = styled(Grid)<IProps>`
   background-image: ${({ $src }) => ($src ? `url(${$src})` : '')};
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   ${({ theme }) => {
     const classes = materialStyles(theme);
     return classes.image;
@@ -96,4 +90,18 @@ export const FormWrapper = styled.form`
     const classes = materialStyles(theme);
     return classes.form;
   }};
+`;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+
+  ${({ theme }) => {
+    const classes = materialStyles(theme);
+    return classes.submit;
+  }};
+`;
+
+export const LoadingAnimation = styled(CircularProgress)`
+  margin: auto;
 `;
