@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from '@components';
 import { Navigation } from '@constants';
-import { Login, Home, ManageProductDetails } from '@pages';
-import { PageTitle } from '@utils/page';
+import { Login, Home, ManageProductDetails, PageTitle } from '@pages';
+import { Auth } from './contexts';
 
 const authenticatedRoutes = (
   <Layout>
@@ -34,10 +34,14 @@ const routes = (
   </Switch>
 );
 
-const App: React.FC = () => {
+const App: React.FC = (): React.ReactElement => {
   // Authentication hook goes here
   const isAuthenticated = false;
-  return isAuthenticated ? authenticatedRoutes : routes;
+  return (
+    <Auth.AuthProvider>
+      {isAuthenticated ? authenticatedRoutes : routes}
+    </Auth.AuthProvider>
+  );
 };
 
 export default App;

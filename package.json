@@ -14,6 +14,7 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.21.1",
     "history": "^5.0.0",
+    "jwt-decode": "^3.1.2",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",
@@ -72,12 +73,15 @@
       "^@assets(.*)$": "<rootDir>/src/assets$1",
       "^@components(.*)$": "<rootDir>/src/components$1",
       "^@constants(.*)$": "<rootDir>/src/constants$1",
+      "^@contexts(.*)$": "<rootDir>/src/contexts$1",
       "^@hooks(.*)$": "<rootDir>/src/hooks$1",
       "^@integration(.*)$": "<rootDir>/src/integration$1",
       "^@interfaces(.*)$": "<rootDir>/src/interfaces$1",
       "^@pages(.*)$": "<rootDir>/src/pages$1",
-      "^@styled(.*)$": "<rootDir>/src/styled$1",
-      "^@utils(.*)$": "<rootDir>/src/utils$1"
+      "^@services(.*)$": "<rootDir>/src/services$1",
+      "^@styles(.*)$": "<rootDir>/src/styles$1",
+      "^@utils(.*)$": "<rootDir>/src/utils$1",
+      "^@test-utils(.*)$": "<rootDir>/src/test-utils$1"
     }
   }
 }

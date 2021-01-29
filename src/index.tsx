@@ -9,7 +9,7 @@ import {
   ThemeProvider as MuiThemeProvider,
   StylesProvider,
 } from '@material-ui/core/styles';
-import { palette } from '@styled/theme';
+import { Theme } from '@styles';
 
 import App from './App';
 
@@ -21,7 +21,7 @@ const Application: React.FC = (): ReactElement => {
     () =>
       createMuiTheme({
         palette: {
-          ...palette,
+          ...Theme.palette,
           type,
         },
       }),

@@ -1,8 +1,8 @@
 import { PaletteColorOptions } from '@material-ui/core';
 import { PaletteOptions } from '@material-ui/core/styles/createPalette';
-import { ColorProps } from 'src/interfaces/color';
+import { ColorProps } from '@interfaces';
 
-export const colors: ColorProps = {
+const colors: ColorProps = {
   navy: '#013d54',
   navyLight: '#3a6781',
   navyDark: '#00172b',
@@ -45,10 +45,14 @@ const info: PaletteColorOptions = {
   contrastText: colors.greyCool,
 };
 
-export const palette: PaletteOptions = {
+const palette: PaletteOptions = {
   primary,
   secondary,
   warning,
   success,
   info,
 };
+
+const Theme = { colors, palette };
+
+export default Theme;

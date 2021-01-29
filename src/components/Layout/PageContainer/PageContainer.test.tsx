@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { render } from '@utils/test';
+import { render } from '@test-utils';
 import PageContainer from './index';
 
 afterEach(cleanup);

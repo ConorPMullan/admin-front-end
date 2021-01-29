@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import { render } from '@utils/test';
+import { render } from '@test-utils';
 import HeaderBar from './index';
 
 afterEach(cleanup);

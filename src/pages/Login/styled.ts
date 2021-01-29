@@ -13,7 +13,7 @@ const materialStyles = (theme: Theme) => ({
     height: '100vh',
   },
   paper: {
-    marginTop: theme.spacing(8, 4),
+    margin: theme.spacing(8, 4),
   },
   image: {
     backgroundRepeat: 'no-repeat',

@@ -1,4 +1,4 @@
-export interface ColorProps {
+export default interface ColorProps {
   navy: string;
   navyLight: string;
   navyDark: string;

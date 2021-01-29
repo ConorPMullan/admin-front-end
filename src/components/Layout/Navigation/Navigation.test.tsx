@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { renderWithRouter } from '@utils/test';
+import { renderWithRouter } from '@test-utils';
 import Navigation from './index';
 
 afterEach(cleanup);

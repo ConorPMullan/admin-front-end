@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '@utils/test';
+import { renderWithRouter } from '@test-utils';
 import NavigationDrawer from './index';
 
 afterEach(cleanup);
