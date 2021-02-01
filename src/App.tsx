@@ -8,7 +8,7 @@ import { PageTitle } from '@utils/page';
 const authenticatedRoutes = (
   <Layout>
     <Switch>
-      <Route path={Navigation.NAVIGATION_ROUTES.HOME}>
+      <Route exact path={Navigation.NAVIGATION_ROUTES.HOME}>
         <PageTitle title={Navigation.PAGE_TITLES.HOME}>
           <Home />
         </PageTitle>
