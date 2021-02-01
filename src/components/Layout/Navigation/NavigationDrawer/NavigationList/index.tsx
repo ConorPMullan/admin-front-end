@@ -17,7 +17,9 @@ const NavigationList: React.FC = (): ReactElement => {
           dataTestId="nav-item-manage-products"
           to={Navigation.NAVIGATION_ROUTES.MANAGE_PRODUCTS}
           text={Navigation.PAGE_TITLES.MANAGE_PRODUCTS}
-          icon={<IconManageProducts data-testid="nav-item-manage-products-icon" />}
+          icon={
+            <IconManageProducts data-testid="nav-item-manage-products-icon" />
+          }
         />
       </NavList>
     </>

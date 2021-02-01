@@ -5,7 +5,7 @@ const ProductDetails: React.FC = (): ReactElement => {
     <div>
       <div>Hello, I am the manage product details page!</div>
     </div>
-  )
+  );
 };
 
 export default ProductDetails;
