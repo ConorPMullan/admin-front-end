@@ -1,11 +1,16 @@
 import React from 'react';
+import { Auth } from '@contexts';
+import { IAuthContext } from '@interfaces';
 import PFXLogoWhite from '@assets/images/pfx-logo-white.png';
 import {
   HeaderAppBar,
   HeaderIconButton,
   HeaderMenuIcon,
   HeaderToolbar,
+  HeaderContentArea,
   HeaderImage,
+  LogoutButton,
+  LogoutButtonIcon,
 } from './styled';
 
 interface HeaderProps {
@@ -17,8 +22,16 @@ const HeaderBar: React.FC<HeaderProps> = ({
   isDrawerOpen,
   handleDrawerOpen,
 }) => {
+  const { clearUserSession } = React.useContext(
+    Auth.AuthContext
+  ) as IAuthContext;
+
   const onOpenDrawer = () => {
     handleDrawerOpen(true);
+  };
+
+  const handleLogout = () => {
+    clearUserSession();
   };
 
   return (
@@ -34,12 +47,17 @@ const HeaderBar: React.FC<HeaderProps> = ({
           >
             <HeaderMenuIcon />
           </HeaderIconButton>
-          <HeaderImage
-            data-testid="Logo"
-            src={PFXLogoWhite}
-            alt="Pet Food Experts Logo"
-            $isOpen={isDrawerOpen}
-          />
+          <HeaderContentArea>
+            <HeaderImage
+              data-testid="Logo"
+              src={PFXLogoWhite}
+              alt="Pet Food Experts Logo"
+              $isOpen={isDrawerOpen}
+            />
+          </HeaderContentArea>
+          <LogoutButton onClick={handleLogout}>
+            <LogoutButtonIcon />
+          </LogoutButton>
         </HeaderToolbar>
       </HeaderAppBar>
     </>

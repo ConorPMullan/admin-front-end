@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IUserSession, IAuthContext } from '@interfaces';
+import { StorageUtils } from '@utils';
 
 const AuthContext = React.createContext<IAuthContext | null>(null);
 
@@ -9,12 +10,19 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
     initialUser
   );
 
+  useEffect(() => {
+    const localUserSession: IUserSession = StorageUtils.getUserSession();
+    setUserSession(localUserSession);
+  }, []);
+
   const updateUserSession = (userUpdate: IUserSession) => {
     setUserSession(userUpdate);
+    StorageUtils.setUserSession(userUpdate);
   };
 
   const clearUserSession = () => {
     setUserSession(initialUser);
+    StorageUtils.clearUserTokens();
   };
 
   return (

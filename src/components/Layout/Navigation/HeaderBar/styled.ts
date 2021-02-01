@@ -2,6 +2,7 @@ import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import styled from 'styled-components';
 import { Theme } from '@material-ui/core/styles';
 import { IPropsImage } from '@interfaces';
@@ -63,8 +64,15 @@ export const HeaderToolbar = styled(Toolbar)`
   display: flex;
 `;
 
+export const HeaderContentArea = styled.div`
+  flex-grow: 1;
+`;
+
 export const HeaderImage = styled.img<HeaderImageProps>`
   margin-left: ${({ $isOpen }) => ($isOpen ? '0px' : '36px')};
   max-width: 150px;
   transition: all 0.2s ease-in-out;
 `;
+
+export const LogoutButton = styled(IconButton)``;
+export const LogoutButtonIcon = styled(ExitToAppIcon)``;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApiUrls } from '@integration';
+import ApiUrls from './api-urls';
 
 const Instance = axios.create({ baseURL: ApiUrls.BASE_URL });
 

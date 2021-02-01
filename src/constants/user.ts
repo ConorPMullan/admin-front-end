@@ -8,4 +8,4 @@ const USER_SESSION_CONSTANTS: UserSessionConstants = {
   USER_REFRESH_TOKEN: 'user-refresh-token',
 };
 
-export default { USER_SESSION_CONSTANTS };
+export default USER_SESSION_CONSTANTS;

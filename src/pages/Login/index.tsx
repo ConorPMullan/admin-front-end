@@ -5,6 +5,8 @@ import { Login as LoginConstants } from '@constants';
 import { IUserCredentials } from '@interfaces';
 import { AuthService } from '@services';
 import { Auth } from '@contexts';
+import { AxiosError } from 'axios';
+
 import {
   LoginContainer,
   LoginImage,
@@ -24,6 +26,7 @@ const Login: React.FC = (): ReactElement => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<AxiosError>();
 
   const context = React.useContext(Auth.AuthContext);
 
@@ -35,9 +38,10 @@ const Login: React.FC = (): ReactElement => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(undefined);
 
     // TODO: validation engine call here
 
@@ -45,12 +49,18 @@ const Login: React.FC = (): ReactElement => {
       email,
       password,
     };
-    const userSession = await AuthService.login(userCredentials);
-    if (context && userSession) {
-      context.updateUserSession(userSession);
-    } else {
-      setLoading(false);
-    }
+
+    AuthService.login(userCredentials)
+      .then((response) => {
+        const userSession = response.data;
+        if (context) {
+          context.updateUserSession(userSession);
+        }
+      })
+      .catch((err: AxiosError) => {
+        setError(err);
+        setLoading(false);
+      });
   };
 
   return (
@@ -70,7 +80,7 @@ const Login: React.FC = (): ReactElement => {
             <AvatarIcon />
           </AvatarContainer>
           <MuiTypography component="h1" variant="h5">
-            {LoginConstants.LOGIN_STRINGS.SIGN_IN}
+            {LoginConstants.SIGN_IN}
           </MuiTypography>
           <FormWrapper onSubmit={handleSubmit} noValidate>
             <MuiTextField
@@ -97,6 +107,11 @@ const Login: React.FC = (): ReactElement => {
               onChange={handlePasswordChange}
               autoComplete="current-password"
             />
+            {error && (
+              <MuiTypography color="error">
+                {LoginConstants.INVALID_CREDENTIALS}
+              </MuiTypography>
+            )}
             {isLoading ? (
               <LoadingWrapper>
                 <LoadingAnimation />
@@ -108,7 +123,7 @@ const Login: React.FC = (): ReactElement => {
                 variant="contained"
                 color="primary"
               >
-                {LoginConstants.LOGIN_STRINGS.SIGN_IN}
+                {LoginConstants.SIGN_IN}
               </MuiButton>
             )}
           </FormWrapper>
