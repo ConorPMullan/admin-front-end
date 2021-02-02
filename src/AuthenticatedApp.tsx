@@ -8,7 +8,7 @@ const AuthenticatedApp: React.FC = (): React.ReactElement => {
   return (
     <Layout>
       <Switch>
-        <Route path={Navigation.NAVIGATION_ROUTES.HOME}>
+        <Route exact path={Navigation.NAVIGATION_ROUTES.HOME}>
           <PageTitle title={Navigation.PAGE_TITLES.HOME}>
             <Home />
           </PageTitle>

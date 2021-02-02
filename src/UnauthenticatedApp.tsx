@@ -6,7 +6,7 @@ import { Login } from '@pages';
 const UnauthenticatedApp: React.FC = (): React.ReactElement => {
   return (
     <Switch>
-      <Route path={Navigation.NAVIGATION_ROUTES.LOGIN}>
+      <Route exact path={Navigation.NAVIGATION_ROUTES.LOGIN}>
         <Login />
       </Route>
       <Redirect to={Navigation.NAVIGATION_ROUTES.LOGIN} />
