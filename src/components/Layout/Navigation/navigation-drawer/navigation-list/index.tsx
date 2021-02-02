@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Navigation } from '@constants';
-import NavigationItem from './NavigationItem';
+import NavigationItem from './navigation-item';
 import { NavList, IconHome, IconManageProducts } from './styled';
 
 const NavigationList: React.FC = (): ReactElement => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteProps } from 'react-router-dom';
-import Navigation from './Navigation';
-import PageContainer from './PageContainer';
+import Navigation from './navigation';
+import PageContainer from './page-container';
 import { LayoutContainer } from './styled';
 
 interface Props {

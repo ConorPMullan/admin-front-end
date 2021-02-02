@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, waitFor } from '@testing-library/react';
 import { render } from '@test-utils';
-import { PageTitle } from './';
+import { PageTitle } from '.';
 
 afterEach(cleanup);
 

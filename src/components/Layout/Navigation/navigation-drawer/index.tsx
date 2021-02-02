@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationList from './NavigationList';
+import NavigationList from './navigation-list';
 import { NavDrawer, ChevronLeft, Button, DrawerToolbar } from './styled';
 
 interface NavigationDrawerProps {

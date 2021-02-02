@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import HeaderBar from './HeaderBar';
-import NavigationDrawer from './NavigationDrawer';
+import HeaderBar from './header-bar';
+import NavigationDrawer from './navigation-drawer';
 import { NavigationContainer } from './styled';
 
 const Navigation: React.FC = () => {

@@ -1,4 +1,4 @@
-export { default as PageTitle } from './PageTitle';
-export { default as Home } from './Home';
-export { default as Login } from './Login';
-export { default as ManageProductDetails } from './ManageProductDetails';
+export { default as PageTitle } from './page-title';
+export { default as Home } from './home';
+export { default as Login } from './login';
+export { default as ManageProductDetails } from './manage-product-details';

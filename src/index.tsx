@@ -11,7 +11,7 @@ import {
 import { Theme } from '@styles';
 import { Auth } from './contexts';
 
-import App from './App';
+import App from './app';
 
 const Application: React.FC = (): ReactElement => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
