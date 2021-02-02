@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios, { AxiosRequestConfig } from 'axios';
 import { StorageUtils } from '@utils';
-import { ApiUrls } from '.';
+import ApiUrls from './api-urls';
 
 const Instance = axios.create({ baseURL: ApiUrls.BASE_URL });
 
