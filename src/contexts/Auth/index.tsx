@@ -10,9 +10,12 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
     initialUser
   );
 
+  const [isAuthLoading, setLoading] = React.useState<boolean>(true);
+
   useEffect(() => {
     const localUserSession: IUserSession = StorageUtils.getUserSession();
     setUserSession(localUserSession);
+    setLoading(false);
   }, []);
 
   const updateUserSession = (userUpdate: IUserSession) => {
@@ -27,7 +30,12 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ userSession, updateUserSession, clearUserSession }}
+      value={{
+        isAuthLoading,
+        userSession,
+        updateUserSession,
+        clearUserSession,
+      }}
     >
       {children}
     </AuthContext.Provider>

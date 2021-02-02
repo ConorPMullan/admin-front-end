@@ -29,19 +29,17 @@ const Application: React.FC = (): ReactElement => {
   );
 
   return (
-    <React.StrictMode>
-      <StylesProvider injectFirst>
-        <MuiThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline>
-              <Auth.AuthProvider>
-                <App />
-              </Auth.AuthProvider>
-            </CssBaseline>
-          </ThemeProvider>
-        </MuiThemeProvider>
-      </StylesProvider>
-    </React.StrictMode>
+    <StylesProvider injectFirst>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline>
+            <Auth.AuthProvider>
+              <App />
+            </Auth.AuthProvider>
+          </CssBaseline>
+        </ThemeProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   );
 };
 

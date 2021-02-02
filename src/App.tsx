@@ -1,13 +1,20 @@
 import React from 'react';
 import { Auth } from '@contexts';
 import { IAuthContext } from '@interfaces';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Layout } from '@components';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { FullPageLoader, Layout } from '@components';
 import { Login, Home, ManageProductDetails, PageTitle } from '@pages';
 import { Navigation } from '@constants';
 
 const App: React.FC = (): React.ReactElement => {
-  const { userSession } = React.useContext(Auth.AuthContext) as IAuthContext;
+  const { isAuthLoading, userSession } = React.useContext(
+    Auth.AuthContext
+  ) as IAuthContext;
 
   const authenticatedRoutes = (
     <Layout>
@@ -31,11 +38,15 @@ const App: React.FC = (): React.ReactElement => {
       <Route exact path={Navigation.NAVIGATION_ROUTES.LOGIN}>
         <Login />
       </Route>
+      <Redirect to={Navigation.NAVIGATION_ROUTES.LOGIN} />
     </Switch>
   );
   // Authentication hook goes here
+
   const isAuthenticated = userSession.accessToken;
-  return (
+  return isAuthLoading ? (
+    <FullPageLoader />
+  ) : (
     <Router>
       {isAuthenticated ? authenticatedRoutes : unauthenticatedRoutes}
     </Router>
