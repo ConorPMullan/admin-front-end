@@ -7,7 +7,10 @@ import {
 const FullPageLoader: React.FC = () => {
   return (
     <BackdropContainer open>
-      <CircularProgress color="secondary" />
+      <CircularProgress
+        data-testid="full-page-loader-progress"
+        color="secondary"
+      />
     </BackdropContainer>
   );
 };
