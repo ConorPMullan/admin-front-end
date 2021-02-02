@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -34,13 +33,11 @@ const Application: React.FC = (): ReactElement => {
       <StylesProvider injectFirst>
         <MuiThemeProvider theme={theme}>
           <ThemeProvider theme={theme}>
-            <BrowserRouter>
-              <CssBaseline>
-                <Auth.AuthProvider>
-                  <App />
-                </Auth.AuthProvider>
-              </CssBaseline>
-            </BrowserRouter>
+            <CssBaseline>
+              <Auth.AuthProvider>
+                <App />
+              </Auth.AuthProvider>
+            </CssBaseline>
           </ThemeProvider>
         </MuiThemeProvider>
       </StylesProvider>
