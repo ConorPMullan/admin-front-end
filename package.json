@@ -14,7 +14,6 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.21.1",
     "history": "^5.0.0",
-    "jwt-decode": "^3.1.2",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",
@@ -29,7 +28,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
-    "testAll": "react-app-rewired test --watchAll --env=jest-environment-jsdom-sixteen",
+    "testAll": "react-app-rewired test --watchAll --coverage --env=jest-environment-jsdom-sixteen",
     "eject": "react-app-rewired eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src --ext .ts,.tsx"
@@ -69,6 +68,11 @@
     "prettier": "^2.1.2"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{tsx}",
+      "!src/**/*.d.ts",
+      "!<rootDir>/node_modules/"
+    ],
     "moduleNameMapper": {
       "^@assets(.*)$": "<rootDir>/src/assets$1",
       "^@components(.*)$": "<rootDir>/src/components$1",

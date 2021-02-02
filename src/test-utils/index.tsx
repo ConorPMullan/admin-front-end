@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core/styles';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import { Auth } from '@contexts';
 
 const Providers: React.FC = ({ children }) => {
   const theme = createMuiTheme();
@@ -18,7 +19,9 @@ const Providers: React.FC = ({ children }) => {
     <>
       <StylesProvider injectFirst>
         <MuiThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <Auth.AuthProvider>{children}</Auth.AuthProvider>
+          </ThemeProvider>
         </MuiThemeProvider>
       </StylesProvider>
     </>

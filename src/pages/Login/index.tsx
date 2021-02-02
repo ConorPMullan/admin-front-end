@@ -52,8 +52,8 @@ const Login: React.FC = (): ReactElement => {
 
     AuthService.login(userCredentials)
       .then((response) => {
-        const userSession = response.data;
         if (context) {
+          const userSession = response.data;
           context.updateUserSession(userSession);
         }
       })
@@ -82,8 +82,13 @@ const Login: React.FC = (): ReactElement => {
           <MuiTypography component="h1" variant="h5">
             {LoginConstants.SIGN_IN}
           </MuiTypography>
-          <FormWrapper onSubmit={handleSubmit} noValidate>
+          <FormWrapper
+            datat-testid="login-form"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <MuiTextField
+              inputProps={{ 'data-testid': 'login-field-email' }}
               variant="outlined"
               margin="normal"
               required
@@ -96,6 +101,7 @@ const Login: React.FC = (): ReactElement => {
               autoFocus
             />
             <MuiTextField
+              inputProps={{ 'data-testid': 'login-field-password' }}
               variant="outlined"
               margin="normal"
               required
@@ -108,16 +114,17 @@ const Login: React.FC = (): ReactElement => {
               autoComplete="current-password"
             />
             {error && (
-              <MuiTypography color="error">
+              <MuiTypography data-testid="login-error" color="error">
                 {LoginConstants.INVALID_CREDENTIALS}
               </MuiTypography>
             )}
             {isLoading ? (
               <LoadingWrapper>
-                <LoadingAnimation />
+                <LoadingAnimation data-testid="login-loading" />
               </LoadingWrapper>
             ) : (
               <MuiButton
+                data-testid="login-form-button-submit"
                 type="submit"
                 fullWidth
                 variant="contained"
