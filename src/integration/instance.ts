@@ -13,6 +13,8 @@ Instance.interceptors.request.use(
     const userSession = StorageUtils.getUserSession();
     if (config.url === refreshUrl && userSession.refreshToken) {
       config.headers.Authorization = `Bearer ${userSession.refreshToken}`;
+    } else if (userSession.accessToken) {
+      config.headers.Authorization = `Bearer ${userSession.accessToken}`;
     }
     return config;
   }

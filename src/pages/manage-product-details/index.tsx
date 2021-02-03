@@ -1,10 +1,30 @@
 import React, { ReactElement } from 'react';
+import { Product } from '@constants';
+import { ProductTable } from '@components';
+import {
+  MuiPaper as Paper,
+  MuiGrid as Grid,
+  MuiTypography as Typography,
+} from './styled';
 
 const ProductDetails: React.FC = (): ReactElement => {
   return (
-    <div>
-      <div>Hello, I am the manage product details page!</div>
-    </div>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Typography
+          data-testid="manage-products-title"
+          variant="h6"
+          gutterBottom
+        >
+          {Product.MANAGE_PROCUCTS_TITLE}
+        </Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper>
+          <ProductTable />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
 
