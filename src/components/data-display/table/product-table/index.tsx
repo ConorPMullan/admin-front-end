@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Product as ProductConstants } from '@constants';
 import { IProduct } from '@interfaces';
 import { ProductService } from '@services';
-import Title from '../../layout/title';
+import Title from '../../title';
 import {
   MuiProgress as Progress,
   MuiTable as Table,
@@ -34,7 +34,7 @@ const ProductTable: React.FC = () => {
 
   return (
     <>
-      <Title dataTestId="product-table-title">
+      <Title dataTestId="product-table-title" color="primary">
         {ProductConstants.PROCUCT_TABLE_TITLE}
       </Title>
       {isLoading ? (

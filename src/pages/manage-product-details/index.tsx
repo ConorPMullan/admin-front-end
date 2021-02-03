@@ -1,23 +1,15 @@
 import React, { ReactElement } from 'react';
 import { Product } from '@constants';
-import { ProductTable } from '@components';
-import {
-  MuiPaper as Paper,
-  MuiGrid as Grid,
-  MuiTypography as Typography,
-} from './styled';
+import { ProductTable, Title } from '@components';
+import { MuiPaper as Paper, MuiGrid as Grid } from './styled';
 
 const ProductDetails: React.FC = (): ReactElement => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Typography
-          data-testid="manage-products-title"
-          variant="h5"
-          gutterBottom
-        >
+        <Title dataTestId="manage-products-title" variant="h5">
           {Product.MANAGE_PROCUCTS_TITLE}
-        </Typography>
+        </Title>
       </Grid>
       <Grid item xs={12}>
         <Paper>
