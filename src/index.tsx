@@ -1,16 +1,17 @@
 import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   createMuiTheme,
   ThemeProvider as MuiThemeProvider,
   StylesProvider,
 } from '@material-ui/core/styles';
-import { palette } from '@styled/theme';
+import { Theme } from '@styles';
+import { Auth } from './contexts';
 
-import App from './App';
+import App from './app';
 
 const Application: React.FC = (): ReactElement => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -20,7 +21,7 @@ const Application: React.FC = (): ReactElement => {
     () =>
       createMuiTheme({
         palette: {
-          ...palette,
+          ...Theme.palette,
           type,
         },
       }),
@@ -28,17 +29,17 @@ const Application: React.FC = (): ReactElement => {
   );
 
   return (
-    <React.StrictMode>
-      <StylesProvider injectFirst>
-        <MuiThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <BrowserRouter>
+    <StylesProvider injectFirst>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline>
+            <Auth.AuthProvider>
               <App />
-            </BrowserRouter>
-          </ThemeProvider>
-        </MuiThemeProvider>
-      </StylesProvider>
-    </React.StrictMode>
+            </Auth.AuthProvider>
+          </CssBaseline>
+        </ThemeProvider>
+      </MuiThemeProvider>
+    </StylesProvider>
   );
 };
 

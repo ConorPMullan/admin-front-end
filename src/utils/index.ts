@@ -1,1 +1,1 @@
-export { default as PageTitle } from './page';
+export { default as StorageUtils } from './storage-util';

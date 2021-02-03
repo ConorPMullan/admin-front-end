@@ -12,6 +12,7 @@
     "@types/node": "^12.12.67",
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.21.1",
     "history": "^5.0.0",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
@@ -27,7 +28,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
-    "testAll": "react-app-rewired test --watchAll --env=jest-environment-jsdom-sixteen",
+    "testAll": "react-app-rewired test --watchAll --coverage --env=jest-environment-jsdom-sixteen",
     "eject": "react-app-rewired eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src --ext .ts,.tsx"
@@ -52,8 +53,8 @@
     "@testing-library/user-event": "^12.1.10",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.14.1",
-    "@typescript-eslint/parser": "^4.14.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
     "eslint-config-airbnb-typescript": "^6.3.2",
     "eslint-config-prettier": "^6.12.0",
     "eslint-import-resolver-typescript": "^2.3.0",
@@ -67,16 +68,24 @@
     "prettier": "^2.1.2"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{tsx}",
+      "!src/**/*.d.ts",
+      "!<rootDir>/node_modules/"
+    ],
     "moduleNameMapper": {
       "^@assets(.*)$": "<rootDir>/src/assets$1",
       "^@components(.*)$": "<rootDir>/src/components$1",
       "^@constants(.*)$": "<rootDir>/src/constants$1",
+      "^@contexts(.*)$": "<rootDir>/src/contexts$1",
       "^@hooks(.*)$": "<rootDir>/src/hooks$1",
       "^@integration(.*)$": "<rootDir>/src/integration$1",
       "^@interfaces(.*)$": "<rootDir>/src/interfaces$1",
       "^@pages(.*)$": "<rootDir>/src/pages$1",
-      "^@styled(.*)$": "<rootDir>/src/styled$1",
-      "^@utils(.*)$": "<rootDir>/src/utils$1"
+      "^@services(.*)$": "<rootDir>/src/services$1",
+      "^@styles(.*)$": "<rootDir>/src/styles$1",
+      "^@utils(.*)$": "<rootDir>/src/utils$1",
+      "^@test-utils(.*)$": "<rootDir>/src/test-utils$1"
     }
   }
 }

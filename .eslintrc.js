@@ -13,9 +13,9 @@ module.exports = {
   ],
   plugins: ['react', '@typescript-eslint', 'jest', 'import', 'jsx-a11y'],
   settings: {
-    "import/resolver": {
-      "typescript": {}
-    }
+    'import/resolver': {
+      typescript: {},
+    },
   },
   env: {
     browser: true,
@@ -38,9 +38,9 @@ module.exports = {
   },
   rules: {
     'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/camelcase': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
-    "import/prefer-default-export": "off",
+    'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'linebreak-style': 'off',
     'prettier/prettier': [
@@ -50,5 +50,4 @@ module.exports = {
       },
     ],
   },
-  
 };
