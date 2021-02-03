@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ProductService } from '@services';
 import { Product as ProductConstants } from '@constants';
 import { IProduct } from '@interfaces';
+import { ProductService } from '@services';
+import Title from '../../layout/title';
 import {
   MuiProgress as Progress,
   MuiTable as Table,
@@ -9,7 +10,6 @@ import {
   MuiTableCell as TableCell,
   MuiTableHead as TableHead,
   MuiTableRow as TableRow,
-  MuiTypography as Typography,
 } from './styled';
 
 const ProductTable: React.FC = () => {
@@ -34,9 +34,9 @@ const ProductTable: React.FC = () => {
 
   return (
     <>
-      <Typography data-testid="product-table-title">
+      <Title dataTestId="product-table-title">
         {ProductConstants.PROCUCT_TABLE_TITLE}
-      </Typography>
+      </Title>
       {isLoading ? (
         <Progress data-testid="product-table-loading" />
       ) : (

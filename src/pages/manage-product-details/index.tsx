@@ -13,7 +13,7 @@ const ProductDetails: React.FC = (): ReactElement => {
       <Grid item xs={12}>
         <Typography
           data-testid="manage-products-title"
-          variant="h6"
+          variant="h5"
           gutterBottom
         >
           {Product.MANAGE_PROCUCTS_TITLE}
