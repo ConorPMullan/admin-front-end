@@ -24,12 +24,31 @@ const ProductTable: React.FC = () => {
     setLoading(true);
     ProductService.getProducts()
       .then((response) => {
-        setProducts(response.data.content);
+        setProducts(response.data.page.content);
         setLoading(false);
       })
       .catch(() => {
         setLoading(false);
       });
+  };
+
+  const renderTableRow = (product: IProduct, index: number) => {
+    const { productLineItem } = product;
+    const {
+      id,
+      upc,
+      itemNumber,
+      name,
+      unitOfMeasurement: { description },
+    } = productLineItem;
+    return (
+      <TableRow data-testid={`product-table-row-${index}`} key={id}>
+        <TableCell>{upc}</TableCell>
+        <TableCell>{itemNumber}</TableCell>
+        <TableCell>{description}</TableCell>
+        <TableCell>{name}</TableCell>
+      </TableRow>
+    );
   };
 
   return (
@@ -50,30 +69,13 @@ const ProductTable: React.FC = () => {
               <TableCell>
                 {ProductConstants.PROCUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
               </TableCell>
-              <TableCell align="right">
+              <TableCell>
                 {ProductConstants.PROCUCT_TABLE_COLUMN_NAME}
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product, i) => {
-              const { productLineItem } = product;
-              const {
-                id,
-                upc,
-                itemNumber,
-                name,
-                unitOfMeasurement: { description },
-              } = productLineItem;
-              return (
-                <TableRow data-testid={`product-table-row-${i}`} key={id}>
-                  <TableCell>{upc}</TableCell>
-                  <TableCell>{itemNumber}</TableCell>
-                  <TableCell>{description}</TableCell>
-                  <TableCell align="right">{name}</TableCell>
-                </TableRow>
-              );
-            })}
+            {products.map((product, i) => renderTableRow(product, i))}
           </TableBody>
         </Table>
       )}

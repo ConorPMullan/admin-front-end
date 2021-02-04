@@ -1,11 +1,5 @@
+import IResponsePage from './response-page';
+
 export default interface IResponseBase<T> {
-  content: T[];
-  empty: boolean;
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  size: number;
-  totalElements: number;
-  totalPages: number;
+  page: IResponsePage<T>;
 }
