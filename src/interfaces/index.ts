@@ -6,6 +6,5 @@ export type { default as IProductUnitMeasurement } from './product-um';
 export type { default as IPropsMaterial } from './props-material';
 export type { default as IPropsImage } from './props-image';
 export type { default as IResponseBase } from './response/response-base';
-export type { default as ITableColumn } from './table-column';
 export type { default as IUserCredentials } from './user-credentials';
 export type { default as IUserSession } from './user-session';

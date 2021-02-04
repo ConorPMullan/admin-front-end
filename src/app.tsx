@@ -41,7 +41,6 @@ const App: React.FC = (): React.ReactElement => {
       <Redirect to={Navigation.NAVIGATION_ROUTES.LOGIN} />
     </Switch>
   );
-  // Authentication hook goes here
 
   const isAuthenticated = userSession.accessToken;
   return isAuthLoading ? (
