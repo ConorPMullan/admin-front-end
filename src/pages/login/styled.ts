@@ -6,8 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { IPropsMaterial } from '@interfaces';
 
 const materialStyles = (theme: Theme) => ({
   paper: {
@@ -31,18 +31,11 @@ const materialStyles = (theme: Theme) => ({
   },
 });
 
-interface IProps {
-  component?: string | typeof Paper | null;
-  elevation?: number;
-  square?: boolean;
-  $src?: string | undefined;
-}
-
-export const LoginContainer = styled(Grid)<IProps>`
+export const LoginContainer = styled(Grid)<IPropsMaterial>`
   height: 100vh;
 `;
 
-export const LoginImage = styled(Grid)<IProps>`
+export const LoginImage = styled(Grid)<IPropsMaterial>`
   background-image: ${({ $src }) => ($src ? `url(${$src})` : '')};
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,7 +46,7 @@ export const LoginImage = styled(Grid)<IProps>`
   }};
 `;
 
-export const MuiGrid = styled(Grid)<IProps>``;
+export const MuiGrid = styled(Grid)<IPropsMaterial>``;
 
 export const LoginFormWrapper = styled.div`
   display: flex;
@@ -75,7 +68,7 @@ export const AvatarContainer = styled(Avatar)`
 
 export const AvatarIcon = styled(LockOutlinedIcon)``;
 
-export const MuiTypography = styled(Typography)<IProps>``;
+export const MuiTypography = styled(Typography)<IPropsMaterial>``;
 export const MuiTextField = styled(TextField)``;
 
 export const MuiButton = styled(Button)`
