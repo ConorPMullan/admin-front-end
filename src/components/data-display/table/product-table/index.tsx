@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Product as ProductConstants } from '@constants';
-import { IProduct } from '@interfaces';
+import { IResponsePage, IProduct } from '@interfaces';
 import { ProductService } from '@services';
+import TablePagination from '../table-pagination';
 import Title from '../../title';
 import {
   MuiProgress as Progress,
@@ -10,24 +11,27 @@ import {
   MuiTableCell as TableCell,
   MuiTableHead as TableHead,
   MuiTableRow as TableRow,
+  TableContainer,
 } from './styled';
 
 const ProductTable: React.FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [_pageData, setPageData] = useState<IResponsePage<IProduct>>();
+  const [_isPageLoading, setPageLoading] = useState<boolean>(false);
+  const [_isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getProducts();
+    getProducts(0);
   }, []);
 
-  const getProducts = (): void => {
-    setLoading(true);
-    ProductService.getProducts()
-      .then((response) => {
-        setProducts(response.data.page.content);
-        setLoading(false);
+  const getProducts = (selectedPage: number, rowsPerPage = 25): void => {
+    setPageLoading(true);
+    ProductService.getProducts(selectedPage, rowsPerPage)
+      .then(({ data }) => {
+        const { page } = data;
+        setPageData(page);
       })
-      .catch(() => {
+      .finally(() => {
+        setPageLoading(false);
         setLoading(false);
       });
   };
@@ -51,35 +55,54 @@ const ProductTable: React.FC = () => {
     );
   };
 
+  const handlePageChange = (newPage: number, rowsPerPage: number): void => {
+    getProducts(newPage, rowsPerPage);
+  };
+
   return (
-    <>
+    <TableContainer data-testid="product-table-container">
       <Title dataTestId="product-table-title" color="primary">
         {ProductConstants.PROCUCT_TABLE_TITLE}
       </Title>
-      {isLoading ? (
+      {_isLoading ? (
         <Progress data-testid="product-table-loading" />
       ) : (
-        <Table data-testid="product-table" size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>{ProductConstants.PROCUCT_TABLE_COLUMN_UPC}</TableCell>
-              <TableCell>
-                {ProductConstants.PROCUCT_TABLE_COLUMN_ITEM_NUMBER}
-              </TableCell>
-              <TableCell>
-                {ProductConstants.PROCUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
-              </TableCell>
-              <TableCell>
-                {ProductConstants.PROCUCT_TABLE_COLUMN_NAME}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {products.map((product, i) => renderTableRow(product, i))}
-          </TableBody>
-        </Table>
+        <>
+          <Table data-testid="product-table" size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  {ProductConstants.PROCUCT_TABLE_COLUMN_UPC}
+                </TableCell>
+                <TableCell>
+                  {ProductConstants.PROCUCT_TABLE_COLUMN_ITEM_NUMBER}
+                </TableCell>
+                <TableCell>
+                  {ProductConstants.PROCUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
+                </TableCell>
+                <TableCell>
+                  {ProductConstants.PROCUCT_TABLE_COLUMN_NAME}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {_pageData?.content.map((product, i) =>
+                renderTableRow(product, i)
+              )}
+            </TableBody>
+          </Table>
+          {_pageData && (
+            <TablePagination
+              disabled={_isPageLoading}
+              rowsPerPage={_pageData.pageable.pageSize}
+              selectedPage={_pageData.pageable.pageNumber}
+              totalRowCount={_pageData.totalElements}
+              onPageChange={handlePageChange}
+            />
+          )}
+        </>
       )}
-    </>
+    </TableContainer>
   );
 };
 
