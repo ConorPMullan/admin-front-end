@@ -14,6 +14,7 @@ const materialStyles = (theme: Theme) => ({
   },
 });
 
+export const TableContainer = styled.div``;
 export const MuiProgress = styled(LinearProgress)`
   ${({ theme }) => {
     const classes = materialStyles(theme);

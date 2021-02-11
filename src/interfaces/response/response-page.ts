@@ -1,3 +1,5 @@
+import IPageable from '../pageable';
+
 export default interface IResponsePage<T> {
   content: T[];
   empty: boolean;
@@ -5,6 +7,7 @@ export default interface IResponsePage<T> {
   last: boolean;
   number: number;
   numberOfElements: number;
+  pageable: IPageable;
   size: number;
   totalElements: number;
   totalPages: number;
