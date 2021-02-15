@@ -44,7 +44,7 @@ const TablePagination: React.FC<PaginationProps> = ({
         onChangeRowsPerPage={handleChangeRowsPerPage}
         page={selectedPage}
         rowsPerPage={_rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={disabled ? [] : [5, 10, 25]}
       />
     </TablePaginationContainer>
   );
