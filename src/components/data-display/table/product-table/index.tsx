@@ -48,6 +48,7 @@ const ProductTable: React.FC = () => {
           setCachedData(cachedData);
           setProductData(content);
         })
+        .catch(() => {})
         .finally(() => {
           setPageLoading(false);
           setLoading(false);

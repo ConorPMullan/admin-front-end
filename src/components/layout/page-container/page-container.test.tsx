@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { render } from '@test-utils';
+import { TestUtils } from '@test-utils';
 import PageContainer from './index';
 
 afterEach(cleanup);
@@ -8,7 +8,7 @@ afterEach(cleanup);
 describe('PageContainer Tests', () => {
   test('renders the layout container', () => {
     const testText = 'testing';
-    const { getByRole, getByText } = render(
+    const { getByRole, getByText } = TestUtils.render(
       <PageContainer>
         <div>{testText}</div>
       </PageContainer>

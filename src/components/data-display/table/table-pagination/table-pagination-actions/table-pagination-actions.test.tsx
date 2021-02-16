@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import { render } from '@test-utils';
+import { TestUtils } from '@test-utils';
 import TablePaginationActions from './index';
 
 afterEach(cleanup);
@@ -13,7 +13,7 @@ const lastPageButtonId = 'pagination-last-page-button';
 describe('TablePaginationActions Tests', () => {
   test('renders the TablePaginationActions component as default', () => {
     const mockCallBack = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = TestUtils.render(
       <TablePaginationActions
         count={0}
         page={0}
@@ -29,7 +29,7 @@ describe('TablePaginationActions Tests', () => {
 
   test('First and previous page buttons disabled TablePaginationActions when on first page', () => {
     const mockCallBack = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = TestUtils.render(
       <TablePaginationActions
         count={100}
         page={0}
@@ -48,7 +48,7 @@ describe('TablePaginationActions Tests', () => {
 
   test('Next and last page buttons disabled TablePaginationActions when on last page', () => {
     const mockCallBack = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = TestUtils.render(
       <TablePaginationActions
         count={100}
         page={3}
@@ -67,7 +67,7 @@ describe('TablePaginationActions Tests', () => {
 
   test('Testing Next and Last TablePaginationActions buttons', () => {
     const mockCallBack = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = TestUtils.render(
       <TablePaginationActions
         count={100}
         page={0}
@@ -89,7 +89,7 @@ describe('TablePaginationActions Tests', () => {
 
   test('Testing Previous and First TablePaginationActions buttons', () => {
     const mockCallBack = jest.fn();
-    const { getByTestId } = render(
+    const { getByTestId } = TestUtils.render(
       <TablePaginationActions
         count={100}
         page={3}
