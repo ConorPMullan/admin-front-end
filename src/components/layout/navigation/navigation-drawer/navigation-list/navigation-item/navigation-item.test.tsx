@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { renderWithRouter } from '@test-utils';
+import { TestUtils } from '@test-utils';
 import NavigationItem from './index';
 
 afterEach(cleanup);
@@ -9,7 +9,7 @@ describe('NavigationItem Tests', () => {
   test('Renders the NavigationItem', () => {
     const testId = 'nav-item-test';
     const linkContent = 'Test Link Content';
-    const { getByTestId, getByText } = renderWithRouter(
+    const { getByTestId, getByText } = TestUtils.renderWithRouter(
       <NavigationItem
         dataTestId={testId}
         to={'/test-route'}

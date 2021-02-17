@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup } from '@testing-library/react';
-import { renderWithRouter } from '@test-utils';
+import { TestUtils } from '@test-utils';
 import Layout from './index';
 
 afterEach(cleanup);
@@ -8,7 +8,7 @@ afterEach(cleanup);
 describe('Layout Tests', () => {
   test('renders the layout container', () => {
     const mockDivId = 'mock-div';
-    const { getByTestId } = renderWithRouter(
+    const { getByTestId } = TestUtils.renderWithRouter(
       <Layout>
         <div data-testid={mockDivId}>Test</div>
       </Layout>

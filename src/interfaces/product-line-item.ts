@@ -8,4 +8,5 @@ export default interface IProductLineItem {
   unitOfMeasurement: IProductUnitMeasurement;
   price: number;
   imageUrl: string;
+  brand: string;
 }
