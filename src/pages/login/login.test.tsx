@@ -13,6 +13,9 @@ const loadingErrorId = 'login-error';
 const passwordFieldId = 'login-field-password';
 const submitButtonId = 'login-form-button-submit';
 
+const validEmail = 'test@testing.test';
+const validPassword = '12345678';
+
 describe('Login Tests', () => {
   test('renders the Login page', () => {
     const { getByTestId, queryByTestId } = render(<Login />);
@@ -27,7 +30,7 @@ describe('Login Tests', () => {
     const { getByTestId } = render(<Login />);
 
     const emailField = getByTestId(emailFieldId) as HTMLInputElement;
-    const emailText = 'testEmail';
+    const emailText = validEmail;
     fireEvent.change(emailField, { target: { value: emailText } });
 
     expect(emailField.value).toBe(emailText);
@@ -37,7 +40,7 @@ describe('Login Tests', () => {
     const { getByTestId } = render(<Login />);
 
     const passwordField = getByTestId(passwordFieldId) as HTMLInputElement;
-    const passwordText = 'testPass';
+    const passwordText = validPassword;
     fireEvent.change(passwordField, { target: { value: passwordText } });
 
     expect(passwordField.value).toBe(passwordText);
