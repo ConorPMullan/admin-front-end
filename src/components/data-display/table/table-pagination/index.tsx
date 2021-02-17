@@ -18,10 +18,10 @@ const TablePagination: React.FC<PaginationProps> = ({
   totalRowCount = -1,
   onPageChange,
 }) => {
-  const [_rowsPerPage, setRowsPerPage] = React.useState(rowsPerPage);
+  const [pageSize, setRowsPerPage] = React.useState(rowsPerPage);
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    onPageChange(newPage, _rowsPerPage);
+    onPageChange(newPage, pageSize);
   };
 
   const handleChangeRowsPerPage = (
@@ -43,7 +43,7 @@ const TablePagination: React.FC<PaginationProps> = ({
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
         page={selectedPage}
-        rowsPerPage={_rowsPerPage}
+        rowsPerPage={pageSize}
         rowsPerPageOptions={[5, 10, 25]}
       />
     </TablePaginationContainer>

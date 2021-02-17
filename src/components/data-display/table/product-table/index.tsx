@@ -15,9 +15,9 @@ import {
 } from './styled';
 
 const ProductTable: React.FC = () => {
-  const [_pageData, setPageData] = useState<IResponsePage<IProduct>>();
-  const [_isPageLoading, setPageLoading] = useState<boolean>(false);
-  const [_isLoading, setLoading] = useState<boolean>(true);
+  const [pageData, setPageData] = useState<IResponsePage<IProduct>>();
+  const [isPageLoading, setPageLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getProducts(0);
@@ -30,6 +30,7 @@ const ProductTable: React.FC = () => {
         const { page } = data;
         setPageData(page);
       })
+      .catch(() => {})
       .finally(() => {
         setPageLoading(false);
         setLoading(false);
@@ -64,7 +65,7 @@ const ProductTable: React.FC = () => {
       <Title dataTestId="product-table-title" color="primary">
         {ProductConstants.PROCUCT_TABLE_TITLE}
       </Title>
-      {_isLoading ? (
+      {isLoading ? (
         <Progress data-testid="product-table-loading" />
       ) : (
         <>
@@ -86,17 +87,17 @@ const ProductTable: React.FC = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {_pageData?.content.map((product, i) =>
+              {pageData?.content.map((product, i) =>
                 renderTableRow(product, i)
               )}
             </TableBody>
           </Table>
-          {_pageData && (
+          {pageData && (
             <TablePagination
-              disabled={_isPageLoading}
-              rowsPerPage={_pageData.pageable.pageSize}
-              selectedPage={_pageData.pageable.pageNumber}
-              totalRowCount={_pageData.totalElements}
+              disabled={isPageLoading}
+              rowsPerPage={pageData.pageable.pageSize}
+              selectedPage={pageData.pageable.pageNumber}
+              totalRowCount={pageData.totalElements}
               onPageChange={handlePageChange}
             />
           )}

@@ -19,12 +19,12 @@ describe('ProductTable Tests', () => {
   });
 
   test('Table shows after loading', async () => {
-    const { findByTestId } = render(<ProductTable />);
-
     const promise = Promise.reject();
     const mockResponse = jest.fn(() => promise);
     ProductService.getProducts = mockResponse;
 
-    await expect(findByTestId(productTableId)).toBeInTheDocument;
+    const { findByTestId, queryByTestId } = render(<ProductTable />);
+    await findByTestId(productTableId);
+    expect(queryByTestId(productTableLoadingId)).toBeNull();
   });
 });
