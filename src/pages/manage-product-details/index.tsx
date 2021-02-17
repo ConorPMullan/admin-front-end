@@ -8,7 +8,7 @@ const ProductDetails: React.FC = (): ReactElement => {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Title dataTestId="manage-products-title" variant="h5">
-          {Product.MANAGE_PROCUCTS_TITLE}
+          {Product.MANAGE_PRODUCTS_TITLE}
         </Title>
       </Grid>
       <Grid item xs={12}>

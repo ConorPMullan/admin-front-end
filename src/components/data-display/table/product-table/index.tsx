@@ -44,6 +44,7 @@ const ProductTable: React.FC = () => {
       itemNumber,
       name,
       unitOfMeasurement: { description },
+      brand,
     } = productLineItem;
     return (
       <TableRow data-testid={`product-table-row-${index}`} key={id}>
@@ -51,6 +52,7 @@ const ProductTable: React.FC = () => {
         <TableCell>{itemNumber}</TableCell>
         <TableCell>{description}</TableCell>
         <TableCell>{name}</TableCell>
+        <TableCell>{brand}</TableCell>
       </TableRow>
     );
   };
@@ -62,7 +64,7 @@ const ProductTable: React.FC = () => {
   return (
     <TableContainer data-testid="product-table-container">
       <Title dataTestId="product-table-title" color="primary">
-        {ProductConstants.PROCUCT_TABLE_TITLE}
+        {ProductConstants.PRODUCT_TABLE_TITLE}
       </Title>
       {_isLoading ? (
         <Progress data-testid="product-table-loading" />
@@ -72,16 +74,19 @@ const ProductTable: React.FC = () => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  {ProductConstants.PROCUCT_TABLE_COLUMN_UPC}
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_UPC}
                 </TableCell>
                 <TableCell>
-                  {ProductConstants.PROCUCT_TABLE_COLUMN_ITEM_NUMBER}
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_ITEM_NUMBER}
                 </TableCell>
                 <TableCell>
-                  {ProductConstants.PROCUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
                 </TableCell>
                 <TableCell>
-                  {ProductConstants.PROCUCT_TABLE_COLUMN_NAME}
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_NAME}
+                </TableCell>
+                <TableCell>
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
                 </TableCell>
               </TableRow>
             </TableHead>
