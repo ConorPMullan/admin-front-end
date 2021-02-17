@@ -3,10 +3,11 @@ import LoginImageSource from '@assets/images/login-image-1.png';
 import Paper from '@material-ui/core/Paper';
 import { Login as LoginConstants } from '@constants';
 import { IUserCredentials } from '@interfaces';
-import { AuthService } from '@services';
+import { AuthService, ValidationService } from '@services';
 import { Auth } from '@contexts';
 import { AxiosError } from 'axios';
-
+import * as z from 'zod';
+import { ZodError, ZodIssue } from 'zod';
 import {
   LoginContainer,
   LoginImage,
@@ -22,29 +23,67 @@ import {
   FormWrapper,
 } from './styled';
 
+const validationEmail = 'email';
+const validationPassword = 'password';
+
 const Login: React.FC = (): ReactElement => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<AxiosError>();
+  const [requestError, setRequestError] = useState<AxiosError>();
+  const [showErrors, setErrorVisibility] = useState<boolean>(false);
+  const [validationErrors, setValidationErrors] = useState<ZodIssue[]>([]);
 
   const context = React.useContext(Auth.AuthContext);
 
+  const buildFormValidation = () => {
+    return z.object({
+      [validationEmail]: z.string().email(),
+      [validationPassword]: z.string().min(8),
+    });
+  };
+
+  const updateErrorState = (field: string) => {
+    const updatedErrors = ValidationService.removeError(
+      validationErrors,
+      field
+    );
+    setValidationErrors(updatedErrors);
+  };
+
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateErrorState(validationEmail);
     setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateErrorState(validationPassword);
     setPassword(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(undefined);
 
-    // TODO: validation engine call here
+    const formParse = buildFormValidation();
 
+    try {
+      formParse.parse({
+        [validationEmail]: email,
+        [validationPassword]: password,
+      });
+
+      setLoading(true);
+      setRequestError(undefined);
+      submitLogin();
+    } catch (err) {
+      if (err && err instanceof ZodError) {
+        setErrorVisibility(true);
+        setValidationErrors(err.errors);
+      }
+    }
+  };
+
+  const submitLogin = () => {
     const userCredentials: IUserCredentials = {
       email,
       password,
@@ -58,7 +97,7 @@ const Login: React.FC = (): ReactElement => {
         }
       })
       .catch((err: AxiosError) => {
-        setError(err);
+        setRequestError(err);
         setLoading(false);
       });
   };
@@ -88,6 +127,20 @@ const Login: React.FC = (): ReactElement => {
             noValidate
           >
             <MuiTextField
+              error={
+                showErrors &&
+                ValidationService.isFieldValid(
+                  validationErrors,
+                  validationEmail
+                )
+              }
+              helperText={
+                showErrors &&
+                ValidationService.getErrorMessage(
+                  validationErrors,
+                  validationEmail
+                )
+              }
               inputProps={{ 'data-testid': 'login-field-email' }}
               variant="outlined"
               margin="normal"
@@ -101,6 +154,20 @@ const Login: React.FC = (): ReactElement => {
               autoFocus
             />
             <MuiTextField
+              error={
+                showErrors &&
+                ValidationService.isFieldValid(
+                  validationErrors,
+                  validationPassword
+                )
+              }
+              helperText={
+                showErrors &&
+                ValidationService.getErrorMessage(
+                  validationErrors,
+                  validationPassword
+                )
+              }
               inputProps={{ 'data-testid': 'login-field-password' }}
               variant="outlined"
               margin="normal"
@@ -113,7 +180,7 @@ const Login: React.FC = (): ReactElement => {
               onChange={handlePasswordChange}
               autoComplete="current-password"
             />
-            {error && (
+            {requestError && (
               <MuiTypography data-testid="login-error" color="error">
                 {LoginConstants.INVALID_CREDENTIALS}
               </MuiTypography>

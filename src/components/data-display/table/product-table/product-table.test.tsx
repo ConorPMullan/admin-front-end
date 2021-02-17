@@ -6,7 +6,6 @@ import {
   IProduct,
   IProductLineItem,
   IProductUnitMeasurement,
-  IResponseBase,
 } from '@interfaces';
 import { TestUtils } from '@test-utils';
 
@@ -74,6 +73,7 @@ describe('ProductTable Tests', () => {
       price: 1,
       imageUrl: 'test',
       unitOfMeasurement,
+      brand: 'testBrand',
     };
 
     const product: IProduct = {
