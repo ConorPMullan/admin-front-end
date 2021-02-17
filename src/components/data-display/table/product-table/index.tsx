@@ -46,7 +46,7 @@ const ProductTable: React.FC = () => {
             ? cachedData.map((x) => x)
             : Array(localTotal).fill(undefined);
           localCache[pageNumber] = content;
-          setCachedData(cachedData);
+          setCachedData(localCache);
           setProductData(content);
         })
         .catch(() => {})

@@ -1,4 +1,3 @@
-import { ApiUrls, Instance } from '@integration';
 import { ZodIssue } from 'zod';
 
 const getErrorMessage = (
