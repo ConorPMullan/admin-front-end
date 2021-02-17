@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Product as ProductConstants } from '@constants';
-import { IResponsePage, IProduct } from '@interfaces';
+import { IProduct } from '@interfaces';
 import { ProductService } from '@services';
+import IPageable from 'src/interfaces/pageable';
 import TablePagination from '../table-pagination';
 import Title from '../../title';
 import {
+  MuiCircularProgress as CircularProgress,
   MuiProgress as Progress,
   MuiTable as Table,
   MuiTableBody as TableBody,
@@ -14,27 +16,45 @@ import {
   TableContainer,
 } from './styled';
 
+const initialPage: IPageable = {
+  pageNumber: 0,
+  pageSize: 25,
+};
+
 const ProductTable: React.FC = () => {
-  const [_pageData, setPageData] = useState<IResponsePage<IProduct>>();
+  const [_cachedData, setCachedData] = useState<IProduct[][]>();
+  const [_productData, setProductData] = useState<IProduct[]>();
   const [_isPageLoading, setPageLoading] = useState<boolean>(false);
   const [_isLoading, setLoading] = useState<boolean>(true);
+  const [_pageData, setPageData] = useState<IPageable>(initialPage);
+  const [_totalElements, setTotalElements] = useState<number>(0);
 
   useEffect(() => {
-    getProducts(0);
-  }, []);
+    const { pageNumber, pageSize } = _pageData;
 
-  const getProducts = (selectedPage: number, rowsPerPage = 25): void => {
-    setPageLoading(true);
-    ProductService.getProducts(selectedPage, rowsPerPage)
-      .then(({ data }) => {
-        const { page } = data;
-        setPageData(page);
-      })
-      .finally(() => {
-        setPageLoading(false);
-        setLoading(false);
-      });
-  };
+    if (_cachedData && _cachedData[pageNumber] !== undefined) {
+      setProductData(_cachedData[pageNumber]);
+    } else {
+      setPageLoading(true);
+      ProductService.getProducts(pageNumber, pageSize)
+        .then(({ data }) => {
+          const {
+            page: { content, totalElements },
+          } = data;
+          setTotalElements(totalElements);
+          const cachedData =
+            _cachedData || Array(totalElements).fill(undefined);
+          cachedData[pageNumber] = content;
+          setCachedData(cachedData);
+          setProductData(content);
+        })
+        .catch(() => {})
+        .finally(() => {
+          setPageLoading(false);
+          setLoading(false);
+        });
+    }
+  }, [_cachedData, _pageData]);
 
   const renderTableRow = (product: IProduct, index: number) => {
     const { productLineItem } = product;
@@ -57,8 +77,14 @@ const ProductTable: React.FC = () => {
     );
   };
 
-  const handlePageChange = (newPage: number, rowsPerPage: number): void => {
-    getProducts(newPage, rowsPerPage);
+  const handlePageChange = (pageNumber: number, pageSize: number): void => {
+    // Return to first page and clear cache if the pageSize changes
+    if (_pageData.pageSize !== pageSize) {
+      setPageData({ pageNumber: 0, pageSize });
+      setCachedData([]);
+    } else {
+      setPageData({ ..._pageData, pageNumber });
+    }
   };
 
   return (
@@ -67,7 +93,7 @@ const ProductTable: React.FC = () => {
         {ProductConstants.PRODUCT_TABLE_TITLE}
       </Title>
       {_isLoading ? (
-        <Progress data-testid="product-table-loading" />
+        <Progress data-testid="product-table-loading" color="secondary" />
       ) : (
         <>
           <Table data-testid="product-table" size="small">
@@ -91,17 +117,22 @@ const ProductTable: React.FC = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {_pageData?.content.map((product, i) =>
-                renderTableRow(product, i)
-              )}
+              {_productData?.map((product, i) => renderTableRow(product, i))}
             </TableBody>
           </Table>
+          {_isPageLoading && (
+            <CircularProgress
+              data-testid="product-table-page-loading"
+              size={100}
+              color="secondary"
+            />
+          )}
           {_pageData && (
             <TablePagination
               disabled={_isPageLoading}
-              rowsPerPage={_pageData.pageable.pageSize}
-              selectedPage={_pageData.pageable.pageNumber}
-              totalRowCount={_pageData.totalElements}
+              rowsPerPage={_pageData.pageSize}
+              selectedPage={_pageData.pageNumber}
+              totalRowCount={_totalElements}
               onPageChange={handlePageChange}
             />
           )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent, waitFor } from '@testing-library/react';
-import { render } from '@test-utils';
+import { TestUtils } from '@test-utils';
 import Login from './index';
 import { AuthService } from '@services';
 import { AxiosError } from 'axios';
@@ -15,7 +15,7 @@ const submitButtonId = 'login-form-button-submit';
 
 describe('Login Tests', () => {
   test('renders the Login page', () => {
-    const { getByTestId, queryByTestId } = render(<Login />);
+    const { getByTestId, queryByTestId } = TestUtils.render(<Login />);
     expect(getByTestId(emailFieldId)).toBeInTheDocument();
     expect(getByTestId(passwordFieldId)).toBeInTheDocument();
     expect(getByTestId(submitButtonId)).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('Login Tests', () => {
   });
 
   test('Simulating Email Input', () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = TestUtils.render(<Login />);
 
     const emailField = getByTestId(emailFieldId) as HTMLInputElement;
     const emailText = 'testEmail';
@@ -34,7 +34,7 @@ describe('Login Tests', () => {
   });
 
   test('Simulating Password Input', () => {
-    const { getByTestId } = render(<Login />);
+    const { getByTestId } = TestUtils.render(<Login />);
 
     const passwordField = getByTestId(passwordFieldId) as HTMLInputElement;
     const passwordText = 'testPass';
@@ -44,7 +44,7 @@ describe('Login Tests', () => {
   });
 
   test('Form Submission with Email and Password set shows loading animation and hides submit button', async () => {
-    const { getByTestId, queryByTestId } = render(<Login />);
+    const { getByTestId, queryByTestId } = TestUtils.render(<Login />);
 
     const submitButton = getByTestId(submitButtonId);
     fireEvent.click(submitButton);
@@ -54,7 +54,7 @@ describe('Login Tests', () => {
   });
 
   test('Form Submission error shows error text', async () => {
-    const { getByTestId, queryByTestId } = render(<Login />);
+    const { getByTestId, queryByTestId } = TestUtils.render(<Login />);
 
     const error: AxiosError = {
       config: {},
