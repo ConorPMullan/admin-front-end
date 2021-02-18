@@ -1,4 +1,5 @@
 import React from 'react';
+import { Login } from '@constants';
 import { Auth } from '@contexts';
 import { IAuthContext } from '@interfaces';
 import PFXLogoWhite from '@assets/images/pfx-logo-white.png';
@@ -55,8 +56,12 @@ const HeaderBar: React.FC<HeaderProps> = ({
               $isOpen={isDrawerOpen}
             />
           </HeaderContentArea>
-          <LogoutButton onClick={handleLogout}>
-            <LogoutButtonIcon />
+          <LogoutButton
+            onClick={handleLogout}
+            size="small"
+            endIcon={<LogoutButtonIcon />}
+          >
+            {Login.LOGOUT}
           </LogoutButton>
         </HeaderToolbar>
       </HeaderAppBar>

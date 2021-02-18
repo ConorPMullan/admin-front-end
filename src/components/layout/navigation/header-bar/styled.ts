@@ -1,4 +1,5 @@
 import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -74,5 +75,5 @@ export const HeaderImage = styled.img<HeaderImageProps>`
   transition: all 0.2s ease-in-out;
 `;
 
-export const LogoutButton = styled(IconButton)``;
+export const LogoutButton = styled(Button)``;
 export const LogoutButtonIcon = styled(ExitToAppIcon)``;
