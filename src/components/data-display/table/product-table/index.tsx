@@ -71,9 +71,9 @@ const ProductTable: React.FC = () => {
       <TableRow data-testid={`product-table-row-${index}`} key={id}>
         <TableCell>{itemNumber}</TableCell>
         <TableCell>{upc}</TableCell>
-        <TableCell>{description}</TableCell>
-        <TableCell>{name}</TableCell>
         <TableCell>{brand}</TableCell>
+        <TableCell>{name}</TableCell>
+        <TableCell align="right">{description}</TableCell>
       </TableRow>
     );
   };
@@ -107,13 +107,13 @@ const ProductTable: React.FC = () => {
                   {ProductConstants.PRODUCT_TABLE_COLUMN_UPC}
                 </TableCell>
                 <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
                 </TableCell>
                 <TableCell>
                   {ProductConstants.PRODUCT_TABLE_COLUMN_NAME}
                 </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
+                <TableCell align="right">
+                  {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
                 </TableCell>
               </TableRow>
             </TableHead>
