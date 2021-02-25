@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Product as ProductConstants } from '@constants';
-import { Product as Context } from '@contexts';
-import { IProduct, IProductContext } from '@interfaces';
+import { Product as ProductConstants, HttpStatusCodes } from '@constants';
+import { IPageable, IProduct, IProductFilter } from '@interfaces';
 import { ProductService } from '@services';
-import IPageable from 'src/interfaces/pageable';
 import TablePagination from '../table-pagination';
 import {
   MuiCircularProgress as CircularProgress,
@@ -21,21 +19,24 @@ const initialPage: IPageable = {
   pageSize: 25,
 };
 
-const ProductTable: React.FC = () => {
+interface ProductTableProps {
+  isProductDataLoading: boolean;
+  productFilter: IProductFilter;
+  setProductLoading(isLoading: boolean): void;
+}
+
+const ProductTable: React.FC<ProductTableProps> = ({
+  isProductDataLoading,
+  productFilter,
+  setProductLoading,
+}) => {
   const [cachedData, setCachedData] = useState<IProduct[][]>();
   const [productData, setProductData] = useState<IProduct[]>();
   const [isPageLoading, setPageLoading] = useState<boolean>(false);
   const [pageData, setPageData] = useState<IPageable>(initialPage);
   const [totalElements, setTotalElements] = useState<number>(0);
 
-  const {
-    isProductDataLoading,
-    productFilter,
-    setProductLoading,
-  } = React.useContext(Context.ProductContext) as IProductContext;
-
   useEffect(() => {
-    setProductLoading(true);
     setPageData({ ...pageData, pageNumber: 0 });
     setCachedData([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,17 +50,24 @@ const ProductTable: React.FC = () => {
     } else {
       setPageLoading(true);
       ProductService.getProducts(pageNumber, pageSize, productFilter)
-        .then(({ data }) => {
-          const {
-            page: { content, totalElements: localTotal },
-          } = data;
-          setTotalElements(localTotal);
-          const localCache = cachedData
-            ? cachedData.map((x) => x)
-            : Array(localTotal).fill(undefined);
-          localCache[pageNumber] = content;
-          setCachedData(localCache);
-          setProductData(content);
+        .then((response) => {
+          if (response.status === HttpStatusCodes.NO_CONTENT) {
+            setTotalElements(0);
+            setPageData(initialPage);
+            setProductData([]);
+          } else {
+            const {
+              page: { content, totalElements: localTotal },
+            } = response.data;
+
+            setTotalElements(localTotal);
+            const localCache = cachedData
+              ? cachedData.map((x) => x)
+              : Array(localTotal).fill(undefined);
+            localCache[pageNumber] = content;
+            setCachedData(localCache);
+            setProductData(content);
+          }
         })
         .catch(() => {})
         .finally(() => {

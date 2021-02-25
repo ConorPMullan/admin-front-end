@@ -1,5 +1,4 @@
 export type { default as IAuthContext } from './context-auth';
-export type { default as IProductContext } from './context-product';
 export type { default as IPageable } from './pageable';
 export type { default as IPropsColor } from './props-color';
 export type { default as IProduct } from './product';

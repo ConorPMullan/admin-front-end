@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Product as Context } from '@contexts';
 import { Input, Product } from '@constants';
-import { IProductContext, IProductFilter } from '@interfaces';
+import { IProductFilter } from '@interfaces';
 import TextSearch from '../../input/text-search';
 import Title from '../../data-display/title';
 import {
@@ -14,13 +13,17 @@ import {
   MuiFade as Fade,
 } from './styled';
 
-const ProductFilter: React.FC = () => {
-  const {
-    isProductDataLoading,
-    productFilter,
-    updateProductFilter,
-  } = React.useContext(Context.ProductContext) as IProductContext;
+interface ProductFilterProps {
+  isProductDataLoading: boolean;
+  productFilter: IProductFilter;
+  setProductFilter(productFilter: IProductFilter): void;
+}
 
+const ProductFilter: React.FC<ProductFilterProps> = ({
+  isProductDataLoading,
+  productFilter,
+  setProductFilter,
+}) => {
   const [searchValue, setSearchValue] = useState<string | undefined>();
   const [isFilterVisible, setFilterVisible] = useState<boolean>(false);
 
@@ -32,7 +35,7 @@ const ProductFilter: React.FC = () => {
     e.preventDefault();
     setFilterVisible(false);
     const updatedProductFilter: IProductFilter = { search: searchValue };
-    updateProductFilter(updatedProductFilter);
+    setProductFilter(updatedProductFilter);
   };
 
   return (
