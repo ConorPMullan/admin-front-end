@@ -1,12 +1,13 @@
 import { ApiUrls, Instance } from '@integration';
-import { IResponseBase, IProduct } from '@interfaces';
+import { IResponseBase, IProduct, IProductFilter } from '@interfaces';
 import { AxiosResponse } from 'axios';
 
 const getProducts = (
   page: number,
-  size: number
+  size: number,
+  productFilter?: IProductFilter
 ): Promise<AxiosResponse<IResponseBase<IProduct>>> => {
-  const params = { page, size };
+  const params = { page, size, ...productFilter };
   return Instance.get<IResponseBase<IProduct>>(ApiUrls.PRODUCTS, { params });
 };
 

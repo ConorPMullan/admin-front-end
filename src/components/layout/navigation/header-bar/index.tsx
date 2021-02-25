@@ -36,36 +36,34 @@ const HeaderBar: React.FC<HeaderProps> = ({
   };
 
   return (
-    <>
-      <HeaderAppBar position="fixed" $isOpen={isDrawerOpen}>
-        <HeaderToolbar>
-          <HeaderIconButton
-            data-testid="open-drawer-button"
+    <HeaderAppBar position="fixed" $isOpen={isDrawerOpen}>
+      <HeaderToolbar>
+        <HeaderIconButton
+          data-testid="open-drawer-button"
+          $isOpen={isDrawerOpen}
+          aria-label="open drawer"
+          edge="start"
+          onClick={onOpenDrawer}
+        >
+          <HeaderMenuIcon />
+        </HeaderIconButton>
+        <HeaderContentArea>
+          <HeaderImage
+            data-testid="Logo"
+            src={PFXLogoWhite}
+            alt="Pet Food Experts Logo"
             $isOpen={isDrawerOpen}
-            aria-label="open drawer"
-            edge="start"
-            onClick={onOpenDrawer}
-          >
-            <HeaderMenuIcon />
-          </HeaderIconButton>
-          <HeaderContentArea>
-            <HeaderImage
-              data-testid="Logo"
-              src={PFXLogoWhite}
-              alt="Pet Food Experts Logo"
-              $isOpen={isDrawerOpen}
-            />
-          </HeaderContentArea>
-          <LogoutButton
-            onClick={handleLogout}
-            size="small"
-            endIcon={<LogoutButtonIcon />}
-          >
-            {Login.LOGOUT}
-          </LogoutButton>
-        </HeaderToolbar>
-      </HeaderAppBar>
-    </>
+          />
+        </HeaderContentArea>
+        <LogoutButton
+          onClick={handleLogout}
+          size="small"
+          endIcon={<LogoutButtonIcon />}
+        >
+          {Login.LOGOUT}
+        </LogoutButton>
+      </HeaderToolbar>
+    </HeaderAppBar>
   );
 };
 

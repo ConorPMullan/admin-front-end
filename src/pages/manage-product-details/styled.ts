@@ -6,7 +6,7 @@ import { Theme } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 const materialStyles = (theme: Theme) => ({
-  paper: {
+  spacing: {
     padding: theme.spacing(2),
   },
 });
@@ -19,7 +19,7 @@ export const MuiPaper = styled(Paper)<IPropsMaterial>`
   ${({ theme }) => {
     const classes = materialStyles(theme);
     return {
-      ...classes.paper,
+      ...classes.spacing,
     };
   }};
 `;

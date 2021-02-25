@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Product as ProductConstants } from '@constants';
-import { IProduct } from '@interfaces';
+import { Product as Context } from '@contexts';
+import { IProduct, IProductContext } from '@interfaces';
 import { ProductService } from '@services';
 import IPageable from 'src/interfaces/pageable';
 import TablePagination from '../table-pagination';
-import Title from '../../title';
 import {
   MuiCircularProgress as CircularProgress,
   MuiProgress as Progress,
@@ -25,9 +25,21 @@ const ProductTable: React.FC = () => {
   const [cachedData, setCachedData] = useState<IProduct[][]>();
   const [productData, setProductData] = useState<IProduct[]>();
   const [isPageLoading, setPageLoading] = useState<boolean>(false);
-  const [isLoading, setLoading] = useState<boolean>(true);
   const [pageData, setPageData] = useState<IPageable>(initialPage);
   const [totalElements, setTotalElements] = useState<number>(0);
+
+  const {
+    isProductDataLoading,
+    productFilter,
+    setProductLoading,
+  } = React.useContext(Context.ProductContext) as IProductContext;
+
+  useEffect(() => {
+    setProductLoading(true);
+    setPageData({ ...pageData, pageNumber: 0 });
+    setCachedData([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productFilter]);
 
   useEffect(() => {
     const { pageNumber, pageSize } = pageData;
@@ -36,7 +48,7 @@ const ProductTable: React.FC = () => {
       setProductData(cachedData[pageNumber]);
     } else {
       setPageLoading(true);
-      ProductService.getProducts(pageNumber, pageSize)
+      ProductService.getProducts(pageNumber, pageSize, productFilter)
         .then(({ data }) => {
           const {
             page: { content, totalElements: localTotal },
@@ -52,9 +64,10 @@ const ProductTable: React.FC = () => {
         .catch(() => {})
         .finally(() => {
           setPageLoading(false);
-          setLoading(false);
+          setProductLoading(false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cachedData, pageData]);
 
   const renderTableRow = (product: IProduct, index: number) => {
@@ -90,10 +103,7 @@ const ProductTable: React.FC = () => {
 
   return (
     <TableContainer data-testid="product-table-container">
-      <Title dataTestId="product-table-title" color="primary">
-        {ProductConstants.PRODUCT_TABLE_TITLE}
-      </Title>
-      {isLoading ? (
+      {isProductDataLoading ? (
         <Progress data-testid="product-table-loading" color="secondary" />
       ) : (
         <>

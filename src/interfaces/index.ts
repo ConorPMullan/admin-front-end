@@ -1,7 +1,9 @@
 export type { default as IAuthContext } from './context-auth';
+export type { default as IProductContext } from './context-product';
 export type { default as IPageable } from './pageable';
 export type { default as IPropsColor } from './props-color';
 export type { default as IProduct } from './product';
+export type { default as IProductFilter } from './product-filter';
 export type { default as IProductLineItem } from './product-line-item';
 export type { default as IProductUnitMeasurement } from './product-um';
 export type { default as IPropsMaterial } from './props-material';

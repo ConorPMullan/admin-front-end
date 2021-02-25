@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Product } from '@constants';
-import { ProductTable, Title } from '@components';
+import { ProductTable, Title, ProductFilter } from '@components';
+import { Product as Context } from '@contexts';
 import { MuiPaper as Paper, MuiGrid as Grid } from './styled';
 
 const ProductDetails: React.FC = (): ReactElement => {
@@ -13,7 +14,10 @@ const ProductDetails: React.FC = (): ReactElement => {
       </Grid>
       <Grid item xs={12}>
         <Paper>
-          <ProductTable />
+          <Context.ProductProvider>
+            <ProductFilter />
+            <ProductTable />
+          </Context.ProductProvider>
         </Paper>
       </Grid>
     </Grid>
