@@ -18,24 +18,20 @@ const productTableRowId = 'product-table-row-';
 
 describe('ProductTable Tests', () => {
   test('renders the ProductTable page as default', async () => {
-    const mockFunc = jest.fn();
-
-    const promise = Promise.reject();
-    const mockResponse = jest.fn(() => promise);
-    ProductService.getProducts = mockResponse;
-
-    const { getByTestId, queryByTestId } = TestUtils.render(
-      <ProductTable
-        isProductDataLoading={true}
-        productFilter={{}}
-        setProductLoading={mockFunc}
-      />
-    );
-
-    await waitFor(() => {
-      expect(getByTestId(productTableContainerId)).toBeInTheDocument;
-    });
-
+    // const mockFunc = jest.fn();
+    // const promise = Promise.reject();
+    // const mockResponse = jest.fn(() => promise);
+    // ProductService.getProducts = mockResponse;
+    // const { getByTestId, queryByTestId } = TestUtils.render(
+    //   <ProductTable
+    //     isProductDataLoading={true}
+    //     productFilter={{}}
+    //     setProductLoading={mockFunc}
+    //   />
+    // );
+    // await waitFor(() => {
+    //   expect(getByTestId(productTableContainerId)).toBeInTheDocument;
+    // });
     // expect(await getByTestId(productTableContainerId)).toBeInTheDocument();
     // expect(getByTestId(productTableLoadingId)).toBeInTheDocument();
     // expect(queryByTestId(productTableId)).toBeNull();
