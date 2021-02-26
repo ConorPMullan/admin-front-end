@@ -18,8 +18,8 @@ interface ProductTableProps {
   pageSize: number;
   totalElements: number;
   productData: IProduct[];
-  isTableLoading: boolean;
-  isPageLoading: boolean;
+  isTableLoading?: boolean;
+  isPageLoading?: boolean;
   onChangePage(pageNumber: number, pageSize: number): void;
 }
 

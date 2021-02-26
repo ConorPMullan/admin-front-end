@@ -52,7 +52,7 @@ describe('Login Tests', () => {
   test('Submit with no Email shows error', async () => {
     const { getByText, getByTestId } = TestUtils.render(<Login />);
 
-    const passwordField = getByTestId(passwordFieldId) as HTMLInputElement;
+    const passwordField = getByTestId(passwordFieldId);
     const passwordText = validPassword;
     fireEvent.change(passwordField, { target: { value: passwordText } });
 

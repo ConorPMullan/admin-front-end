@@ -5,7 +5,7 @@ import { ProductService } from '@services';
 import ProductTableComponent from './product-table-component';
 
 interface ProductTableProps {
-  isProductDataLoading: boolean;
+  isProductDataLoading?: boolean;
   productFilter: IProductFilter;
   setProductLoading(isLoading: boolean): void;
 }

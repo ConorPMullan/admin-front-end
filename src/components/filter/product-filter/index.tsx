@@ -14,15 +14,15 @@ import {
 } from './styled';
 
 interface ProductFilterProps {
-  isProductDataLoading: boolean;
-  productFilter: IProductFilter;
-  setProductFilter(productFilter: IProductFilter): void;
+  isProductDataLoading?: boolean;
+  productFilter?: IProductFilter;
+  onChangeProductFilter(productFilter: IProductFilter): void;
 }
 
 const ProductFilter: React.FC<ProductFilterProps> = ({
   isProductDataLoading,
   productFilter,
-  setProductFilter,
+  onChangeProductFilter,
 }) => {
   const [searchValue, setSearchValue] = useState<string | undefined>();
   const [isFilterVisible, setFilterVisible] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
     e.preventDefault();
     setFilterVisible(false);
     const updatedProductFilter: IProductFilter = { search: searchValue };
-    setProductFilter(updatedProductFilter);
+    onChangeProductFilter(updatedProductFilter);
   };
 
   return (
@@ -48,7 +48,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
                 <Grid item sm={12} md={5}>
                   <TextSearch
                     onChangeValue={setSearchValue}
-                    initialValue={productFilter.search}
+                    initialValue={productFilter?.search}
                   />
                 </Grid>
                 <Grid item sm={6} md={3} />

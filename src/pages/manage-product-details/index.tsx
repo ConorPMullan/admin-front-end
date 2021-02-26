@@ -24,7 +24,7 @@ const ProductDetails: React.FC = (): ReactElement => {
           <ProductFilter
             isProductDataLoading={isProductDataLoading}
             productFilter={productFilter}
-            setProductFilter={setProductFilter}
+            onChangeProductFilter={setProductFilter}
           />
           <ProductTable
             isProductDataLoading={isProductDataLoading}
