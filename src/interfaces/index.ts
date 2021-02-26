@@ -11,3 +11,4 @@ export type { default as IResponseBase } from './response/response-base';
 export type { default as IResponsePage } from './response/response-page';
 export type { default as IUserCredentials } from './user-credentials';
 export type { default as IUserSession } from './user-session';
+export type { default as IValidation } from './validation';

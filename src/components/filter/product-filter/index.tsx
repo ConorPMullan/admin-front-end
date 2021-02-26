@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as z from 'zod';
-import { Input, Product } from '@constants';
+import { Input, Product, Validation as ValidationConstants } from '@constants';
 import { IProductFilter } from '@interfaces';
 import TextSearch from '../../input/text-search';
 import Title from '../../data-display/title';
@@ -20,8 +20,6 @@ interface ProductFilterProps {
   onChangeProductFilter(productFilter: IProductFilter): void;
 }
 
-const validationSearch = 'search';
-
 const ProductFilter: React.FC<ProductFilterProps> = ({
   isProductDataLoading,
   productFilter,
@@ -33,7 +31,8 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 
   const buildFormValidation = () => {
     return z.object({
-      [validationSearch]: z.string().min(3).max(100),
+      [ValidationConstants.PRODUCT_LIST_SEARCH.FIELD]:
+        ValidationConstants.PRODUCT_LIST_SEARCH.VALIDATION,
     });
   };
 
@@ -41,7 +40,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
     const formParse = buildFormValidation();
     try {
       formParse.parse({
-        [validationSearch]: searchValue,
+        [ValidationConstants.PRODUCT_LIST_SEARCH.FIELD]: searchValue,
       });
       setFilterValidity(true);
     } catch (err) {
