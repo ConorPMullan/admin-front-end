@@ -9,6 +9,7 @@ const productFilterContainerId = 'product-filter-container';
 const productFilterApplyButtonId = 'product-filter-apply-button';
 const productFilterTitleId = 'product-table-title';
 const productFilterToggleButtonId = 'product-filter-toggle-button';
+const textSearchInputId = 'text-search-input';
 
 describe('ProductTableComponent Tests', () => {
   test('default rendering of the ProductFilter', async () => {
@@ -32,13 +33,11 @@ describe('ProductTableComponent Tests', () => {
     const toggleButton = getByTestId(productFilterToggleButtonId);
     fireEvent.click(toggleButton);
 
-    const applyButton = getByTestId(productFilterApplyButtonId);
-
     expect(queryByTestId(productFilterApplyButtonId)).toBeInTheDocument();
     expect(queryByTestId(productFilterTitleId)).toBeNull();
   });
 
-  test('ProductFilter Filter form apply click triggers callback', async () => {
+  test('ProductFilter Filter form apply click triggers callback when valid', async () => {
     const mockCallBack = jest.fn();
     const { getByTestId, queryByTestId } = TestUtils.render(
       <ProductFilter onChangeProductFilter={mockCallBack} />
@@ -48,6 +47,13 @@ describe('ProductTableComponent Tests', () => {
     fireEvent.click(toggleButton);
 
     const applyButton = getByTestId(productFilterApplyButtonId);
+    expect(applyButton).toBeDisabled();
+
+    const inputText = '123';
+    const inputField = getByTestId(textSearchInputId);
+    fireEvent.change(inputField, { target: { value: inputText } });
+
+    expect(applyButton).not.toBeDisabled();
     fireEvent.click(applyButton);
     expect(mockCallBack.mock.calls.length).toBe(1);
   });

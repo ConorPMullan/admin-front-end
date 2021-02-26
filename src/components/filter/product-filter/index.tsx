@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import * as z from 'zod';
 import { Input, Product } from '@constants';
 import { IProductFilter } from '@interfaces';
 import TextSearch from '../../input/text-search';
@@ -19,6 +20,8 @@ interface ProductFilterProps {
   onChangeProductFilter(productFilter: IProductFilter): void;
 }
 
+const validationSearch = 'search';
+
 const ProductFilter: React.FC<ProductFilterProps> = ({
   isProductDataLoading,
   productFilter,
@@ -26,6 +29,25 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
 }) => {
   const [searchValue, setSearchValue] = useState<string | undefined>();
   const [isFilterVisible, setFilterVisible] = useState<boolean>(false);
+  const [isFilterValid, setFilterValidity] = useState<boolean>(false);
+
+  const buildFormValidation = () => {
+    return z.object({
+      [validationSearch]: z.string().min(3).max(100),
+    });
+  };
+
+  useEffect(() => {
+    const formParse = buildFormValidation();
+    try {
+      formParse.parse({
+        [validationSearch]: searchValue,
+      });
+      setFilterValidity(true);
+    } catch (err) {
+      setFilterValidity(false);
+    }
+  }, [searchValue]);
 
   const handleShowFilterClick = () => {
     setFilterVisible(!isFilterVisible);
@@ -59,7 +81,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
                     type="submit"
                     color="secondary"
                     size="small"
-                    disabled={isProductDataLoading}
+                    disabled={isProductDataLoading || !isFilterValid}
                     onClick={handleFilterUpdate}
                     fullWidth
                   >
