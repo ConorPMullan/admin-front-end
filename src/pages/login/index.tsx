@@ -1,12 +1,15 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
+import * as z from 'zod';
 import LoginImageSource from '@assets/images/login-image-1.png';
 import Paper from '@material-ui/core/Paper';
-import { Login as LoginConstants } from '@constants';
+import {
+  Login as LoginConstants,
+  Validation as ValidationConstants,
+} from '@constants';
 import { IUserCredentials } from '@interfaces';
 import { AuthService, ValidationService } from '@services';
 import { Auth } from '@contexts';
 import { AxiosError } from 'axios';
-import * as z from 'zod';
 import { ZodError, ZodIssue } from 'zod';
 import {
   LoginContainer,
@@ -23,9 +26,6 @@ import {
   FormWrapper,
 } from './styled';
 
-const validationEmail = 'email';
-const validationPassword = 'password';
-
 const Login: React.FC = (): ReactElement => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -38,8 +38,10 @@ const Login: React.FC = (): ReactElement => {
 
   const buildFormValidation = () => {
     return z.object({
-      [validationEmail]: z.string().email(),
-      [validationPassword]: z.string().min(8),
+      [ValidationConstants.LOGIN_FORM_EMAIL.FIELD]:
+        ValidationConstants.LOGIN_FORM_EMAIL.VALIDATION,
+      [ValidationConstants.LOGIN_FORM_PASSWORD.FIELD]:
+        ValidationConstants.LOGIN_FORM_PASSWORD.VALIDATION,
     });
   };
 
@@ -52,12 +54,12 @@ const Login: React.FC = (): ReactElement => {
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateErrorState(validationEmail);
+    updateErrorState(ValidationConstants.LOGIN_FORM_EMAIL.FIELD);
     setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    updateErrorState(validationPassword);
+    updateErrorState(ValidationConstants.LOGIN_FORM_PASSWORD.FIELD);
     setPassword(e.target.value);
   };
 
@@ -68,8 +70,8 @@ const Login: React.FC = (): ReactElement => {
 
     try {
       formParse.parse({
-        [validationEmail]: email,
-        [validationPassword]: password,
+        [ValidationConstants.LOGIN_FORM_EMAIL.FIELD]: email,
+        [ValidationConstants.LOGIN_FORM_PASSWORD.FIELD]: password,
       });
 
       setLoading(true);
@@ -131,14 +133,14 @@ const Login: React.FC = (): ReactElement => {
                 showErrors &&
                 ValidationService.isFieldValid(
                   validationErrors,
-                  validationEmail
+                  ValidationConstants.LOGIN_FORM_EMAIL.FIELD
                 )
               }
               helperText={
                 showErrors &&
                 ValidationService.getErrorMessage(
                   validationErrors,
-                  validationEmail
+                  ValidationConstants.LOGIN_FORM_EMAIL.FIELD
                 )
               }
               inputProps={{ 'data-testid': 'login-field-email' }}
@@ -158,14 +160,14 @@ const Login: React.FC = (): ReactElement => {
                 showErrors &&
                 ValidationService.isFieldValid(
                   validationErrors,
-                  validationPassword
+                  ValidationConstants.LOGIN_FORM_PASSWORD.FIELD
                 )
               }
               helperText={
                 showErrors &&
                 ValidationService.getErrorMessage(
                   validationErrors,
-                  validationPassword
+                  ValidationConstants.LOGIN_FORM_PASSWORD.FIELD
                 )
               }
               inputProps={{ 'data-testid': 'login-field-password' }}

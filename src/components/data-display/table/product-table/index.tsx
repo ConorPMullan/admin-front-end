@@ -1,145 +1,89 @@
 import React, { useEffect, useState } from 'react';
-import { Product as ProductConstants } from '@constants';
-import { IProduct } from '@interfaces';
+import { HttpStatusCodes } from '@constants';
+import { IProduct, IProductFilter } from '@interfaces';
 import { ProductService } from '@services';
-import IPageable from 'src/interfaces/pageable';
-import TablePagination from '../table-pagination';
-import Title from '../../title';
-import {
-  MuiCircularProgress as CircularProgress,
-  MuiProgress as Progress,
-  MuiTable as Table,
-  MuiTableBody as TableBody,
-  MuiTableCell as TableCell,
-  MuiTableHead as TableHead,
-  MuiTableRow as TableRow,
-  TableContainer,
-} from './styled';
+import ProductTableComponent from './product-table-component';
 
-const initialPage: IPageable = {
-  pageNumber: 0,
-  pageSize: 25,
-};
+interface ProductTableProps {
+  isProductDataLoading?: boolean;
+  productFilter: IProductFilter;
+  setProductLoading(isLoading: boolean): void;
+}
 
-const ProductTable: React.FC = () => {
+const ProductTable: React.FC<ProductTableProps> = ({
+  isProductDataLoading,
+  productFilter,
+  setProductLoading,
+}) => {
   const [cachedData, setCachedData] = useState<IProduct[][]>();
-  const [productData, setProductData] = useState<IProduct[]>();
+  const [productData, setProductData] = useState<IProduct[]>([]);
   const [isPageLoading, setPageLoading] = useState<boolean>(false);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [pageData, setPageData] = useState<IPageable>(initialPage);
+
+  const [page, setPage] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<number>(25);
   const [totalElements, setTotalElements] = useState<number>(0);
 
   useEffect(() => {
-    const { pageNumber, pageSize } = pageData;
+    setPage(0);
+    setCachedData([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productFilter]);
 
-    if (cachedData && cachedData[pageNumber] !== undefined) {
-      setProductData(cachedData[pageNumber]);
-    } else {
+  useEffect(() => {
+    if (cachedData && cachedData[page] !== undefined) {
+      setProductData(cachedData[page]);
+    } else if (!isPageLoading) {
       setPageLoading(true);
-      ProductService.getProducts(pageNumber, pageSize)
-        .then(({ data }) => {
-          const {
-            page: { content, totalElements: localTotal },
-          } = data;
-          setTotalElements(localTotal);
-          const localCache = cachedData
-            ? cachedData.map((x) => x)
-            : Array(localTotal).fill(undefined);
-          localCache[pageNumber] = content;
-          setCachedData(localCache);
-          setProductData(content);
+      ProductService.getProducts(page, pageSize, productFilter)
+        .then((response) => {
+          if (response.status === HttpStatusCodes.NO_CONTENT) {
+            setTotalElements(0);
+            setPage(0);
+            setProductData([]);
+          } else {
+            const {
+              page: { content, totalElements: localTotal },
+            } = response.data;
+
+            setTotalElements(localTotal);
+            const localCache = cachedData
+              ? cachedData.map((x) => x)
+              : Array(localTotal).fill(undefined);
+            localCache[page] = content;
+            setCachedData(localCache);
+            setProductData(content);
+          }
         })
         .catch(() => {})
         .finally(() => {
           setPageLoading(false);
-          setLoading(false);
+          setProductLoading(false);
         });
     }
-  }, [cachedData, pageData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cachedData, page, pageSize]);
 
-  const renderTableRow = (product: IProduct, index: number) => {
-    const { productLineItem } = product;
-    const {
-      id,
-      upc,
-      itemNumber,
-      name,
-      unitOfMeasurement: { description },
-      brand,
-    } = productLineItem;
-    return (
-      <TableRow data-testid={`product-table-row-${index}`} key={id}>
-        <TableCell>{itemNumber}</TableCell>
-        <TableCell>{upc}</TableCell>
-        <TableCell>{brand}</TableCell>
-        <TableCell>{name}</TableCell>
-        <TableCell align="right">{description}</TableCell>
-      </TableRow>
-    );
-  };
-
-  const handlePageChange = (pageNumber: number, pageSize: number): void => {
+  const handlePageChange = (pageNumber: number, newPageSize: number): void => {
     // Return to first page and clear cache if the pageSize changes
-    if (pageData.pageSize !== pageSize) {
-      setPageData({ pageNumber: 0, pageSize });
+    if (pageSize !== newPageSize) {
+      setPage(0);
+      setPageSize(newPageSize);
       setCachedData([]);
     } else {
-      setPageData({ ...pageData, pageNumber });
+      setPage(pageNumber);
     }
   };
 
   return (
-    <TableContainer data-testid="product-table-container">
-      <Title dataTestId="product-table-title" color="primary">
-        {ProductConstants.PRODUCT_TABLE_TITLE}
-      </Title>
-      {isLoading ? (
-        <Progress data-testid="product-table-loading" color="secondary" />
-      ) : (
-        <>
-          <Table data-testid="product-table" size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_ITEM_NUMBER}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_UPC}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_NAME}
-                </TableCell>
-                <TableCell align="right">
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {productData?.map((product, i) => renderTableRow(product, i))}
-            </TableBody>
-          </Table>
-          {isPageLoading && (
-            <CircularProgress
-              data-testid="product-table-page-loading"
-              size={100}
-              color="secondary"
-            />
-          )}
-          {pageData && (
-            <TablePagination
-              disabled={isPageLoading}
-              rowsPerPage={pageData.pageSize}
-              selectedPage={pageData.pageNumber}
-              totalRowCount={totalElements}
-              onPageChange={handlePageChange}
-            />
-          )}
-        </>
-      )}
-    </TableContainer>
+    <ProductTableComponent
+      pageNumber={page}
+      pageSize={pageSize}
+      totalElements={totalElements}
+      productData={productData}
+      isTableLoading={isProductDataLoading}
+      isPageLoading={isPageLoading}
+      onChangePage={handlePageChange}
+    />
   );
 };
 

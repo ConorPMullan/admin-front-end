@@ -1,9 +1,17 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Product } from '@constants';
-import { ProductTable, Title } from '@components';
+import { ProductTable, Title, ProductFilter } from '@components';
+import { IProductFilter } from '@interfaces';
 import { MuiPaper as Paper, MuiGrid as Grid } from './styled';
 
 const ProductDetails: React.FC = (): ReactElement => {
+  const [productFilter, setProductFilter] = React.useState<IProductFilter>({});
+  const [isProductDataLoading, setLoading] = React.useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [productFilter]);
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
@@ -13,7 +21,16 @@ const ProductDetails: React.FC = (): ReactElement => {
       </Grid>
       <Grid item xs={12}>
         <Paper>
-          <ProductTable />
+          <ProductFilter
+            isProductDataLoading={isProductDataLoading}
+            productFilter={productFilter}
+            onChangeProductFilter={setProductFilter}
+          />
+          <ProductTable
+            isProductDataLoading={isProductDataLoading}
+            productFilter={productFilter}
+            setProductLoading={setLoading}
+          />
         </Paper>
       </Grid>
     </Grid>

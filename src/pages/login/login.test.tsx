@@ -50,11 +50,9 @@ describe('Login Tests', () => {
   });
 
   test('Submit with no Email shows error', async () => {
-    const { getByText, getByTestId, queryByTestId } = TestUtils.render(
-      <Login />
-    );
+    const { getByText, getByTestId } = TestUtils.render(<Login />);
 
-    const passwordField = getByTestId(passwordFieldId) as HTMLInputElement;
+    const passwordField = getByTestId(passwordFieldId);
     const passwordText = validPassword;
     fireEvent.change(passwordField, { target: { value: passwordText } });
 
@@ -65,9 +63,7 @@ describe('Login Tests', () => {
   });
 
   test('Submit with no Password shows error', async () => {
-    const { getByText, getByTestId, queryByTestId } = TestUtils.render(
-      <Login />
-    );
+    const { getByText, getByTestId } = TestUtils.render(<Login />);
 
     const emailField = getByTestId(emailFieldId) as HTMLInputElement;
     const emailText = validEmail;
@@ -80,9 +76,7 @@ describe('Login Tests', () => {
   });
 
   test('Submit with no email or password shows both errors', async () => {
-    const { getByText, getByTestId, queryByTestId } = TestUtils.render(
-      <Login />
-    );
+    const { getByText, getByTestId } = TestUtils.render(<Login />);
 
     const submitButton = getByTestId(submitButtonId);
     fireEvent.click(submitButton);
