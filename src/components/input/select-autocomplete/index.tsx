@@ -35,8 +35,9 @@ const SelectAutocomplete: React.FC<SelectFieldProps> = ({
 
   return (
     <Autocomplete
-      id={id}
+      data-testid={id}
       disabled={disabled}
+      clearOnEscape
       value={value}
       onChange={handleChange}
       options={options}
@@ -48,6 +49,7 @@ const SelectAutocomplete: React.FC<SelectFieldProps> = ({
         // eslint-disable-next-line react/jsx-props-no-spreading
         return <TextField {...params} label={label} />;
       }}
+      ListboxProps={{ 'data-testid': `${id}-text-box` }}
     />
   );
 };

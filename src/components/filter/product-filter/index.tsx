@@ -56,8 +56,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
     const fetchData = () => {
       ProductService.getProductLineGroupOptions()
         .then(({ data }) => {
-          const { productLineGroups } = data || {};
-          const vendorGroupData = productLineGroups.find(
+          const vendorGroupData = data?.productLineGroups.find(
             (item) =>
               item.productLineGroupId === Groups.VENDOR_GROUP.productLineGroupId
           );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import ProductFilter from './index';
+import { ProductService } from '@services';
 import { TestUtils } from '@test-utils';
 
 afterEach(cleanup);
@@ -13,6 +14,7 @@ const textSearchInputId = 'text-search-input';
 
 describe('ProductTableComponent Tests', () => {
   test('default rendering of the ProductFilter', async () => {
+    ProductService.getProductLineGroupOptions = jest.fn(() => Promise.reject());
     const mockFunc = jest.fn();
     const { getByTestId, queryByTestId } = TestUtils.render(
       <ProductFilter onChangeProductFilter={mockFunc} />
@@ -24,6 +26,7 @@ describe('ProductTableComponent Tests', () => {
   });
 
   test('ProductFilter displays Filter form when toggle clicked', async () => {
+    ProductService.getProductLineGroupOptions = jest.fn(() => Promise.reject());
     const mockFunc = jest.fn();
     const { getByTestId, queryByTestId } = TestUtils.render(
       <ProductFilter onChangeProductFilter={mockFunc} />
@@ -38,20 +41,22 @@ describe('ProductTableComponent Tests', () => {
   });
 
   test('ProductFilter Filter form apply click triggers callback when valid', async () => {
+    ProductService.getProductLineGroupOptions = jest.fn(() => Promise.reject());
     const mockCallBack = jest.fn();
-    const { getByTestId, queryByTestId } = TestUtils.render(
+    const { getByTestId } = TestUtils.render(
       <ProductFilter onChangeProductFilter={mockCallBack} />
     );
 
     const toggleButton = getByTestId(productFilterToggleButtonId);
     fireEvent.click(toggleButton);
 
+    const inputField = getByTestId(textSearchInputId);
+
+    fireEvent.change(inputField, { target: { value: '12' } });
     const applyButton = getByTestId(productFilterApplyButtonId);
     expect(applyButton).toBeDisabled();
 
-    const inputText = '123';
-    const inputField = getByTestId(textSearchInputId);
-    fireEvent.change(inputField, { target: { value: inputText } });
+    fireEvent.change(inputField, { target: { value: '123' } });
 
     expect(applyButton).not.toBeDisabled();
     fireEvent.click(applyButton);
