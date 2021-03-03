@@ -90,8 +90,7 @@ describe('ProductTableComponent Tests', () => {
       HttpStatusCodes.OK
     );
 
-    const promise = Promise.resolve(response);
-    ProductService.getProductLineGroupOptions = () => promise;
+    ProductService.getProductLineGroupOptions = () => Promise.resolve(response);
 
     const mockCallBack = jest.fn();
 
