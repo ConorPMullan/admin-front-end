@@ -12,7 +12,7 @@ import {
 
 afterEach(cleanup);
 
-const searchAutocompleteId = 'select-autocomplete';
+const searchAutocompleteId = 'select-autocomplete-vendor';
 const productFilterContainerId = 'product-filter-container';
 const productFilterApplyButtonId = 'product-filter-apply-button';
 const productFilterTitleId = 'product-table-title';
@@ -116,6 +116,54 @@ describe('ProductTableComponent Tests', () => {
     fireEvent.keyDown(autocomplete, { key: 'Enter' });
     await waitFor(() => {
       expect(input.value).toEqual(vendorName);
+    });
+  });
+
+  test('Integration - ProductFilter Get Prodcut Line Options updates BrandOptions and is Selectable', async () => {
+    const brandName = 'testBrand';
+    const brandOptions: IProductLineGroupOption[] = [
+      {
+        productLineGroupOptionId: 200,
+        productLineGroupOptionName: brandName,
+      },
+    ];
+
+    const productLineGroups: IProductLineGroup[] = [
+      { ...Groups.BRAND_GROUP, productLineGroupOptions: brandOptions },
+    ];
+    const groupData: IProductLineGroupData = { productLineGroups };
+
+    const response = TestUtils.buildAxiosResponse<IProductLineGroupData>(
+      groupData,
+      HttpStatusCodes.OK
+    );
+
+    ProductService.getProductLineGroupOptions = () => Promise.resolve(response);
+
+    const mockCallBack = jest.fn();
+
+    const { getByLabelText, getByTestId } = TestUtils.render(
+      <ProductFilter onChangeProductFilter={mockCallBack} />
+    );
+
+    // show filter
+    const toggleButton = getByTestId(productFilterToggleButtonId);
+    fireEvent.click(toggleButton);
+
+    // Get Autocomplete and input components
+    const label = Product.PRODUCT_BRAND_SELECTION;
+    const autocomplete = getByTestId(searchAutocompleteId);
+    const input = getByLabelText(label) as HTMLInputElement;
+    expect(input).toBeInTheDocument();
+
+    // Navigate to the first item in the dropdown and select
+    fireEvent.change(input, {
+      target: { value: brandName },
+    });
+    fireEvent.keyDown(autocomplete, { key: 'ArrowDown' });
+    fireEvent.keyDown(autocomplete, { key: 'Enter' });
+    await waitFor(() => {
+      expect(input.value).toEqual(brandName);
     });
   });
 });
