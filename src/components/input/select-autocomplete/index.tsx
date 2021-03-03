@@ -49,7 +49,6 @@ const SelectAutocomplete: React.FC<SelectFieldProps> = ({
         // eslint-disable-next-line react/jsx-props-no-spreading
         return <TextField {...params} label={label} />;
       }}
-      ListboxProps={{ 'data-testid': `${id}-text-box` }}
     />
   );
 };
