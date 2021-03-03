@@ -23,6 +23,8 @@ export const ProductFilterContainer = styled.div`
   }};
 `;
 
+export const ProductFilterApplyButtonWrapper = styled.div``;
+
 export const ProductFilterComponentWrapper = styled.div`
   flex-grow: 1;
   ${({ theme }) => {
