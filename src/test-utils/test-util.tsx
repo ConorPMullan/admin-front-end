@@ -79,7 +79,7 @@ const buildPaginatedData = function <T>(
 };
 
 // eslint-disable-next-line func-names
-const buildAxiosResponse = function <T>(data: T, status: number) {
+const buildAxiosResponse = function <T>(data: T | T[], status: number) {
   const axiosResponse: AxiosResponse<T> = {
     data,
     status,
