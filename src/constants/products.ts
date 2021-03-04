@@ -6,6 +6,7 @@ interface ProductStrings {
   PRODUCT_TABLE_COLUMN_UPC: string;
   PRODUCT_TABLE_COLUMN_BRAND: string;
   PRODUCT_TABLE_TITLE: string;
+  PRODUCT_BRAND_SELECTION: string;
   PRODUCT_VENDOR_SELECTION: string;
 }
 
@@ -17,6 +18,7 @@ const PRODUCT_STRINGS: ProductStrings = {
   PRODUCT_TABLE_COLUMN_UPC: 'UPC',
   PRODUCT_TABLE_COLUMN_BRAND: 'Brand',
   PRODUCT_TABLE_TITLE: 'Products',
+  PRODUCT_BRAND_SELECTION: 'Select Brand',
   PRODUCT_VENDOR_SELECTION: 'Select Vendor',
 };
 
