@@ -3,6 +3,7 @@ interface ApiUrlTypes {
   readonly AUTHENTICATION_REFRESH: string;
   readonly BASE_URL: string;
   readonly PRODUCTS: string;
+  readonly GROUPS_PRODUCT_LINE_OPTIONS: string;
 }
 
 const ApiUrls: ApiUrlTypes = {
@@ -13,6 +14,7 @@ const ApiUrls: ApiUrlTypes = {
   BASE_URL:
     process.env.REACT_APP_API_URL || 'https://qa.admin.pfe-testing.tk/api/',
   PRODUCTS: 'v1/products/',
+  GROUPS_PRODUCT_LINE_OPTIONS: '/v1/groups/productLineGroupOptions',
 };
 
 export default ApiUrls;

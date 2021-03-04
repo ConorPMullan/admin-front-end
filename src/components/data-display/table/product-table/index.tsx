@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HttpStatusCodes } from '@constants';
 import { IProduct, IProductFilter } from '@interfaces';
 import { ProductService } from '@services';
@@ -23,6 +23,13 @@ const ProductTable: React.FC<ProductTableProps> = ({
   const [pageSize, setPageSize] = useState<number>(25);
   const [totalElements, setTotalElements] = useState<number>(0);
 
+  const isMounted = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   useEffect(() => {
     setPage(0);
     setCachedData([]);
@@ -36,7 +43,10 @@ const ProductTable: React.FC<ProductTableProps> = ({
       setPageLoading(true);
       ProductService.getProducts(page, pageSize, productFilter)
         .then((response) => {
-          if (response.status === HttpStatusCodes.NO_CONTENT) {
+          if (
+            isMounted.current &&
+            response.status === HttpStatusCodes.NO_CONTENT
+          ) {
             setTotalElements(0);
             setPage(0);
             setProductData([]);
@@ -56,8 +66,10 @@ const ProductTable: React.FC<ProductTableProps> = ({
         })
         .catch(() => {})
         .finally(() => {
-          setPageLoading(false);
-          setProductLoading(false);
+          if (isMounted.current) {
+            setPageLoading(false);
+            setProductLoading(false);
+          }
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

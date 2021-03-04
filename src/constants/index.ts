@@ -1,3 +1,4 @@
+export { default as Groups } from './groups';
 export { default as HttpStatusCodes } from './http-status-codes';
 export { default as Product } from './products';
 export { default as Input } from './input';

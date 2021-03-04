@@ -1,4 +1,4 @@
-export const getSelectedPageData = <T>(
+const getSelectedPageData = <T>(
   data: T[],
   selectedPage: number,
   rowsPerPage: number

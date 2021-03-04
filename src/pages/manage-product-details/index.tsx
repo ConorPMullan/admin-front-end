@@ -23,7 +23,6 @@ const ProductDetails: React.FC = (): ReactElement => {
         <Paper>
           <ProductFilter
             isProductDataLoading={isProductDataLoading}
-            productFilter={productFilter}
             onChangeProductFilter={setProductFilter}
           />
           <ProductTable
