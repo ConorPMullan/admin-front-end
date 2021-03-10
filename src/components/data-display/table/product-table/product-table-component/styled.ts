@@ -1,4 +1,5 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -32,10 +33,14 @@ export const MuiProgress = styled(LinearProgress)`
     return classes.paper;
   }};
 `;
+export const MuiButton = styled(Button)``;
 export const MuiSkeleton = styled(Skeleton)``;
 export const MuiTable = styled(Table)``;
 export const MuiTableBody = styled(TableBody)``;
 export const MuiTableCell = styled(TableCell)``;
+export const MuiFirstHeaderTableCell = styled(TableCell)`
+  padding-left: 24px;
+`;
 export const MuiTableHead = styled(TableHead)``;
 export const MuiTableRow = styled(TableRow)``;
 export const MuiTypography = styled(Typography)``;

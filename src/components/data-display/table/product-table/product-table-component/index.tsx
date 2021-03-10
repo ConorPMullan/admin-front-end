@@ -1,12 +1,16 @@
 import React from 'react';
 import { Product as ProductConstants } from '@constants';
-import { IProduct } from '@interfaces';
+import { IProduct, IProductLineItem } from '@interfaces';
+import { ProductDetails } from '@pages';
+import DialogContainer from '../../../../layout/dialog-container';
 import TablePagination from '../../table-pagination';
 import {
+  MuiButton as Button,
   MuiCircularProgress as CircularProgress,
   MuiProgress as Progress,
   MuiTable as Table,
   MuiTableBody as TableBody,
+  MuiFirstHeaderTableCell,
   MuiTableCell as TableCell,
   MuiTableHead as TableHead,
   MuiTableRow as TableRow,
@@ -32,6 +36,20 @@ const ProductTableComponent: React.FC<ProductTableProps> = ({
   totalElements,
   onChangePage,
 }) => {
+  const [isOpen, setDialogOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState<
+    IProductLineItem
+  >();
+
+  const handleDialogOpen = (productLineItem: IProductLineItem) => {
+    setSelectedProduct(productLineItem);
+    setDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setSelectedProduct(undefined);
+    setDialogOpen(false);
+  };
+
   const renderTableRow = (product: IProduct, index: number) => {
     const { productLineItem } = product;
     const {
@@ -44,7 +62,16 @@ const ProductTableComponent: React.FC<ProductTableProps> = ({
     } = productLineItem;
     return (
       <TableRow data-testid={`product-table-row-${index}`} key={id}>
-        <TableCell>{itemNumber}</TableCell>
+        <TableCell>
+          <Button
+            data-testid={`product-details-open-${index}`}
+            variant="text"
+            color="secondary"
+            onClick={() => handleDialogOpen(productLineItem)}
+          >
+            {itemNumber}
+          </Button>
+        </TableCell>
         <TableCell>{upc}</TableCell>
         <TableCell>{brand}</TableCell>
         <TableCell>{name}</TableCell>
@@ -54,52 +81,65 @@ const ProductTableComponent: React.FC<ProductTableProps> = ({
   };
 
   return (
-    <TableContainer data-testid="product-table-container">
-      {isTableLoading ? (
-        <Progress data-testid="product-table-loading" color="secondary" />
-      ) : (
-        <>
-          <Table data-testid="product-table" size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_ITEM_NUMBER}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_UPC}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
-                </TableCell>
-                <TableCell>
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_NAME}
-                </TableCell>
-                <TableCell align="right">
-                  {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {productData.map((product, i) => renderTableRow(product, i))}
-            </TableBody>
-          </Table>
-          {isPageLoading && (
-            <CircularProgress
-              data-testid="product-table-page-loading"
-              size={100}
-              color="secondary"
+    <>
+      <TableContainer data-testid="product-table-container">
+        {isTableLoading ? (
+          <Progress data-testid="product-table-loading" color="secondary" />
+        ) : (
+          <>
+            <Table data-testid="product-table" size="small">
+              <TableHead>
+                <TableRow>
+                  <MuiFirstHeaderTableCell>
+                    {ProductConstants.PRODUCT_TABLE_COLUMN_ITEM_NUMBER}
+                  </MuiFirstHeaderTableCell>
+                  <TableCell>
+                    {ProductConstants.PRODUCT_TABLE_COLUMN_UPC}
+                  </TableCell>
+                  <TableCell>
+                    {ProductConstants.PRODUCT_TABLE_COLUMN_BRAND}
+                  </TableCell>
+                  <TableCell>
+                    {ProductConstants.PRODUCT_TABLE_COLUMN_NAME}
+                  </TableCell>
+                  <TableCell align="right">
+                    {ProductConstants.PRODUCT_TABLE_COLUMN_UNIT_MEASUREMENT}
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {productData.map((product, i) => renderTableRow(product, i))}
+              </TableBody>
+            </Table>
+            {isPageLoading && (
+              <CircularProgress
+                data-testid="product-table-page-loading"
+                size={100}
+                color="secondary"
+              />
+            )}
+            <TablePagination
+              disabled={isPageLoading}
+              rowsPerPage={pageSize}
+              selectedPage={pageNumber}
+              totalRowCount={totalElements}
+              onPageChange={onChangePage}
             />
-          )}
-          <TablePagination
-            disabled={isPageLoading}
-            rowsPerPage={pageSize}
-            selectedPage={pageNumber}
-            totalRowCount={totalElements}
-            onPageChange={onChangePage}
-          />
-        </>
-      )}
-    </TableContainer>
+          </>
+        )}
+      </TableContainer>
+      <DialogContainer
+        id="product-details"
+        fullWidth
+        isOpen={isOpen}
+        maxWidth="md"
+        onClose={handleDialogClose}
+        title={ProductConstants.PRODUCTS_DETAILS_TITLE}
+        subtitle={selectedProduct?.itemNumber}
+      >
+        <ProductDetails />
+      </DialogContainer>
+    </>
   );
 };
 

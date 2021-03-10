@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import ProductTableComponent from './index';
 import {
   IProduct,
@@ -15,6 +15,7 @@ const productTableId = 'product-table';
 const productTableLoadingId = 'product-table-loading';
 const productPageLoadingId = 'product-table-page-loading';
 const productTableRowId = 'product-table-row-';
+const productDetailsOpenId = 'product-details-open-';
 
 describe('ProductTableComponent Tests', () => {
   test('default rendering of the ProductTableComponent', async () => {
@@ -72,7 +73,8 @@ describe('ProductTableComponent Tests', () => {
 
   test('Product Table shows Table Row for returned Product data', async () => {
     const productId = 123;
-    const productOne = buildMockProduct(productId, '2', 'Test');
+    const itemNumber = '12345';
+    const productOne = buildMockProduct(productId, itemNumber, 'Test');
     const productData: IProduct[] = [productOne];
 
     const mockFunc = jest.fn();
@@ -87,6 +89,14 @@ describe('ProductTableComponent Tests', () => {
       />
     );
     expect(getByTestId(productTableRowId + 0)).toBeInTheDocument;
+    const productRowButton = getByTestId(productDetailsOpenId + 0);
+    expect(productRowButton).toBeInTheDocument;
+
+    fireEvent.click(productRowButton);
+    const dialogSubtitleId = 'product-details-dialog-subtitle-text';
+    const subtitleComponent = getByTestId(dialogSubtitleId);
+    expect(subtitleComponent).toBeInTheDocument;
+    expect(subtitleComponent.textContent).toEqual(itemNumber);
   });
 
   const buildMockProduct = (
