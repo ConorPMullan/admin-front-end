@@ -12,6 +12,7 @@ import {
   ISelectOption,
 } from '@interfaces';
 import { ProductService } from '@services';
+import { SortUtils } from '@utils';
 import SelectAutocomplete from '../../input/select-autocomplete';
 import TextSearch from '../../input/text-search';
 import Title from '../../data-display/title';
@@ -69,6 +70,9 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
           if (vendorGroupData?.productLineGroupOptions) {
             const mappedVendorOptions = mapGroupOptionsToSelectOptions(
               vendorGroupData.productLineGroupOptions
+            );
+            mappedVendorOptions.sort((a, b) =>
+              SortUtils.dynamicStringSort(a.label, b.label)
             );
             setVendorOptions(mappedVendorOptions);
           }
