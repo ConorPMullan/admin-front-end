@@ -134,7 +134,7 @@ const ProductTableComponent: React.FC<ProductTableProps> = ({
         isOpen={isOpen}
         maxWidth="md"
         onClose={handleDialogClose}
-        title={ProductConstants.PRODUCTS_DETAILS_TITLE}
+        title={ProductConstants.EDIT_PRODUCTS_DETAILS_TITLE}
         subtitle={selectedProduct?.itemNumber}
       >
         <ProductDetails />
