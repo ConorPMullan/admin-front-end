@@ -28,7 +28,11 @@ const materialStyles = (theme: Theme) => ({
   },
 });
 
-export const MuiDialog = styled(Dialog)``;
+export const MuiDialog = styled(Dialog)`
+  .MuiPaper-root {
+    min-height: calc(100% - 200px);
+  }
+`;
 export const MuiDivider = styled(Divider)``;
 export const MuiGrid = styled(Grid)``;
 
@@ -53,7 +57,9 @@ export const DialogSubTitle = styled(Typography)`
   }};
 `;
 
-export const DialogContent = styled(MuiDialogContent)``;
+export const DialogContent = styled(MuiDialogContent)`
+  display: flex;
+`;
 
 export const MuiCloseIcon = styled(CloseIcon)``;
 export const CloseIconButton = styled(IconButton)`
