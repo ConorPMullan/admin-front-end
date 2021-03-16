@@ -48,7 +48,7 @@ const ProductDetailsForm: React.FC = () => {
       </Tabs>
       <TabPanel value={selectedTab} index={0} />
       <TabPanel value={selectedTab} index={1}>
-        <Grid container>
+        <Grid container justify="center">
           <Grid item xs={12} sm={10} lg={9}>
             <TextField
               inputProps={{
@@ -63,7 +63,7 @@ const ProductDetailsForm: React.FC = () => {
         </Grid>
       </TabPanel>
       <TabPanel value={selectedTab} index={2}>
-        <Grid container>
+        <Grid container justify="center">
           <Grid item xs={12} sm={10} lg={9}>
             <TextField
               inputProps={{
@@ -78,7 +78,7 @@ const ProductDetailsForm: React.FC = () => {
         </Grid>
       </TabPanel>
       <TabPanel value={selectedTab} index={3}>
-        <Grid container spacing={4}>
+        <Grid container justify="center">
           <Grid item xs={12} sm={10} lg={9}>
             <TextField
               inputProps={{
