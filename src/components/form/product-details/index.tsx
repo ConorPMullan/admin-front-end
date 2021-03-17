@@ -9,8 +9,6 @@ import {
   MuiTab as Tab,
 } from './styled';
 
-// interface ProductDetailsFormProps {}
-
 const ProductDetailsForm: React.FC = () => {
   const [selectedTab, setTab] = React.useState(0);
 
