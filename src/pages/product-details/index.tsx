@@ -1,8 +1,15 @@
 import React from 'react';
 import { ProductDetailsForm } from '@components';
+import { IProductLineItem } from '@interfaces';
 
-const ProductDetails: React.FC = (): React.ReactElement => {
-  return <ProductDetailsForm />;
+interface ProductDetailsProps {
+  product?: IProductLineItem;
+}
+
+const ProductDetails: React.FC<ProductDetailsProps> = ({
+  product,
+}): React.ReactElement => {
+  return <ProductDetailsForm product={product} />;
 };
 
 export default ProductDetails;

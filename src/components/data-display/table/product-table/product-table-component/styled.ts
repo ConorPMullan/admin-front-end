@@ -27,6 +27,11 @@ export const TableContainer = styled.div`
   position: relative;
 `;
 
+export const ModalTitleWrapper = styled.div`
+  text-align: center;
+  width: 147px;
+`;
+
 export const MuiProgress = styled(LinearProgress)`
   ${({ theme }) => {
     const classes = materialStyles(theme);
