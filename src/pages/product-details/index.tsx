@@ -1,7 +1,8 @@
 import React from 'react';
+import { ProductDetailsForm } from '@components';
 
 const ProductDetails: React.FC = (): React.ReactElement => {
-  return <>Hello there!</>;
+  return <ProductDetailsForm />;
 };
 
 export default ProductDetails;
