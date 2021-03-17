@@ -11,17 +11,17 @@ interface SelectDropdownProps {
   id: string;
   disabled?: boolean;
   label: string;
-  options: ISelectOption[];
-  selectedOption?: ISelectOption;
+  defaultValue?: string;
+  options?: ISelectOption[];
   onChange(event: React.ChangeEvent<{ value: unknown }>): void;
 }
 
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
   id,
+  defaultValue = '',
   disabled,
   label,
   options,
-  selectedOption,
   onChange,
 }) => {
   return (
@@ -29,15 +29,16 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
       <InputLabel id={`${id}-label`}>{label}</InputLabel>
       <Select
         id={id}
+        defaultValue={defaultValue}
         disabled={disabled}
         labelId={`${id}-label`}
-        value={selectedOption}
         onChange={onChange}
         label={label}
       >
-        {options.map((option) => (
-          <MenuItem value={option.value}>{option.label}</MenuItem>
-        ))}
+        {options &&
+          options.map((option) => (
+            <MenuItem value={option.value}>{option.label}</MenuItem>
+          ))}
       </Select>
     </FormControl>
   );

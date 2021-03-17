@@ -51,8 +51,9 @@ export const FieldValue = styled(Typography)`
   height: 100%;
 `;
 
-export const DividerWrapper = styled(Grid)`
+export const DividerWrapper = styled.div`
   padding: 16px 0px;
+  width: 100%;
 `;
 export const MuiDivider = styled(Divider)``;
 export const MuiGrid = styled(Grid)``;

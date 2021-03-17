@@ -68,12 +68,7 @@ const ProductDetailsForm: React.FC<ProductDetailsProps> = ({ product }) => {
           <FieldLabel>{title}</FieldLabel>
         </Grid>
         <Grid item xs={12} sm={8} md={9}>
-          <SelectDropdown
-            id={id}
-            label={title}
-            options={[]}
-            onChange={() => {}}
-          />
+          <SelectDropdown id={id} label={title} onChange={() => {}} />
         </Grid>
       </>
     );
@@ -109,33 +104,44 @@ const ProductDetailsForm: React.FC<ProductDetailsProps> = ({ product }) => {
       <TabPanel value={selectedTab} index={0}>
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h6">Infor</Typography>
+            <Typography variant="h6">
+              {ProductConstants.PRODUCT_FORM_INFOR_TITLE}
+            </Typography>
           </Grid>
           {getReadOnlyField(
             'product-form-item-number',
-            'Item Number',
+            ProductConstants.PRODUCT_FORM_ITEM_NUMBER,
             product?.itemNumber
           )}
           {getReadOnlyField('product-form-name', 'Name', product?.name)}
           {getReadOnlyField('product-form-upc', 'Default UPC', product?.upc)}
           {getReadOnlyField(
             'product-form-um',
-            'UM',
+            ProductConstants.PRODUCT_FORM_UM,
             product?.unitOfMeasurement.description
           )}
-          {getReadOnlyField('product-form-brand', 'Brand', product?.brand)}
-          {getReadOnlyField('product-form-size', 'Product Size')}
+          {getReadOnlyField(
+            'product-form-brand',
+            ProductConstants.PRODUCT_FORM_BRAND,
+            product?.brand
+          )}
+          {getReadOnlyField(
+            'product-form-size',
+            ProductConstants.PRODUCT_FORM_SIZE
+          )}
           {getReadOnlyField('product-form-count', 'Count')}
           {getReadOnlyField(
             'product-form-edlp',
             ProductConstants.PRODUCT_FORM_EDLP,
             `$${product?.price || 0}`
           )}
-          <DividerWrapper xs={12}>
+          <DividerWrapper>
             <Divider variant="middle" />
           </DividerWrapper>
           <Grid item xs={12}>
-            <Typography variant="h6">Platform</Typography>
+            <Typography variant="h6">
+              {ProductConstants.PRODUCT_FORM_PLATFORM_TITLE}
+            </Typography>
           </Grid>
           {getEditableTextField(
             'product-form-description',
