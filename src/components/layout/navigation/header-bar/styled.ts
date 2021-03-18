@@ -12,7 +12,7 @@ const drawerWidth = 240;
 
 const materialStyles = (theme: Theme) => ({
   appBar: {
-    zIndex: theme.zIndex.drawer + 2000,
+    zIndex: theme.zIndex.modal + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
