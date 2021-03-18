@@ -17,7 +17,7 @@ interface DialogProps {
   isOpen: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   onClose(): void;
-  title: string;
+  title: string | React.ReactNode;
   subtitle?: string;
 }
 

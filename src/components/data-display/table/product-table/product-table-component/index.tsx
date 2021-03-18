@@ -15,6 +15,7 @@ import {
   MuiTableHead as TableHead,
   MuiTableRow as TableRow,
   TableContainer,
+  ModalTitleWrapper,
 } from './styled';
 
 interface ProductTableProps {
@@ -134,10 +135,14 @@ const ProductTableComponent: React.FC<ProductTableProps> = ({
         isOpen={isOpen}
         maxWidth="md"
         onClose={handleDialogClose}
-        title={ProductConstants.EDIT_PRODUCTS_DETAILS_TITLE}
+        title={
+          <ModalTitleWrapper>
+            {ProductConstants.EDIT_PRODUCTS_DETAILS_TITLE}
+          </ModalTitleWrapper>
+        }
         subtitle={selectedProduct?.itemNumber}
       >
-        <ProductDetails />
+        <ProductDetails product={selectedProduct} />
       </DialogContainer>
     </>
   );

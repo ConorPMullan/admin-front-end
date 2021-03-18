@@ -1,3 +1,4 @@
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -12,6 +13,9 @@ const materialStyles = (theme: Theme) => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+  },
+  label: {
+    fontWeight: theme.typography.fontWeightBold,
   },
 });
 
@@ -31,6 +35,27 @@ export const MuiTabs = styled(Tabs)`
   }};
 `;
 
+export const FieldLabel = styled(Typography)`
+  ${({ theme }) => {
+    const classes = materialStyles(theme);
+    return classes.label;
+  }};
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
+export const FieldValue = styled(Typography)`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
+export const DividerWrapper = styled.div`
+  padding: 16px 0px;
+  width: 100%;
+`;
+export const MuiDivider = styled(Divider)``;
 export const MuiGrid = styled(Grid)``;
 export const MuiTab = styled(Tab)``;
 export const MuiTextField = styled(TextField)`

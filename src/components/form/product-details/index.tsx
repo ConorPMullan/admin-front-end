@@ -1,20 +1,77 @@
 import React from 'react';
 import { Product as ProductConstants } from '@constants';
+import { IProductLineItem } from '@interfaces';
 import TabPanel from '../../data-display/tab-panel';
+import SelectDropdown from '../../input/select-dropdown';
 import {
   ProductDetailsFormContainer,
+  DividerWrapper,
+  MuiDivider as Divider,
   MuiGrid as Grid,
   MuiTabs as Tabs,
   MuiTextField as TextField,
+  MuiTypography as Typography,
+  FieldLabel,
+  FieldValue,
   MuiTab as Tab,
 } from './styled';
 
-const ProductDetailsForm: React.FC = () => {
+interface ProductDetailsProps {
+  product?: IProductLineItem;
+}
+
+const ProductDetailsForm: React.FC<ProductDetailsProps> = ({ product }) => {
   const [selectedTab, setTab] = React.useState(0);
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setTab(newValue);
+  };
+
+  const getReadOnlyField = (id: string, title: string, value?: string) => {
+    return (
+      <>
+        <Grid item xs={12} sm={4} md={3}>
+          <FieldLabel>{title}</FieldLabel>
+        </Grid>
+        <Grid item xs={12} sm={8} md={9}>
+          <FieldValue data-testid={id}>{value}</FieldValue>
+        </Grid>
+      </>
+    );
+  };
+
+  const getEditableTextField = (id: string, title: string, value?: string) => {
+    return (
+      <>
+        <Grid item xs={12} sm={4} md={3}>
+          <FieldLabel>{title}</FieldLabel>
+        </Grid>
+        <Grid item xs={12} sm={8} md={9}>
+          <TextField
+            inputProps={{
+              'data-testid': id,
+            }}
+            label={title}
+            variant="outlined"
+            value={value}
+          />
+        </Grid>
+      </>
+    );
+  };
+
+  const getEditableSelection = (id: string, title: string) => {
+    return (
+      <>
+        <Grid item xs={12} sm={4} md={3}>
+          <FieldLabel>{title}</FieldLabel>
+        </Grid>
+        <Grid item xs={12} sm={8} md={9}>
+          <SelectDropdown id={id} label={title} onChange={() => {}} />
+        </Grid>
+      </>
+    );
   };
 
   return (
@@ -44,10 +101,65 @@ const ProductDetailsForm: React.FC = () => {
           label={ProductConstants.PRODUCT_FORM_GUARANTEED_ANALYSIS}
         />
       </Tabs>
-      <TabPanel value={selectedTab} index={0} />
+      <TabPanel value={selectedTab} index={0}>
+        <Grid container justify="center" spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              {ProductConstants.PRODUCT_FORM_INFOR_TITLE}
+            </Typography>
+          </Grid>
+          {getReadOnlyField(
+            'product-form-item-number',
+            ProductConstants.PRODUCT_FORM_ITEM_NUMBER,
+            product?.itemNumber
+          )}
+          {getReadOnlyField('product-form-name', 'Name', product?.name)}
+          {getReadOnlyField('product-form-upc', 'Default UPC', product?.upc)}
+          {getReadOnlyField(
+            'product-form-um',
+            ProductConstants.PRODUCT_FORM_UM,
+            product?.unitOfMeasurement.description
+          )}
+          {getReadOnlyField(
+            'product-form-brand',
+            ProductConstants.PRODUCT_FORM_BRAND,
+            product?.brand
+          )}
+          {getReadOnlyField(
+            'product-form-size',
+            ProductConstants.PRODUCT_FORM_SIZE
+          )}
+          {getReadOnlyField('product-form-count', 'Count')}
+          {getReadOnlyField(
+            'product-form-edlp',
+            ProductConstants.PRODUCT_FORM_EDLP,
+            `$${product?.price || 0}`
+          )}
+          <DividerWrapper>
+            <Divider variant="middle" />
+          </DividerWrapper>
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              {ProductConstants.PRODUCT_FORM_PLATFORM_TITLE}
+            </Typography>
+          </Grid>
+          {getEditableTextField(
+            'product-form-description',
+            ProductConstants.PRODUCT_FORM_DESCRIPTION
+          )}
+          {getEditableTextField(
+            'product-form-image-name',
+            ProductConstants.PRODUCT_FORM_IMAGE_NAME
+          )}
+          {getEditableSelection(
+            'product-form-flavor',
+            ProductConstants.PRODUCT_FORM_FLAVOR
+          )}
+        </Grid>
+      </TabPanel>
       <TabPanel value={selectedTab} index={1}>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={10} lg={9}>
+        <Grid container>
+          <Grid item xs={12}>
             <TextField
               inputProps={{
                 'data-testid': 'product-form-long-description',
@@ -61,8 +173,8 @@ const ProductDetailsForm: React.FC = () => {
         </Grid>
       </TabPanel>
       <TabPanel value={selectedTab} index={2}>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={10} lg={9}>
+        <Grid container>
+          <Grid item xs={12}>
             <TextField
               inputProps={{
                 'data-testid': 'product-form-ingredients',
@@ -76,8 +188,8 @@ const ProductDetailsForm: React.FC = () => {
         </Grid>
       </TabPanel>
       <TabPanel value={selectedTab} index={3}>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={10} lg={9}>
+        <Grid container>
+          <Grid item xs={12}>
             <TextField
               inputProps={{
                 'data-testid': 'product-form-guaranteed-analysis',
