@@ -14,6 +14,9 @@ const materialStyles = (theme: Theme) => ({
     margin: 0,
     padding: theme.spacing(2),
   },
+  dialog: {
+    zIndex: `${theme.zIndex.snackbar}!important` as never,
+  },
   title: {
     paddingRight: theme.spacing(2),
   },
@@ -32,6 +35,10 @@ export const MuiDialog = styled(Dialog)`
   .MuiPaper-root {
     min-height: calc(100% - 200px);
   }
+  ${({ theme }) => {
+    const classes = materialStyles(theme);
+    return classes.dialog;
+  }};
 `;
 export const MuiDivider = styled(Divider)``;
 export const MuiGrid = styled(Grid)``;
