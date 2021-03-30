@@ -1,6 +1,7 @@
 import React, { ChangeEvent, ReactElement, useState } from 'react';
 import * as z from 'zod';
 import LoginImageSource from '@assets/images/login-image-1.png';
+import PFXLogoWhite from '@assets/images/pfx-logo-white.png';
 import Paper from '@material-ui/core/Paper';
 import {
   Login as LoginConstants,
@@ -14,6 +15,7 @@ import { ZodError, ZodIssue } from 'zod';
 import {
   LoginContainer,
   LoginImage,
+  LogoImage,
   MuiGrid,
   LoadingAnimation,
   LoadingWrapper,
@@ -117,11 +119,14 @@ const Login: React.FC = (): ReactElement => {
         square
       >
         <LoginFormWrapper>
-          <AvatarContainer>
-            <AvatarIcon />
-          </AvatarContainer>
+          <MuiGrid>
+            <LogoImage $src={PFXLogoWhite} />
+          </MuiGrid>
           <MuiTypography component="h1" variant="h5">
             {LoginConstants.SIGN_IN}
+          </MuiTypography>
+          <MuiTypography variant="subtitle1">
+            {LoginConstants.WELCOME}
           </MuiTypography>
           <FormWrapper
             datat-testid="login-form"

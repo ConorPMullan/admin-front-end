@@ -45,6 +45,16 @@ export const LoginImage = styled(Grid)<IPropsMaterial>`
     return classes.image;
   }};
 `;
+export const LogoImage = styled(Grid)<IPropsMaterial>`
+  background-image: ${({ $src }) => ($src ? `url(${$src})` : '')};
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 10vh;
+  margin: 0 auto;
+  width: 20vh;
+  transition: all 0.2s ease-in-out;
+`;
 
 export const MuiGrid = styled(Grid)<IPropsMaterial>``;
 
